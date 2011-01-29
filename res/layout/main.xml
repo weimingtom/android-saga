@@ -1,20 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-android:id="@+id/RelativeLayout01" 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+android:id="@+id/LinearLayout01" 
 android:layout_height="fill_parent" 
-android:layout_width="fill_parent">
-
-<ImageView android:id="@+id/ImageView01" 
 android:layout_width="fill_parent" 
-android:layout_height="wrap_content" 
-android:layout_alignParentTop="true" 
-xmlns:android="http://schemas.android.com/apk/res/android"/>
+android:orientation="vertical">
 
-<TextView android:id="@+id/TextView01" 
-xmlns:android="http://schemas.android.com/apk/res/android" 
-android:layout_width="fill_parent" 
-android:layout_height="wrap_content" 
-android:layout_alignParentBottom="true"/>
+<ImageView android:id="@+id/MainView"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+android:id="@+id/LinearLayout02" 
+android:orientation="horizontal"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+>
+
+<ImageView android:id="@+id/HomeButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:onClick="clickHome"/>
+
+<ImageView android:id="@+id/BathButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:onClick="clickBath"/>
+
+<ImageView android:id="@+id/SleepButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:onClick="clickSleep"
+/>
+
+<ImageView android:id="@+id/QAButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:onClick="clickQA"
+/>
+
+<ImageView android:id="@+id/HospitalButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:onClick="clickHospital"
+/>
+
+<ImageView android:id="@+id/ExerciseButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:onClick="clickExercise"
+/>
+
+<ImageView android:id="@+id/FeedButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:onClick="clickFeed"
+/>
+
+<ImageView android:id="@+id/PresentButton"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:onClick="clickPresent"
+/>
+
+</LinearLayout>
+</LinearLayout>
