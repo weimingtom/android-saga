@@ -12,4 +12,5 @@ public class ConstantUtil{
 	public static final Integer BLACK_THRESHOLD = 40;	
 	
 	public static final Integer SATISFACTION_DEFAULT = 80;
+	public static final String  ENCODING = "UTF-8";
 }

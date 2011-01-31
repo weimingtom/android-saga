@@ -27,6 +27,8 @@ public class SagaActivity extends Activity {
 	private Integer height;
 	private Bitmap MainImage;
 	
+	Data data = new Data();
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,12 +65,16 @@ public class SagaActivity extends Activity {
         QABtn.setImageResource(R.drawable.qabtn);
         SleepBtn.setImageResource(R.drawable.sleepbtn);
         HospitalBtn.setImageResource(R.drawable.hospitalbtn);
-        PresentBtn.setImageResource(R.drawable.presentbtn);        
+        PresentBtn.setImageResource(R.drawable.presentbtn);   
+        
+        data.loadData(this, getString(R.string.data_path));
+        Alert.showAlert("Saga", data.satisfaction.toString(), this);
     }
     
     public void clickHome(View target)
     {
-    	Alert.showAlert("Saga", "Home", this);
+    	data.satisfaction = 40;
+    	data.saveData(this, getString(R.string.data_path));    		
     }    
     
     public void clickBath(View target)
@@ -100,4 +106,9 @@ public class SagaActivity extends Activity {
     {
     	Alert.showAlert("Saga", "Answer Question", this);
     }   
+    
+    public void clickSleep(View target)
+    {
+    	Alert.showAlert("Saga", "Sleep", this);
+    }
 }
