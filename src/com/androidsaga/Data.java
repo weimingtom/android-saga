@@ -1,16 +1,12 @@
 package com.androidsaga;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import org.apache.http.util.EncodingUtils;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
 import android.content.Context;
-import android.util.Log;
-
 import com.constantvalue.ConstantUtil;
 
 public class Data extends Object{
@@ -48,8 +44,9 @@ public class Data extends Object{
 	}
 	
 	public void saveData(Context ctx, String path){
+		FileOutputStream fout = null;
 		try{			
-			FileOutputStream fout = ctx.openFileOutput(path, Context.MODE_PRIVATE);
+			fout = ctx.openFileOutput(path, Context.MODE_PRIVATE);
 			String toWrite = "STATUS="+status.toString()+"\n";			
 			toWrite += ("TOTAL_TIME="+totalTime.toString()+"\n");
 			toWrite += ("LEVEL="+level.toString()+"\n");
@@ -70,17 +67,28 @@ public class Data extends Object{
 						",AMOUNT="+entry.getValue().toString()+"\n");
 			}			
 			
-			fout.write(toWrite.getBytes());			
-			fout.close();
+			fout.write(toWrite.getBytes());				
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		finally{
+			try{
+				if(fout != null){
+					fout.close();
+					fout = null;
+				}				
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public void loadData(Context ctx, String path){
-		try{			
-			FileInputStream fin = ctx.openFileInput(path);
+		FileInputStream fin = null;
+		try{		
+			fin = ctx.openFileInput(path);
 			int length = fin.available();
 			byte[] buffer = new byte[length];
 			fin.read(buffer);
@@ -125,11 +133,21 @@ public class Data extends Object{
 					int amount = Integer.parseInt(line.substring(amountIdx+7));
 					materialList.put(name, amount);
 				}					
-			}
-			fin.close();			
+			}						
 		}
 		catch(Exception e){
 			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(fin != null){
+					fin.close();
+					fin = null;
+				}
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 	}
 	
