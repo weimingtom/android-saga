@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Random;
 
 import android.content.Context;
+import android.util.Log;
 
 public class Data extends Object{
 	public Integer charactor = ConstantUtil.NORMAL_SAGA;	
@@ -23,6 +24,8 @@ public class Data extends Object{
 	public Integer inelegant = 0;
 	public Integer scientist = 0;
 	public Integer strange = 0;	
+	public Boolean loadFromFile = true;
+	public Long	autoUpdatePeriod = 900000L;
 	
 	protected HashMap<String, Integer> materialList = new HashMap<String, Integer>();	
 	
@@ -252,7 +255,17 @@ public class Data extends Object{
 		}
 	}
 	
-	public void loadData(){		
+	public void loadData(){	
+		if(!loadFromFile) return;
+		
+		loadFromFile = false;
+		autoUpdatePeriod = Long.parseLong(ctx.getSharedPreferences(
+				ctx.getString(R.string.default_sharedpref), Context.MODE_PRIVATE).
+				getString(ctx.getString(R.string.selected_auto_update_option), 
+						  ctx.getString(R.string.auto_update_default_value)));
+		
+		Log.v("auto_update", autoUpdatePeriod.toString());
+		
 		FileInputStream fin = null;
 		try{		
 			fin = ctx.openFileInput(ctx.getString(R.string.data_path));

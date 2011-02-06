@@ -20,8 +20,6 @@ public class ConstantUtil{
 	public static final Integer BATH_TIME = 300;   //5 mins
 	public static final Integer IDLE_THRESHOLD = 900; //15min
 	
-	public static final long UPDATE_PERIOD = 900000;
-	
 	public static final Integer DIRTY_AFFECT_SICK = 50;
 	public static final Integer HUNGRY_AFFECT_SICK = 50;
 	public static final Integer DIRTY_AFFECT_SATISFY = 40;

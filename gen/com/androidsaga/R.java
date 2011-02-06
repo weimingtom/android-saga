@@ -56,18 +56,20 @@ public final class R {
         public static final int mainmenu=0x7f080000;
     }
     public static final class string {
-        public static final int app_name=0x7f070001;
-        public static final int auto_update_default_value=0x7f070009;
-        public static final int auto_update_dialog=0x7f070008;
-        public static final int auto_update_summary=0x7f070007;
-        public static final int auto_update_title=0x7f070006;
+        public static final int app_name=0x7f070002;
+        public static final int auto_update_default_value=0x7f07000b;
+        public static final int auto_update_dialog=0x7f07000a;
+        public static final int auto_update_key=0x7f070006;
+        public static final int auto_update_summary=0x7f070009;
+        public static final int auto_update_title=0x7f070008;
         public static final int data_path=0x7f070000;
-        public static final int list_summary=0x7f07000b;
-        public static final int list_title=0x7f07000a;
-        public static final int menu_preference=0x7f070003;
-        public static final int menu_printscreen=0x7f070004;
-        public static final int my_pref=0x7f070002;
-        public static final int selected_auto_update_option=0x7f070005;
+        public static final int default_sharedpref=0x7f070001;
+        public static final int list_summary=0x7f07000d;
+        public static final int list_title=0x7f07000c;
+        public static final int menu_preference=0x7f070004;
+        public static final int menu_printscreen=0x7f070005;
+        public static final int my_pref=0x7f070003;
+        public static final int selected_auto_update_option=0x7f070007;
     }
     public static final class xml {
         public static final int preference=0x7f040000;

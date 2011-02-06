@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>    
     <string name="data_path">saga.dat</string>
+    <string name="default_sharedpref">com.androidsaga_preferences</string>
 	<string name="app_name">Saga</string>
 	
 	<string name="my_pref">我的设置</string>
@@ -8,6 +9,7 @@
 	<string name="menu_preference">设置</string>	
 	<string name="menu_printscreen">截图</string>
 	
+	<string name="auto_update_key">auto_update_preference</string>
 	<string name="selected_auto_update_option">selected_auto_update_option</string>
 	<string name="auto_update_title">自动存档时间</string>
 	<string name="auto_update_summary">设置自动存档及widget更新间隔</string>

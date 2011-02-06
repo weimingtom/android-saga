@@ -96,8 +96,13 @@ public class UpdateService extends Service implements Runnable {
 		PendingIntent pending=PendingIntent.getService(this, 0, updateIntent, 0);  
 		           
 		Time time = new Time();  
-		long nowMillis = System.currentTimeMillis();  
-		time.set(nowMillis+ConstantUtil.UPDATE_PERIOD);  
+		long nowMillis = System.currentTimeMillis(); 
+		long updatePeriod = Long.parseLong(getSharedPreferences(
+				getString(R.string.default_sharedpref), Context.MODE_PRIVATE).
+				getString(getString(R.string.selected_auto_update_option), 
+						  getString(R.string.auto_update_default_value)));
+		
+		time.set(nowMillis+updatePeriod);  
 		long updateTimes = time.toMillis(true);  		
 		           
 		AlarmManager alarm=(AlarmManager)getSystemService(Context.ALARM_SERVICE);  

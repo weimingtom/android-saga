@@ -1,5 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	android:key="auto_update_preference"
+	android:key="@string/auto_update_key"
 	android:title="@string/auto_update_title"
 	android:summary="@string/auto_update_summary">
 	
