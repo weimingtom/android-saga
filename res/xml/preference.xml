@@ -1,0 +1,16 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="auto_update_preference"
+	android:title="@string/auto_update_title"
+	android:summary="@string/auto_update_summary">
+	
+	<ListPreference 
+		android:key="@string/selected_auto_update_option"
+		android:title="@string/list_title"
+		android:summary="@string/list_summary"
+		android:entries="@array/auto_update_options"
+		android:entryValues="@array/auto_update_options_values"
+		android:dialogTitle="@string/auto_update_dialog"
+		android:defaultValue="@string/auto_update_default_value" 
+	/>
+
+</PreferenceScreen>

@@ -1,11 +1,16 @@
 package com.androidsaga;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.*;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -25,15 +30,14 @@ public class SagaActivity extends Activity {
 	
 	private Integer width;
 	private Integer height;
-	private Bitmap MainImage;
+	private Bitmap MainImage;	
+	private Data sagaData;
+	private UpdateThread updateThr;
 	
-	Data data = new Data();
-	
-    @Override
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature( Window.FEATURE_NO_TITLE );
-        
+        this.requestWindowFeature( Window.FEATURE_NO_TITLE );        
         setContentView(R.layout.main);
         
         MainView = (ImageView)findViewById(R.id.MainView);
@@ -65,16 +69,46 @@ public class SagaActivity extends Activity {
         QABtn.setImageResource(R.drawable.qabtn);
         SleepBtn.setImageResource(R.drawable.sleepbtn);
         HospitalBtn.setImageResource(R.drawable.hospitalbtn);
-        PresentBtn.setImageResource(R.drawable.presentbtn);   
+        PresentBtn.setImageResource(R.drawable.presentbtn);             
         
-        data.loadData(this, getString(R.string.data_path));
-        Alert.showAlert("Saga", data.satisfaction.toString(), this);
+        sagaData = new Data(this);
+        updateThr = new UpdateThread(this, sagaData);
+        updateThr.start();
+        Alert.showAlert("Saga", sagaData.totalTime.toString(), this);         
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+    	MenuInflater inflater = this.getMenuInflater();
+    	inflater.inflate(R.menu.mainmenu, menu);
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+    	if(item.getItemId() == R.id.menu_prefs){
+    		Intent intent = new Intent()
+    			.setClass(this, com.androidsaga.SagaPreferenceActivity.class);
+    		this.startActivityForResult(intent, 0);
+    	}
+    	return true;
+    }
+    
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);     
+    }
+    
+    @Override
+    public void onDestroy(){
+    	super.onDestroy();    	
+    	sagaData.saveData();
     }
     
     public void clickHome(View target)
     {
-    	data.satisfaction = 40;
-    	data.saveData(this, getString(R.string.data_path));    		
+    	Alert.showAlert("Saga", "Home", this);
     }    
     
     public void clickBath(View target)

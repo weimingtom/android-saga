@@ -1,11 +1,10 @@
-package com.constantvalue;
+package com.androidsaga;
 
-public class Status{
-	public static final Long DEAD         = 0x0000000000000000L;	
+public class Status{	
 	public static final Long NORMAL_BLUE  = 0x0100000000000000L;
 	public static final Long NORMAL_BLACK = 0x0200000000000000L;
 	public static final Long NORMAL_BLUE_BLACK = 0x0300000000000000L;
-	public static final Long CHANGE_COLOR = 0x0400000000000000L;
+	public static final Long CHANGE_COLOR = 0x0400000000000000L;	
 	
 	public static final Long FALL_DOWN_1  = 0x0500000000000000L;
 	public static final Long FALL_DOWN_2  = 0x0600000000000000L;

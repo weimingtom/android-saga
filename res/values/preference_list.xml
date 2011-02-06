@@ -1,0 +1,15 @@
+<resources>
+<string-array name="auto_update_options">
+	<item>5分钟</item>
+	<item>15分钟</item>
+	<item>30分钟</item>
+	<item>1小时</item>
+</string-array>
+
+<string-array name="auto_update_options_values">
+	<item>300000</item>
+	<item>900000</item>
+	<item>1800000</item>
+	<item>3600000</item>
+</string-array>
+</resources>
