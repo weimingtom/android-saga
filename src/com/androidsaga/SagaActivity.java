@@ -1,6 +1,7 @@
 package com.androidsaga;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.*;
@@ -72,6 +73,7 @@ public class SagaActivity extends Activity {
         PresentBtn.setImageResource(R.drawable.presentbtn);             
         
         sagaData = new Data(this);
+        sagaData.setRunningFlag(true);
         updateThr = new UpdateThread(this, sagaData);
         updateThr.start();
         Alert.showAlert("Saga", sagaData.totalTime.toString(), this);         
@@ -91,7 +93,29 @@ public class SagaActivity extends Activity {
     			.setClass(this, com.androidsaga.SagaPreferenceActivity.class);
     		this.startActivityForResult(intent, 0);
     	}
+    	else if(item.getItemId() == R.id.menu_clearall){
+    		sagaData.clearData(true);
+    	}
     	return true;
+    }
+    
+    @Override
+    public void onActivityResult(int reqCode, int resCode, Intent data){
+    	super.onActivityResult(reqCode, resCode, data);    	
+    }
+    
+    @Override
+    public void onPause(){
+    	super.onPause();      	
+    	sagaData.saveData();
+    	sagaData.setRunningFlag(false);    	
+    }
+    
+    @Override
+    public void onResume(){
+    	super.onResume();    	
+    	sagaData.loadData();
+    	sagaData.setRunningFlag(true);
     }
     
     @Override
@@ -99,13 +123,7 @@ public class SagaActivity extends Activity {
     {
         super.onConfigurationChanged(newConfig);     
     }
-    
-    @Override
-    public void onDestroy(){
-    	super.onDestroy();    	
-    	sagaData.saveData();
-    }
-    
+     
     public void clickHome(View target)
     {
     	Alert.showAlert("Saga", "Home", this);

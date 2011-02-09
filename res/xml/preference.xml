@@ -1,16 +1,36 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	android:key="@string/auto_update_key"
-	android:title="@string/auto_update_title"
-	android:summary="@string/auto_update_summary">
+	android:key="my_preference"
+	android:title="@string/pref_title"
+	android:summary="@string/pref_summary">
 	
-	<ListPreference 
-		android:key="@string/selected_auto_update_option"
-		android:title="@string/list_title"
-		android:summary="@string/list_summary"
-		android:entries="@array/auto_update_options"
-		android:entryValues="@array/auto_update_options_values"
-		android:dialogTitle="@string/auto_update_dialog"
-		android:defaultValue="@string/auto_update_default_value" 
-	/>
-
+	<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+		android:key="@string/auto_update_key"
+		android:title="@string/auto_update_title"
+		android:summary="@string/auto_update_summary">
+		
+		<ListPreference 
+			android:key="@string/selected_auto_update_option"
+			android:title="@string/list_title"
+			android:summary="@string/list_summary"
+			android:entries="@array/auto_update_options"
+			android:entryValues="@array/auto_update_options_values"
+			android:dialogTitle="@string/auto_update_dialog"
+			android:defaultValue="@string/auto_update_default_value" 
+		/>	
+	</PreferenceScreen>
+	
+	<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+		android:key="@string/other_option"
+		android:title="@string/other_option_title"
+		android:summary="@string/other_option_summary">
+		
+		<CheckBoxPreference
+			android:key="@string/run_background_key"
+			android:title="@string/run_background_title"
+			android:defaultValue="true"
+			android:summaryOn="@string/run_background_summaryon"
+			android:summaryOff="@string/run_background_summaryoff"
+		/>		
+	</PreferenceScreen>
+	
 </PreferenceScreen>

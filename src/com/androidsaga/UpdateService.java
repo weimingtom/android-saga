@@ -98,7 +98,7 @@ public class UpdateService extends Service implements Runnable {
 		Time time = new Time();  
 		long nowMillis = System.currentTimeMillis(); 
 		long updatePeriod = Long.parseLong(getSharedPreferences(
-				getString(R.string.default_sharedpref), Context.MODE_PRIVATE).
+				ConstantUtil.DEFAULT_SHARED_PREF, Context.MODE_PRIVATE).
 				getString(getString(R.string.selected_auto_update_option), 
 						  getString(R.string.auto_update_default_value)));
 		

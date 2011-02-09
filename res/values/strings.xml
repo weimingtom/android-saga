@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>    
-    <string name="data_path">saga.dat</string>
-    <string name="default_sharedpref">com.androidsaga_preferences</string>
+<resources>      
 	<string name="app_name">Saga</string>
 	
 	<string name="my_pref">我的设置</string>
 	
 	<string name="menu_preference">设置</string>	
 	<string name="menu_printscreen">截图</string>
+	<string name="menu_clearall">清除全部</string>	
+	
+	<string name="pref_title">通用设置</string>
+	<string name="pref_summary">设置其他选项</string>
 	
 	<string name="auto_update_key">auto_update_preference</string>
 	<string name="selected_auto_update_option">selected_auto_update_option</string>
 	<string name="auto_update_title">自动存档时间</string>
-	<string name="auto_update_summary">设置自动存档及widget更新间隔</string>
+	<string name="auto_update_summary">设置widget更新间隔</string>
 	<string name="auto_update_dialog">设置自动存档时间</string>
 	<string name="auto_update_default_value">900000</string>
 	<string name="list_title">自动存档时间</string>
 	<string name="list_summary">设置自动存档及widget更新间隔</string>
+	
+	<string name="other_option">other_option</string>
+	<string name="other_option_title">其他</string>
+	<string name="other_option_summary">其他选项</string>
+	
+	<string name="run_background_key">is_run_background</string>
+	<string name="run_background_title">后台运行</string>
+	<string name="run_background_summaryon">开启此选项，只要手机开机就会一直更新数据，升级较快，但若不按时照看，易饥饿或生病</string>
+	<string name="run_background_summaryoff">关闭此选项，只有当程序在前台运行并不锁屏的情况下，数据才会更新，升级较慢，但可以随时查看撒加状态</string>
 </resources>

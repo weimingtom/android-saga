@@ -1,46 +1,46 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-android:layout_height="294dp" 
-android:layout_width="294dp"
+android:layout_height="240px" 
+android:layout_width="320px"
 android:orientation="horizontal">
 
 <ImageView 
 	android:id="@+id/widget_saga_imageView"
-	android:layout_width="146dp"
-	android:layout_height="146dp"
+	android:layout_width="160px"
+	android:layout_height="240px"
 	android:gravity="center"
 />
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-android:layout_height="fill_parent"
-android:layout_width="fill_parent"
+android:layout_height="160px"
+android:layout_width="240px"
 android:orientation="vertical">
 	<TextView
-		android:id="@+id/widget_level"
-		android:layout_width="fill_parent"
+		android:id="@+id/widget_level"		
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 	/>
 
-	<TextView
+	<TextView		
 		android:id="@+id/widget_satisfy"
-		android:layout_width="fill_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 	/>
 	
-	<TextView
+	<TextView		
 		android:id="@+id/widget_hungry"
-		android:layout_width="fill_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 	/>
 	
-	<TextView
+	<TextView		
 		android:id="@+id/widget_sick"
-		android:layout_width="fill_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 	/>
 	
-	<TextView
+	<TextView		
 		android:id="@+id/widget_dirty"
-		android:layout_width="fill_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 	/>
 </LinearLayout>

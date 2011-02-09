@@ -39,8 +39,9 @@ public final class R {
         public static final int PresentButton=0x7f09000a;
         public static final int QAButton=0x7f090006;
         public static final int SleepButton=0x7f090005;
+        public static final int menu_clearall=0x7f090012;
         public static final int menu_prefs=0x7f090011;
-        public static final int menu_prtsc=0x7f090012;
+        public static final int menu_prtsc=0x7f090013;
         public static final int widget_dirty=0x7f090010;
         public static final int widget_hungry=0x7f09000e;
         public static final int widget_level=0x7f09000c;
@@ -56,20 +57,28 @@ public final class R {
         public static final int mainmenu=0x7f080000;
     }
     public static final class string {
-        public static final int app_name=0x7f070002;
-        public static final int auto_update_default_value=0x7f07000b;
-        public static final int auto_update_dialog=0x7f07000a;
-        public static final int auto_update_key=0x7f070006;
-        public static final int auto_update_summary=0x7f070009;
-        public static final int auto_update_title=0x7f070008;
-        public static final int data_path=0x7f070000;
-        public static final int default_sharedpref=0x7f070001;
-        public static final int list_summary=0x7f07000d;
-        public static final int list_title=0x7f07000c;
-        public static final int menu_preference=0x7f070004;
-        public static final int menu_printscreen=0x7f070005;
-        public static final int my_pref=0x7f070003;
-        public static final int selected_auto_update_option=0x7f070007;
+        public static final int app_name=0x7f070000;
+        public static final int auto_update_default_value=0x7f07000c;
+        public static final int auto_update_dialog=0x7f07000b;
+        public static final int auto_update_key=0x7f070007;
+        public static final int auto_update_summary=0x7f07000a;
+        public static final int auto_update_title=0x7f070009;
+        public static final int list_summary=0x7f07000e;
+        public static final int list_title=0x7f07000d;
+        public static final int menu_clearall=0x7f070004;
+        public static final int menu_preference=0x7f070002;
+        public static final int menu_printscreen=0x7f070003;
+        public static final int my_pref=0x7f070001;
+        public static final int other_option=0x7f07000f;
+        public static final int other_option_summary=0x7f070011;
+        public static final int other_option_title=0x7f070010;
+        public static final int pref_summary=0x7f070006;
+        public static final int pref_title=0x7f070005;
+        public static final int run_background_key=0x7f070012;
+        public static final int run_background_summaryoff=0x7f070015;
+        public static final int run_background_summaryon=0x7f070014;
+        public static final int run_background_title=0x7f070013;
+        public static final int selected_auto_update_option=0x7f070008;
     }
     public static final class xml {
         public static final int preference=0x7f040000;
