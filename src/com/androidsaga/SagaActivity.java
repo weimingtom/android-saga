@@ -29,6 +29,8 @@ public class SagaActivity extends Activity {
 	private ImageView HospitalBtn;
 	private ImageView PresentBtn;
 	
+	private TextView SayView;
+	
 	private Integer width;
 	private Integer height;
 	private Bitmap MainImage;	
@@ -42,13 +44,19 @@ public class SagaActivity extends Activity {
         setContentView(R.layout.main);
         
         MainView = (ImageView)findViewById(R.id.MainView);
+        SayView = (TextView)findViewById(R.id.SayView);
+        SayView.setText("Hello");
+        
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         width=dm.widthPixels;         
                
-        height = dm.heightPixels - 25 - 
-        	BitmapFactory.decodeResource(this.getResources(), R.drawable.icon).getHeight();
+        height = dm.heightPixels;
+        SayView.setHeight(height / 8);
         
+        height -= (25 + height/8 +
+        	BitmapFactory.decodeResource(this.getResources(), R.drawable.icon).getHeight());
+       
         //set main view size according to resolution        
 		MainImage = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         MainView.setImageBitmap(MainImage);        
@@ -60,7 +68,7 @@ public class SagaActivity extends Activity {
         QABtn = (ImageView)findViewById(R.id.QAButton);
         SleepBtn = (ImageView)findViewById(R.id.SleepButton);
         HospitalBtn = (ImageView)findViewById(R.id.HospitalButton);
-        PresentBtn = (ImageView)findViewById(R.id.PresentButton);
+        PresentBtn = (ImageView)findViewById(R.id.PresentButton);        
         
         //add button image    
         HomeBtn.setImageResource(R.drawable.icon);   

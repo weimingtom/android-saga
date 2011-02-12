@@ -29,26 +29,19 @@ public class SagaWidget extends AppWidgetProvider{
        
      public static RemoteViews updateAppWidget(Context context) {     	 
     	 RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.saga_widget_layout);  
-    	 Intent detailIntent = new Intent(context, SagaActivity.class);
-    	 PendingIntent pending = PendingIntent.getActivity(context, 0, detailIntent, 0);           
-         views.setOnClickPendingIntent(R.id.widget_saga_imageView, pending);  
-         
+    	         
     	 Data data = new Data(context);
     	 SharedPreferences prefs = context.getSharedPreferences(
     			 ConstantUtil.DEFAULT_SHARED_PREF, Context.MODE_PRIVATE);   	 
     	 
     	 Boolean allowRunBackground = prefs.getBoolean(context.getString(R.string.run_background_key), true);
-    	 if(!allowRunBackground){
-    		 return views;
-    	 }
-    	 
     	 Boolean isRunning = prefs.getBoolean(ConstantUtil.KEY_IS_RUNNING, false);
     	 if(isRunning)
     	 {
     		 idleTime = 0L;
     		 notExerciseTime = 0L;    		
     	 }
-    	 else{    	
+    	 else if(allowRunBackground){    	
 	    	 Long elapsedTime = prefs.getLong(ConstantUtil.KEY_LAST_CLOSE, 
 					 System.currentTimeMillis());
 			 elapsedTime = (System.currentTimeMillis() - elapsedTime) / 1000; 
@@ -66,7 +59,12 @@ public class SagaWidget extends AppWidgetProvider{
     	 views.setTextViewText(R.id.widget_dirty, data.dirty.toString());
     	 views.setTextViewText(R.id.widget_sick, data.sick.toString());    	 
     	 
-         data = null;         
+         data = null;  
+         
+         Intent detailIntent = new Intent(context, SagaActivity.class);
+    	 PendingIntent pending = PendingIntent.getActivity(context, 0, detailIntent, 0);           
+         views.setOnClickPendingIntent(R.id.widget_saga_imageView, pending);  
+         
          return views;          
      } 
 }

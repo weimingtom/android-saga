@@ -1,66 +1,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-android:id="@+id/LinearLayout01" 
-android:layout_height="fill_parent" 
-android:layout_width="fill_parent"
-android:background="@color/bk_white" 
-android:orientation="vertical">
+	android:id="@+id/LinearLayout01" 
+	android:layout_height="fill_parent" 
+	android:layout_width="fill_parent"
+	android:background="@color/bk_white" 
+	android:orientation="vertical">
 
-<ImageView android:id="@+id/MainView"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"/>
+	<ImageView android:id="@+id/MainView"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+	/>
+	
+	<TextView android:id="@+id/SayView"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/round_box"
+	/>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-android:id="@+id/LinearLayout02" 
-android:orientation="horizontal"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
->
-
-<ImageView android:id="@+id/HomeButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:onClick="clickHome"/>
-
-<ImageView android:id="@+id/BathButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:onClick="clickBath"/>
-
-<ImageView android:id="@+id/SleepButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:onClick="clickSleep"
-/>
-
-<ImageView android:id="@+id/QAButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:onClick="clickQA"
-/>
-
-<ImageView android:id="@+id/HospitalButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:onClick="clickHospital"
-/>
-
-<ImageView android:id="@+id/ExerciseButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:onClick="clickExercise"
-/>
-
-<ImageView android:id="@+id/FeedButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:onClick="clickFeed"
-/>
-
-<ImageView android:id="@+id/PresentButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:onClick="clickPresent"
-/>
-
-</LinearLayout>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+		android:id="@+id/LinearLayout02" 
+		android:orientation="horizontal"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+	
+		<ImageView android:id="@+id/HomeButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="clickHome"
+		/>
+		
+		<ImageView android:id="@+id/BathButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="clickBath"
+		/>
+		
+		<ImageView android:id="@+id/SleepButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="clickSleep"
+		/>
+			
+		<ImageView android:id="@+id/QAButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="clickQA"
+		/>
+		
+		<ImageView android:id="@+id/HospitalButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="clickHospital"
+		/>
+		
+		<ImageView android:id="@+id/ExerciseButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="clickExercise"
+		/>
+		
+		<ImageView android:id="@+id/FeedButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="clickFeed"
+		/>
+		
+		<ImageView android:id="@+id/PresentButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="clickPresent"
+		/>
+	
+	</LinearLayout>
 </LinearLayout>

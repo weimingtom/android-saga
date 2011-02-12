@@ -15,7 +15,9 @@ public class ConstantUtil{
 	public static final Integer STATUS_SICK = 4;
 	
 	public static final Integer BLUE_THRSHOLD = 60;
-	public static final Integer BLACK_THRESHOLD = 40;	
+	public static final Integer BLACK_THRESHOLD = 40;
+	
+	public static final Integer PRESENT_MOVE_STEP = 1;
 	
 	public static final Float SATISFACTION_DEFAULT = 80.f;
 	public static final String  ENCODING = "UTF-8";	

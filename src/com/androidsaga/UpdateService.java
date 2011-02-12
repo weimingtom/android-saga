@@ -17,7 +17,7 @@ import android.widget.RemoteViews;
 
 public class UpdateService extends Service implements Runnable {
 	private static Queue<Integer> sAppWidgetIds = new LinkedList<Integer>();  
-	public static final String ACTION_UPDATE_ALL = "com.xxxx.news.UPDATE_ALL";  
+	public static final String ACTION_UPDATE_ALL = "com.androidsaga.UPDATE_ALL";  
 	private static boolean sThreadRunning = false;  
 	private static Object sLock = new Object();  
 	
