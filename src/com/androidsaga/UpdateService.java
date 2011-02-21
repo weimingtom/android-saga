@@ -5,6 +5,7 @@ import java.util.Queue;
 
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
@@ -19,7 +20,7 @@ public class UpdateService extends Service implements Runnable {
 	private static Queue<Integer> sAppWidgetIds = new LinkedList<Integer>();  
 	public static final String ACTION_UPDATE_ALL = "com.androidsaga.UPDATE_ALL";  
 	private static boolean sThreadRunning = false;  
-	private static Object sLock = new Object();  
+	private static Object sLock = new Object(); 
 	
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -44,8 +45,8 @@ public class UpdateService extends Service implements Runnable {
 				return sAppWidgetIds.poll(); 		                   
 			}  
 		}  
-	}  
-		       
+	} 
+	
 	private static boolean hasMoreUpdates() {  
 		synchronized (sLock) {  
 			boolean hasMore = !sAppWidgetIds.isEmpty();  

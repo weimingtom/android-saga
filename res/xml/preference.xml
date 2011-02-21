@@ -3,7 +3,7 @@
 	android:title="@string/pref_title"
 	android:summary="@string/pref_summary">
 	
-	<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	<PreferenceCategory xmlns:android="http://schemas.android.com/apk/res/android"
 		android:key="@string/auto_update_key"
 		android:title="@string/auto_update_title"
 		android:summary="@string/auto_update_summary">
@@ -17,9 +17,19 @@
 			android:dialogTitle="@string/auto_update_dialog"
 			android:defaultValue="@string/auto_update_default_value" 
 		/>	
-	</PreferenceScreen>
+		
+		<ListPreference 
+			android:key="@string/selected_sleep_option"
+			android:title="@string/sleep_title"
+			android:summary="@string/sleep_summary"
+			android:entries="@array/sleep_options"
+			android:entryValues="@array/sleep_options_values"
+			android:dialogTitle="@string/sleep_dialog"
+			android:defaultValue="@string/sleep_default_value" 
+		/>		
+	</PreferenceCategory>	
 	
-	<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	<PreferenceCategory xmlns:android="http://schemas.android.com/apk/res/android"
 		android:key="@string/other_option"
 		android:title="@string/other_option_title"
 		android:summary="@string/other_option_summary">
@@ -30,7 +40,29 @@
 			android:defaultValue="true"
 			android:summaryOn="@string/run_background_summaryon"
 			android:summaryOff="@string/run_background_summaryoff"
+		/>
+		
+		<CheckBoxPreference
+			android:key="@string/allow_notify_key"
+			android:title="@string/allow_notify_title"
+			android:defaultValue="true"
+			android:summary="@string/allow_notify_summary"	
+		/>
+		
+		<CheckBoxPreference
+			android:key="@string/allow_auto_delete_key"
+			android:title="@string/allow_auto_delete_title"
+			android:defaultValue="false"
+			android:summaryOn="@string/allow_auto_delete_summaryon"
+			android:summaryOff="@string/allow_auto_delete_summaryOff"
+		/>	
+		
+		<CheckBoxPreference
+			android:key="@string/allow_auto_download_key"
+			android:title="@string/allow_auto_download_title"
+			android:defaultValue="false"
+			android:summary="@string/allow_auto_download_summary"			
 		/>		
-	</PreferenceScreen>
+	</PreferenceCategory>
 	
 </PreferenceScreen>

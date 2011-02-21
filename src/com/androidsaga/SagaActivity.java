@@ -49,13 +49,13 @@ public class SagaActivity extends Activity {
         
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-        width=dm.widthPixels;         
-               
+        width = dm.widthPixels;               
         height = dm.heightPixels;
-        SayView.setHeight(height / 8);
+        int btnSize = width / 8;
+        SayView.setHeight(height / 6);
+        SayView.setWidth(7*width / 8);
         
-        height -= (25 + height/8 +
-        	BitmapFactory.decodeResource(this.getResources(), R.drawable.icon).getHeight());
+        height -= (40 + height/6 + btnSize);
        
         //set main view size according to resolution        
 		MainImage = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
@@ -70,15 +70,30 @@ public class SagaActivity extends Activity {
         HospitalBtn = (ImageView)findViewById(R.id.HospitalButton);
         PresentBtn = (ImageView)findViewById(R.id.PresentButton);        
         
-        //add button image    
-        HomeBtn.setImageResource(R.drawable.icon);   
-        BathBtn.setImageResource(R.drawable.bathbtn);        
-        FeedBtn.setImageResource(R.drawable.feedbtn);    
-        ExerciseBtn.setImageResource(R.drawable.exercisebtn);
-        QABtn.setImageResource(R.drawable.qabtn);
-        SleepBtn.setImageResource(R.drawable.sleepbtn);
-        HospitalBtn.setImageResource(R.drawable.hospitalbtn);
-        PresentBtn.setImageResource(R.drawable.presentbtn);             
+        //add button image         
+        HomeBtn.setImageBitmap(ConstantUtil.scaleButtonBitmap(
+        						this, R.drawable.homebtn, btnSize, btnSize));   
+        
+        BathBtn.setImageBitmap(ConstantUtil.scaleButtonBitmap(
+        						this, R.drawable.bathbtn, btnSize, btnSize)); 
+        
+        FeedBtn.setImageBitmap(ConstantUtil.scaleButtonBitmap(
+								this, R.drawable.feedbtn, btnSize, btnSize));   
+        
+        ExerciseBtn.setImageBitmap(ConstantUtil.scaleButtonBitmap(
+								this, R.drawable.exercisebtn, btnSize, btnSize));  
+        
+        QABtn.setImageBitmap(ConstantUtil.scaleButtonBitmap(
+								this, R.drawable.qabtn, btnSize, btnSize));  
+        
+        SleepBtn.setImageBitmap(ConstantUtil.scaleButtonBitmap(
+								this, R.drawable.sleepbtn, btnSize, btnSize));  
+        
+        HospitalBtn.setImageBitmap(ConstantUtil.scaleButtonBitmap(
+								this, R.drawable.hospitalbtn, btnSize, btnSize));  
+        
+        PresentBtn.setImageBitmap(ConstantUtil.scaleButtonBitmap(
+								this, R.drawable.presentbtn, btnSize, btnSize));             
         
         sagaData = new Data(this);
         sagaData.setRunningFlag(true);

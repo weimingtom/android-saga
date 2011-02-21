@@ -9,16 +9,27 @@
 	<string name="menu_clearall">清除全部</string>	
 	
 	<string name="pref_title">通用设置</string>
-	<string name="pref_summary">设置其他选项</string>
+	<string name="pref_summary">设置其他选项</string>	
+	
+	<string name="notify_title">手机撒通知：</string>
+	<string name="notify_hungry">您的手机撒快饿死了</string>
+	<string name="notify_sick">您的手机撒快病死了</string>
+	<string name="notify_dead">您的手机撒阵亡了</string>
 	
 	<string name="auto_update_key">auto_update_preference</string>
 	<string name="selected_auto_update_option">selected_auto_update_option</string>
-	<string name="auto_update_title">自动存档时间</string>
+	<string name="auto_update_title">时间设置</string>
 	<string name="auto_update_summary">设置widget更新间隔</string>
-	<string name="auto_update_dialog">设置自动存档时间</string>
+	<string name="auto_update_dialog">设置widget更新间隔</string>
 	<string name="auto_update_default_value">900000</string>
-	<string name="list_title">自动存档时间</string>
-	<string name="list_summary">设置自动存档及widget更新间隔</string>
+	<string name="list_title">widget更新间隔</string>
+	<string name="list_summary">设置widget更新间隔，频繁的更新耗电较严重</string>
+	
+	<string name="selected_sleep_option">select_sleep_option</string>
+	<string name="sleep_title">睡眠时间长度</string>
+	<string name="sleep_summary">设置睡眠时间长度，期间如果吵醒他会生气</string>			
+	<string name="sleep_dialog">睡眠时间长度</string>
+	<string name="sleep_default_value">28800</string>	
 	
 	<string name="other_option">other_option</string>
 	<string name="other_option_title">其他</string>
@@ -28,4 +39,18 @@
 	<string name="run_background_title">后台运行</string>
 	<string name="run_background_summaryon">开启此选项，只要手机开机就会一直更新数据，升级较快，但若不按时照看，易饥饿或生病</string>
 	<string name="run_background_summaryoff">关闭此选项，只有当程序在前台运行并不锁屏的情况下，数据才会更新，升级较慢，但可以随时查看撒加状态</string>
+	
+	<string name="allow_notify_key">allow_notify</string>
+	<string name="allow_notify_title">打开通知栏</string>
+	<string name="allow_notify_summary">选中此选项，当手机撒状态异常（如饥饿或生病），会在状态栏进行提醒并打开LED灯</string>
+	
+	<string name="allow_auto_delete_key">allow_auto_delete</string>
+	<string name="allow_auto_delete_title">自动删除SD卡撒受文</string>	
+	<string name="allow_auto_delete_summaryon">开启此选项，手机撒会自动扫描并删除SD卡上的撒受文，作为饥饿时的食物来源，因此不太容易饿死，但是如果您对撒受情有独钟，开启前请三思</string>
+	<string name="allow_auto_delete_summaryOff">关闭此选项，您SD卡上的撒受文将十分安全，但手机撒在饥饿状态下的食物来源将被切断，可能会饿死</string>
+
+	<string name="allow_auto_download_key">allow_auto_download</string>
+	<string name="allow_auto_download_title">自动下载撒攻文</string>
+	<string name="allow_auto_download_summary">开启此选项，手机撒将自动联网并下载撒攻文至SD卡，如果您的手机包月流量有限，请关闭，避免不必要的支出</string>
+
 </resources>

@@ -24,17 +24,18 @@ public class Data extends Object{
 	public Float inelegant;
 	public Float scientist;
 	public Float strange;	
+	
+	public Float hungryStep; 
+	public Float sickStep;   	
+	public Float dirtyStep;  	
+	public Float satisfyStep; 
+	public Float otakuStep;  	
 		
 	protected HashMap<String, Integer> materialList = new HashMap<String, Integer>();	
 	
 	public Integer idleSeconds = 0;
 	public Integer afterLastExercise = 0;
-		
-	Float hungryStep = 0.005f; //increase 0.005 per second, about 5.5 hours to be 100
-	Float sickStep = 0.0045f;   //increase 0.0045 per second, about 6 hours to be 100
-	Float dirtyStep = 0.01f;  //increase 0.01 per second, about 2 hours to be 100
-	Float satisfyStep = -0.005f; //decrease 0.005 per second
-	Float otakuStep = 0.005f;  //increase 0.005 per second if not exercise for 3 hours
+	public Integer sleepSeconds = 0;	
 	
 	Context ctx;
 		
@@ -45,7 +46,6 @@ public class Data extends Object{
 		loadData();
 	}
 	
-		
 	public void clearIdleSeconds(){
 		idleSeconds = 0;
 	}	
@@ -158,7 +158,7 @@ public class Data extends Object{
 		
 		++idleSeconds;	
 		
-		increaseTotalTime(1);
+		increaseTotalTime(1);		
 		
 		//too much idle time		
 		updateSatisfaction(satisfyStep);	
@@ -172,6 +172,18 @@ public class Data extends Object{
 		}		
 	}
 	
+	public void autoSwitchStatus(){
+		setStatusStep();
+	}
+	
+	public void setStatusStep(){
+		satisfyStep = ConstantUtil.SATISFY_STEP[status];
+		sickStep = ConstantUtil.SICK_STEP[status];
+		hungryStep = ConstantUtil.HUNGRY_STEP[status];
+		dirtyStep = ConstantUtil.DIRTY_STEP[status];
+		otakuStep = ConstantUtil.OTAKU_STEP[status];
+	}
+	
 	public void updateForPeriod(Long lPeriod, Long lNotExercise){
 		//if saga is dead, no action
 		if(charactor == ConstantUtil.STATUS_DEAD){
@@ -179,6 +191,8 @@ public class Data extends Object{
 		}
 		int period = lPeriod.intValue();
 		increaseTotalTime(period);
+		
+		autoSwitchStatus();		
 		
 		//too much idle time		
 		updateSatisfaction(satisfyStep*period);	
@@ -225,6 +239,9 @@ public class Data extends Object{
 		editor.putFloat(ConstantUtil.KEY_SCIENTIST, scientist);
 		editor.putFloat(ConstantUtil.KEY_STRANGE, strange);
 		
+		editor.putInt(ConstantUtil.KEY_AFTER_EXERCISE, afterLastExercise);
+		editor.putInt(ConstantUtil.KEY_IDLE_SECONDS, idleSeconds);
+		
 		editor.commit();
 	}
 	
@@ -243,7 +260,16 @@ public class Data extends Object{
 		otaku = prefs.getFloat(ConstantUtil.KEY_OTAKU, 0.f);
 		scientist = prefs.getFloat(ConstantUtil.KEY_SCIENTIST, 0.f);
 		inelegant = prefs.getFloat(ConstantUtil.KEY_INELEGANT, 0.f);
-		strange = prefs.getFloat(ConstantUtil.KEY_STRANGE, 0.f);	
+		strange = prefs.getFloat(ConstantUtil.KEY_STRANGE, 0.f);
+		
+		idleSeconds = prefs.getInt(ConstantUtil.KEY_IDLE_SECONDS, 0);
+		afterLastExercise = prefs.getInt(ConstantUtil.KEY_AFTER_EXERCISE, 0);
+		
+		hungryStep = ConstantUtil.HUNGRY_STEP[status]; 
+		sickStep = ConstantUtil.SICK_STEP[status];   	
+		dirtyStep = ConstantUtil.DIRTY_STEP[status];  	
+		satisfyStep = ConstantUtil.SATISFY_STEP[status]; 
+		otakuStep = ConstantUtil.OTAKU_STEP[status];  	
 	}
 	
 	public void setRunningFlag(boolean isRunning){

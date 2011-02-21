@@ -11,6 +11,8 @@ public final class R {
     public static final class array {
         public static final int auto_update_options=0x7f060000;
         public static final int auto_update_options_values=0x7f060001;
+        public static final int sleep_options=0x7f060002;
+        public static final int sleep_options_values=0x7f060003;
     }
     public static final class attr {
     }
@@ -21,8 +23,8 @@ public final class R {
         public static final int bathbtn=0x7f020000;
         public static final int exercisebtn=0x7f020001;
         public static final int feedbtn=0x7f020002;
-        public static final int hospitalbtn=0x7f020003;
-        public static final int icon=0x7f020004;
+        public static final int homebtn=0x7f020003;
+        public static final int hospitalbtn=0x7f020004;
         public static final int presentbtn=0x7f020005;
         public static final int qabtn=0x7f020006;
         public static final int round_box=0x7f020007;
@@ -60,28 +62,47 @@ public final class R {
         public static final int mainmenu=0x7f080000;
     }
     public static final class string {
+        public static final int allow_auto_delete_key=0x7f070022;
+        public static final int allow_auto_delete_summaryOff=0x7f070025;
+        public static final int allow_auto_delete_summaryon=0x7f070024;
+        public static final int allow_auto_delete_title=0x7f070023;
+        public static final int allow_auto_download_key=0x7f070026;
+        public static final int allow_auto_download_summary=0x7f070028;
+        public static final int allow_auto_download_title=0x7f070027;
+        public static final int allow_notify_key=0x7f07001f;
+        public static final int allow_notify_summary=0x7f070021;
+        public static final int allow_notify_title=0x7f070020;
         public static final int app_name=0x7f070000;
-        public static final int auto_update_default_value=0x7f07000c;
-        public static final int auto_update_dialog=0x7f07000b;
-        public static final int auto_update_key=0x7f070007;
-        public static final int auto_update_summary=0x7f07000a;
-        public static final int auto_update_title=0x7f070009;
-        public static final int list_summary=0x7f07000e;
-        public static final int list_title=0x7f07000d;
+        public static final int auto_update_default_value=0x7f070010;
+        public static final int auto_update_dialog=0x7f07000f;
+        public static final int auto_update_key=0x7f07000b;
+        public static final int auto_update_summary=0x7f07000e;
+        public static final int auto_update_title=0x7f07000d;
+        public static final int list_summary=0x7f070012;
+        public static final int list_title=0x7f070011;
         public static final int menu_clearall=0x7f070004;
         public static final int menu_preference=0x7f070002;
         public static final int menu_printscreen=0x7f070003;
         public static final int my_pref=0x7f070001;
-        public static final int other_option=0x7f07000f;
-        public static final int other_option_summary=0x7f070011;
-        public static final int other_option_title=0x7f070010;
+        public static final int notify_dead=0x7f07000a;
+        public static final int notify_hungry=0x7f070008;
+        public static final int notify_sick=0x7f070009;
+        public static final int notify_title=0x7f070007;
+        public static final int other_option=0x7f070018;
+        public static final int other_option_summary=0x7f07001a;
+        public static final int other_option_title=0x7f070019;
         public static final int pref_summary=0x7f070006;
         public static final int pref_title=0x7f070005;
-        public static final int run_background_key=0x7f070012;
-        public static final int run_background_summaryoff=0x7f070015;
-        public static final int run_background_summaryon=0x7f070014;
-        public static final int run_background_title=0x7f070013;
-        public static final int selected_auto_update_option=0x7f070008;
+        public static final int run_background_key=0x7f07001b;
+        public static final int run_background_summaryoff=0x7f07001e;
+        public static final int run_background_summaryon=0x7f07001d;
+        public static final int run_background_title=0x7f07001c;
+        public static final int selected_auto_update_option=0x7f07000c;
+        public static final int selected_sleep_option=0x7f070013;
+        public static final int sleep_default_value=0x7f070017;
+        public static final int sleep_dialog=0x7f070016;
+        public static final int sleep_summary=0x7f070015;
+        public static final int sleep_title=0x7f070014;
     }
     public static final class xml {
         public static final int preference=0x7f040000;
