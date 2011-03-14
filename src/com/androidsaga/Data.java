@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
-import android.R.bool;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -37,6 +36,7 @@ public class Data extends Object{
 	public Integer afterLastExercise = 0;
 	public Integer sleepSeconds = 0;	
 	
+	private Integer prefSleepPeriod;	
 	Context ctx;
 		
 	Random rnd = new Random();
@@ -106,6 +106,12 @@ public class Data extends Object{
 	
 	public void increaseTotalTime(Integer sec){
 		totalTime += sec;
+		if(status == ConstantUtil.STATUS_SLEEP){
+			sleepSeconds += sec;
+		}
+		if(status == ConstantUtil.STATUS_NORMAL){
+			idleSeconds += sec;
+		}
 		
 		//update level
 		if(level*level*3600 < totalTime)
@@ -155,9 +161,6 @@ public class Data extends Object{
 		if(charactor == ConstantUtil.STATUS_DEAD){
 			return;
 		}		
-		
-		++idleSeconds;	
-		
 		increaseTotalTime(1);		
 		
 		//too much idle time		
@@ -172,8 +175,55 @@ public class Data extends Object{
 		}		
 	}
 	
-	public void autoSwitchStatus(){
+	public void autoSwitchStatus(){	
+		if(status == ConstantUtil.STATUS_SLEEP && sleepSeconds > prefSleepPeriod){
+			status = ConstantUtil.STATUS_NORMAL;
+			idleSeconds = 0;
+		}
+		else if(status == ConstantUtil.STATUS_EXERCISE){
+			status = ConstantUtil.NORMAL_SAGA;
+			idleSeconds = 0;
+		}
+		else if(status == ConstantUtil.STATUS_NORMAL){			
+			//auto-sleep
+			if(idleSeconds > ConstantUtil.AUTO_SLEEP_TIME){
+				status = ConstantUtil.STATUS_SLEEP;
+				idleSeconds = 0;
+			}
+			else if(dirty > 50){
+				status = ConstantUtil.STATUS_BATH;
+				idleSeconds = 0;
+			}
+		}
+		else if(status == ConstantUtil.STATUS_BATH){
+			if(rnd.nextBoolean()){
+				status = ConstantUtil.STATUS_NORMAL;
+				idleSeconds = 0;
+			}
+		}
 		setStatusStep();
+	}
+	
+	public void onHome(){
+		idleSeconds = 0;
+		status = ConstantUtil.STATUS_NORMAL;
+		setStatusStep();
+	}
+	
+	public void onFeed(){
+		idleSeconds = 0;
+		updateHungry(ConstantUtil.FEED_VALUE);
+	}
+	
+	public void onBath(){
+		idleSeconds = 0;
+		status = ConstantUtil.STATUS_BATH;
+		setStatusStep();
+	}
+	
+	public void onHospital(){
+		idleSeconds = 0;
+		updateSick(-15.f);
 	}
 	
 	public void setStatusStep(){
@@ -184,15 +234,12 @@ public class Data extends Object{
 		otakuStep = ConstantUtil.OTAKU_STEP[status];
 	}
 	
-	public void updateForPeriod(Long lPeriod, Long lNotExercise){
+	public void updateForPeriod(Integer period){
 		//if saga is dead, no action
 		if(charactor == ConstantUtil.STATUS_DEAD){
 			return;
-		}
-		int period = lPeriod.intValue();
-		increaseTotalTime(period);
-		
-		autoSwitchStatus();		
+		}		
+		increaseTotalTime(period);			
 		
 		//too much idle time		
 		updateSatisfaction(satisfyStep*period);	
@@ -201,7 +248,7 @@ public class Data extends Object{
 		updateDirty(dirtyStep*period);		
 		
 		//to much time without exercise
-		if(lNotExercise.floatValue() >= ConstantUtil.OTAKU_TIME){
+		if(afterLastExercise >= ConstantUtil.OTAKU_TIME){
 			updateOtaku(otakuStep*period);			
 		}		
 	}
@@ -217,8 +264,7 @@ public class Data extends Object{
 			hungry = 0.f;
 			sick = 0.f;
 			dirty = 0.f;
-		}	
-		
+		}			
 		saveData();
 	}
 	
@@ -241,6 +287,7 @@ public class Data extends Object{
 		
 		editor.putInt(ConstantUtil.KEY_AFTER_EXERCISE, afterLastExercise);
 		editor.putInt(ConstantUtil.KEY_IDLE_SECONDS, idleSeconds);
+		editor.putInt(ConstantUtil.KEY_SLEEP_SECONDS, sleepSeconds);
 		
 		editor.commit();
 	}
@@ -264,21 +311,28 @@ public class Data extends Object{
 		
 		idleSeconds = prefs.getInt(ConstantUtil.KEY_IDLE_SECONDS, 0);
 		afterLastExercise = prefs.getInt(ConstantUtil.KEY_AFTER_EXERCISE, 0);
+		sleepSeconds = prefs.getInt(ConstantUtil.KEY_SLEEP_SECONDS, 0);
 		
-		hungryStep = ConstantUtil.HUNGRY_STEP[status]; 
-		sickStep = ConstantUtil.SICK_STEP[status];   	
-		dirtyStep = ConstantUtil.DIRTY_STEP[status];  	
-		satisfyStep = ConstantUtil.SATISFY_STEP[status]; 
-		otakuStep = ConstantUtil.OTAKU_STEP[status];  	
+		prefSleepPeriod = Integer.parseInt(prefs.getString(ctx.getString(R.string.selected_sleep_option), 
+						  ctx.getString(R.string.sleep_default_value)));
+		
+		setStatusStep();
+		
+		Boolean allowRunBackground = prefs.getBoolean(ctx.getString(R.string.run_background_key), true);
+    	Boolean isRunning = prefs.getBoolean(ConstantUtil.KEY_IS_RUNNING, false);
+    	if((!isRunning) && allowRunBackground){    	
+	    	 Long elapsedTime = prefs.getLong(ConstantUtil.KEY_LAST_CLOSE, 
+					 System.currentTimeMillis());
+			 elapsedTime = (System.currentTimeMillis() - elapsedTime) / 1000; 			 	 
+			 updateForPeriod(elapsedTime.intValue());   	  
+   	    }
 	}
 	
 	public void setRunningFlag(boolean isRunning){
 		SharedPreferences.Editor editor = ctx.getSharedPreferences(
 				ConstantUtil.DEFAULT_SHARED_PREF, Context.MODE_PRIVATE).edit();
 		if(isRunning){
-			editor.putBoolean(ConstantUtil.KEY_IS_RUNNING, true);
-			SagaWidget.idleTime = 0L;
-			SagaWidget.notExerciseTime = 0L;
+			editor.putBoolean(ConstantUtil.KEY_IS_RUNNING, true);			
 		}
 		else
 		{

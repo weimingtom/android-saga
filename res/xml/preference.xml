@@ -16,6 +16,24 @@
 			android:entryValues="@array/auto_update_options_values"
 			android:dialogTitle="@string/auto_update_dialog"
 			android:defaultValue="@string/auto_update_default_value" 
+		/>			
+		
+		<CheckBoxPreference
+			android:key="@string/allow_auto_sleep_option"
+			android:title="@string/auto_sleep_title"
+			android:defaultValue="true"
+			android:summary="@string/auto_sleep_summary"			
+		/>
+		
+		<ListPreference 
+			android:key="@string/selected_idle_time_option"
+			android:title="@string/idle_time_title"
+			android:summary="@string/idle_time_summary"
+			android:entries="@array/idle_options"
+			android:entryValues="@array/idle_options_values"
+			android:dialogTitle="@string/idle_time_dialog"
+			android:defaultValue="@string/idle_time_default_value" 
+			android:dependency="@string/allow_auto_sleep_option"
 		/>	
 		
 		<ListPreference 
@@ -26,7 +44,8 @@
 			android:entryValues="@array/sleep_options_values"
 			android:dialogTitle="@string/sleep_dialog"
 			android:defaultValue="@string/sleep_default_value" 
-		/>		
+		/>	
+					
 	</PreferenceCategory>	
 	
 	<PreferenceCategory xmlns:android="http://schemas.android.com/apk/res/android"

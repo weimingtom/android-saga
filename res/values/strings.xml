@@ -31,6 +31,16 @@
 	<string name="sleep_dialog">睡眠时间长度</string>
 	<string name="sleep_default_value">28800</string>	
 	
+	<string name="allow_auto_sleep_option">allow_auto_sleep_option</string>
+	<string name="auto_sleep_title">自动睡眠</string>
+	<string name="auto_sleep_summary">开启此选项，当手机撒限制一段时间后就会进入睡眠状态</string>
+	
+	<string name="selected_idle_time_option">select_idle_time_option</string>
+	<string name="idle_time_title">闲置时间长度</string>
+	<string name="idle_time_summary">当闲置手机撒超过一段时间，即进入睡眠</string>			
+	<string name="idle_time_dialog">闲置时间长度</string>
+	<string name="idle_time_default_value">1800</string>	
+	
 	<string name="other_option">other_option</string>
 	<string name="other_option_title">其他</string>
 	<string name="other_option_summary">其他选项</string>
@@ -53,4 +63,14 @@
 	<string name="allow_auto_download_title">自动下载撒攻文</string>
 	<string name="allow_auto_download_summary">开启此选项，手机撒将自动联网并下载撒攻文至SD卡，如果您的手机包月流量有限，请关闭，避免不必要的支出</string>
 
+	<string name="five_min">5分钟</string>
+	<string name="fifteen_min">15分钟</string>
+	<string name="thirty_min">30分钟</string>
+	<string name="one_hour">1小时</string>
+	<string name="three_hour">3小时</string>
+	<string name="six_hour">6小时</string>
+	<string name="eight_hour">8小时</string>
+	<string name="ten_hour">10小时</string>
+	
+	<string name="quizOK">确认</string>
 </resources>

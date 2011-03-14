@@ -1,6 +1,7 @@
 package com.androidsaga;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -35,7 +36,8 @@ public class SagaActivity extends Activity {
 	private Integer height;
 	private Bitmap MainImage;	
 	private Data sagaData;
-	private UpdateThread updateThr;
+	private Thread updateThr;
+	boolean running = false;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,8 +99,27 @@ public class SagaActivity extends Activity {
         
         sagaData = new Data(this);
         sagaData.setRunningFlag(true);
-        updateThr = new UpdateThread(this, sagaData);
-        updateThr.start();
+        running = true;
+        updateThr = new Thread(){
+        	@Override
+        	public void run(){
+        		while(true){
+        			if(running){
+        				sagaData.updatePerSecond();        			
+        			    Log.i("Saga", "update");
+        			}
+        			try{
+        				Thread.sleep(1000);
+        			}
+        			catch(Exception e){
+        				e.printStackTrace();
+        			}
+        		}
+        	}
+        };        
+        updateThr.start();        
+        
+        ConstantUtil.setNotify(this, sagaData);
         Alert.showAlert("Saga", sagaData.totalTime.toString(), this);         
     }
     
@@ -129,16 +150,31 @@ public class SagaActivity extends Activity {
     
     @Override
     public void onPause(){
-    	super.onPause();      	
-    	sagaData.saveData();
-    	sagaData.setRunningFlag(false);    	
+    	super.onPause();     	
+    	running = false;
+    	sagaData.saveData(); 
+    	sagaData.setRunningFlag(false); 
     }
     
     @Override
     public void onResume(){
-    	super.onResume();    	
-    	sagaData.loadData();
+    	super.onResume();   
+    	if(ConstantUtil.CUR_NOTICE != 0){
+    		final NotificationManager manager = 
+    			(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+    		manager.cancel(ConstantUtil.NOTICE_ID[ConstantUtil.CUR_NOTICE-1]);
+			ConstantUtil.CUR_NOTICE = 0;
+		}
+    	
+    	sagaData.loadData(); 
+    	running = true;
     	sagaData.setRunningFlag(true);
+    }
+    
+    @Override
+    public void onDestroy(){
+    	super.onDestroy();
+    	updateThr = null;
     }
     
     @Override
@@ -150,21 +186,25 @@ public class SagaActivity extends Activity {
     public void clickHome(View target)
     {
     	Alert.showAlert("Saga", "Home", this);
+    	sagaData.onHome();
     }    
     
     public void clickBath(View target)
     {
     	Alert.showAlert("Saga", "Bath", this);
+    	sagaData.onBath();
     }   
     
     public void clickHospital(View target)
     {
     	Alert.showAlert("Saga", "Hospital", this);
+    	sagaData.onHospital();
     }   
     
     public void clickFeed(View target)
     {
     	Alert.showAlert("Saga", "Feed", this);
+    	sagaData.onFeed();
     }   
     
     public void clickPresent(View target)

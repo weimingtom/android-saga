@@ -11,6 +11,8 @@ public final class R {
     public static final class array {
         public static final int auto_update_options=0x7f060000;
         public static final int auto_update_options_values=0x7f060001;
+        public static final int idle_options=0x7f060004;
+        public static final int idle_options_values=0x7f060005;
         public static final int sleep_options=0x7f060002;
         public static final int sleep_options_values=0x7f060003;
     }
@@ -20,16 +22,20 @@ public final class R {
         public static final int bk_white=0x7f050000;
     }
     public static final class drawable {
-        public static final int bathbtn=0x7f020000;
-        public static final int exercisebtn=0x7f020001;
-        public static final int feedbtn=0x7f020002;
-        public static final int homebtn=0x7f020003;
-        public static final int hospitalbtn=0x7f020004;
-        public static final int presentbtn=0x7f020005;
-        public static final int qabtn=0x7f020006;
-        public static final int round_box=0x7f020007;
-        public static final int sleepbtn=0x7f020008;
-        public static final int widget_bk=0x7f020009;
+        public static final int ahaha=0x7f020000;
+        public static final int bathbtn=0x7f020001;
+        public static final int exercisebtn=0x7f020002;
+        public static final int feedbtn=0x7f020003;
+        public static final int homebtn=0x7f020004;
+        public static final int hospitalbtn=0x7f020005;
+        public static final int icon=0x7f020006;
+        public static final int icon2=0x7f020007;
+        public static final int presentbtn=0x7f020008;
+        public static final int qabtn=0x7f020009;
+        public static final int round_box=0x7f02000a;
+        public static final int saga=0x7f02000b;
+        public static final int sleepbtn=0x7f02000c;
+        public static final int widget_bk=0x7f02000d;
     }
     public static final class id {
         public static final int BathButton=0x7f090005;
@@ -42,42 +48,61 @@ public final class R {
         public static final int MainView=0x7f090001;
         public static final int PresentButton=0x7f09000b;
         public static final int QAButton=0x7f090007;
+        public static final int QuizLayout01=0x7f09000c;
         public static final int SayView=0x7f090002;
         public static final int SleepButton=0x7f090006;
-        public static final int menu_clearall=0x7f090013;
-        public static final int menu_prefs=0x7f090012;
-        public static final int menu_prtsc=0x7f090014;
-        public static final int widget_dirty=0x7f090011;
-        public static final int widget_hungry=0x7f09000f;
-        public static final int widget_level=0x7f09000d;
-        public static final int widget_saga_imageView=0x7f09000c;
-        public static final int widget_satisfy=0x7f09000e;
-        public static final int widget_sick=0x7f090010;
+        public static final int menu_clearall=0x7f09001b;
+        public static final int menu_prefs=0x7f09001a;
+        public static final int menu_prtsc=0x7f09001c;
+        public static final int quizAns01=0x7f09000f;
+        public static final int quizAns02=0x7f090010;
+        public static final int quizAns03=0x7f090011;
+        public static final int quizAns04=0x7f090012;
+        public static final int quizOK=0x7f090013;
+        public static final int quizQuestion=0x7f09000d;
+        public static final int rBtnGroup=0x7f09000e;
+        public static final int widget_dirty=0x7f090019;
+        public static final int widget_hungry=0x7f090017;
+        public static final int widget_level=0x7f090015;
+        public static final int widget_saga_imageView=0x7f090014;
+        public static final int widget_satisfy=0x7f090016;
+        public static final int widget_sick=0x7f090018;
     }
     public static final class layout {
         public static final int main=0x7f030000;
-        public static final int saga_widget_layout=0x7f030001;
+        public static final int quiz_layout=0x7f030001;
+        public static final int saga_widget_layout=0x7f030002;
     }
     public static final class menu {
         public static final int mainmenu=0x7f080000;
     }
     public static final class string {
-        public static final int allow_auto_delete_key=0x7f070022;
-        public static final int allow_auto_delete_summaryOff=0x7f070025;
-        public static final int allow_auto_delete_summaryon=0x7f070024;
-        public static final int allow_auto_delete_title=0x7f070023;
-        public static final int allow_auto_download_key=0x7f070026;
-        public static final int allow_auto_download_summary=0x7f070028;
-        public static final int allow_auto_download_title=0x7f070027;
-        public static final int allow_notify_key=0x7f07001f;
-        public static final int allow_notify_summary=0x7f070021;
-        public static final int allow_notify_title=0x7f070020;
+        public static final int allow_auto_delete_key=0x7f07002a;
+        public static final int allow_auto_delete_summaryOff=0x7f07002d;
+        public static final int allow_auto_delete_summaryon=0x7f07002c;
+        public static final int allow_auto_delete_title=0x7f07002b;
+        public static final int allow_auto_download_key=0x7f07002e;
+        public static final int allow_auto_download_summary=0x7f070030;
+        public static final int allow_auto_download_title=0x7f07002f;
+        public static final int allow_auto_sleep_option=0x7f070018;
+        public static final int allow_notify_key=0x7f070027;
+        public static final int allow_notify_summary=0x7f070029;
+        public static final int allow_notify_title=0x7f070028;
         public static final int app_name=0x7f070000;
+        public static final int auto_sleep_summary=0x7f07001a;
+        public static final int auto_sleep_title=0x7f070019;
         public static final int auto_update_default_value=0x7f070010;
         public static final int auto_update_dialog=0x7f07000f;
         public static final int auto_update_key=0x7f07000b;
         public static final int auto_update_summary=0x7f07000e;
         public static final int auto_update_title=0x7f07000d;
+        public static final int eight_hour=0x7f070037;
+        public static final int fifteen_min=0x7f070032;
+        public static final int five_min=0x7f070031;
+        public static final int idle_time_default_value=0x7f07001f;
+        public static final int idle_time_dialog=0x7f07001e;
+        public static final int idle_time_summary=0x7f07001d;
+        public static final int idle_time_title=0x7f07001c;
         public static final int list_summary=0x7f070012;
         public static final int list_title=0x7f070011;
         public static final int menu_clearall=0x7f070004;
@@ -88,21 +113,28 @@ public final class R {
         public static final int notify_hungry=0x7f070008;
         public static final int notify_sick=0x7f070009;
         public static final int notify_title=0x7f070007;
-        public static final int other_option=0x7f070018;
-        public static final int other_option_summary=0x7f07001a;
-        public static final int other_option_title=0x7f070019;
+        public static final int one_hour=0x7f070034;
+        public static final int other_option=0x7f070020;
+        public static final int other_option_summary=0x7f070022;
+        public static final int other_option_title=0x7f070021;
         public static final int pref_summary=0x7f070006;
         public static final int pref_title=0x7f070005;
-        public static final int run_background_key=0x7f07001b;
-        public static final int run_background_summaryoff=0x7f07001e;
-        public static final int run_background_summaryon=0x7f07001d;
-        public static final int run_background_title=0x7f07001c;
+        public static final int quizOK=0x7f070039;
+        public static final int run_background_key=0x7f070023;
+        public static final int run_background_summaryoff=0x7f070026;
+        public static final int run_background_summaryon=0x7f070025;
+        public static final int run_background_title=0x7f070024;
         public static final int selected_auto_update_option=0x7f07000c;
+        public static final int selected_idle_time_option=0x7f07001b;
         public static final int selected_sleep_option=0x7f070013;
+        public static final int six_hour=0x7f070036;
         public static final int sleep_default_value=0x7f070017;
         public static final int sleep_dialog=0x7f070016;
         public static final int sleep_summary=0x7f070015;
         public static final int sleep_title=0x7f070014;
+        public static final int ten_hour=0x7f070038;
+        public static final int thirty_min=0x7f070033;
+        public static final int three_hour=0x7f070035;
     }
     public static final class xml {
         public static final int preference=0x7f040000;
