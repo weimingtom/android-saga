@@ -2,75 +2,112 @@
 <resources>      
 	<string name="app_name">Saga</string>
 	
-	<string name="my_pref">我的设置</string>
-	
-	<string name="menu_preference">设置</string>	
+	<string name="my_pref">设置</string>
+
 	<string name="menu_printscreen">截图</string>
 	<string name="menu_clearall">清除全部</string>	
+	<string name="menu_preference">设置</string>	
+	<string name="pref_title">常用设置</string>
+	<string name="pref_summary">一些系统设置</string>
+	<string name="quiet">quiet</string>
+	<string name="quiet_title">静音</string>
+	<string name="quiet_summary_on">关闭音效</string>
+	<string name="quiet_summary_off">开启音效</string>
+    
+    <string-array name="charactor_name">
+        <item>撒加</item>
+    </string-array>
+    
+    <string-array name="satisfy_name">
+        <item>好感值</item>    
+    </string-array>
 	
-	<string name="pref_title">通用设置</string>
-	<string name="pref_summary">设置其他选项</string>	
+    <string name="version_unknown">0.0.0</string>
+    
+	<string name="charactor_selector_prompt">你选择的角色是%1$s，确认后之前的角色数据将会清空！</string>
+	<string name="charactor_selector_none">您当前没有选择任何角色</string>
+	<string name="food_cost">%1$s，%2$s%%HP\n需要%3$d金币，</string>
+	<string name="money_you_have">您有%1$d金币</string>
+	<string name="food_alert">您当前选定的食物需要%1$d金币，确定继续吗？</string>	
+	<string name="blood_tofu">波纹猛男特制血豆腐</string>
+	<string name="hamon_pudding">波纹师傅特制布丁</string>
+	<string name="dio_bread">吃了以后会数不清的面包</string>
+	<string name="elina_grape">初恋一样酸酸甜甜的葡萄</string>
+	<string name="jonathan_chocolate">巧克力</string>
+	<string name="jonathan_wine">绅士的葡萄酒副本</string>
+	<string name="johnny_walker">尊尼获加</string>
+	<string name="joseph_nuddle">外国特色菜副本</string>
+	<string name="rabbit">金黄酥脆的烤兔子</string>
+	<string name="gyro_sandwitch">希腊特产gyro肉卷三明治</string>
+	<string name="hp_hamberg">热裤牛肉汉堡</string>
+	<string name="herbtea">吃了长指甲的草药茶</string>
+	<string name="coffee">男神的亲泡浓咖啡</string>
+	<string name="diettea">减肥茶</string>
+	<string name="diego_tail">肥美的龙尾巴</string>
+	<string name="grass">一个全是草的罐头</string>
+	<string name="bomb">炸药</string>
+	<string name="body1">圣哥牌啤酒</string>
+	<string name="body2">圣哥牌胡萝卜干</string>
+	<string name="body3">圣哥牌猪头肉</string>
+	<string name="starbear">星牌啤酒</string>
+	<string name="mother_food">妈妈的手作盒饭</string>
+	<string name="pudding">东尼大大的美味布丁</string>
+	<string name="tomato_salad">东尼大大的番茄莫扎雷拉奶酪沙拉</string>
+	<string name="lamchop">东尼大大的美味小羊排</string>
+	<string name="pasta">东尼大大的娼妇意粉</string>
+	<string name="mouse">和外甥出去打猎抓回来的老鼠</string>
+	<string name="shit">一坨shi</string>
+	<string name="cigarette">五根香烟</string>
+	<string name="annasui_fish">可能属于某种三文鱼的安娜苏鱼</string>
+	<string name="kakyoin_fish">鹦鹉(tao)鱼</string>
+	<string name="dio_fish">住在深海常年不见阳光的屌大鲨</string>
+	<string name="soap">一块普通的肥皂</string>
+	<string name="brandy">白兰地</string>
+	<string name="caesar_salad">凯撒沙拉，上面有一块特制的十字架形的面包</string>
+	<string name="pigeon">小乳鸽</string>
+	<string name="girl_breath">美少女的呼吸（什么鬼！</string>
+	<string name="food_no_enough_money">你没有足够的钱买这个食物！</string>
+	<string name="do_resurrection">您要用所有的金币复活你的%1$s吗？确定后金币将清空</string>
+	<string name="cannot_resurrection">对不起，您没有金币来复活您的%1$s，请去选择界面重新选择</string>
+		
+	<string name="hp2money_btn">兑换金币</string>	
+	<string name="hp2money_description">输入您需要转换成金币的HP，1 HP可兑换5金。由HP兑换的金币只可用于游戏，不可购买物品</string>
+	<string name="principal_btn">设置本金</string>
+	<string name="principal_description">输入您的本金</string>
 	
-	<string name="notify_title">手机撒通知：</string>
-	<string name="notify_hungry">您的手机撒快饿死了</string>
-	<string name="notify_sick">您的手机撒快病死了</string>
-	<string name="notify_dead">您的手机撒阵亡了</string>
+	<string name="money_status">您一共有%1$d金币，其中有%2$d金币可供消费\n</string>
+	<string name="odds_status">本金是%1$d金币\n</string>
+	<string name="game_start">开始游戏</string>
+	<string name="game_stone">石头</string>
+	<string name="game_scissors">剪刀</string>
+	<string name="game_cloth">布</string>
+	<string name="game_win">您赢了！</string>
+	<string name="game_lose">您输了！</string>
+	<string name="game_draw">平局</string>
+	<string name="game_no_money">请先兑换金币</string>
 	
-	<string name="auto_update_key">auto_update_preference</string>
-	<string name="selected_auto_update_option">selected_auto_update_option</string>
-	<string name="auto_update_title">时间设置</string>
-	<string name="auto_update_summary">设置widget更新间隔</string>
-	<string name="auto_update_dialog">设置widget更新间隔</string>
-	<string name="auto_update_default_value">900000</string>
-	<string name="list_title">widget更新间隔</string>
-	<string name="list_summary">设置widget更新间隔，频繁的更新耗电较严重</string>
 	
-	<string name="selected_sleep_option">select_sleep_option</string>
-	<string name="sleep_title">睡眠时间长度</string>
-	<string name="sleep_summary">设置睡眠时间长度，期间如果吵醒他会生气</string>			
-	<string name="sleep_dialog">睡眠时间长度</string>
-	<string name="sleep_default_value">28800</string>	
+	<string name="library_no_selection">当前没有选择角色</string>
+	<string name="library_unavailable">当前角色不可用</string>
+	<string name="name_unknown">？？？</string>	
+	<string name="library_choose">选择当前角色(Lv.%1$d)</string>
+	<string name="library_clear">清空角色数据(Lv.%1$d)</string>
+	<string name="library_lv">lv. %1$d</string>
+	<string name="subspecies_type">结局%1$d\n</string>
+	<string name="subspecies_unavailabe">您还未养出过这个结局</string>
 	
-	<string name="allow_auto_sleep_option">allow_auto_sleep_option</string>
-	<string name="auto_sleep_title">自动睡眠</string>
-	<string name="auto_sleep_summary">开启此选项，当手机撒限制一段时间后就会进入睡眠状态</string>
+	<string name="change_system_time">你能想到调系统时间算你狠，不过我也想到了嘻嘻嘻，所以把所有的数据都清空啦嘻嘻嘻（</string>
+		
+	<string name="chooseEgg">领取新蛋</string>
+	<string name="reduceDark">降低漆黑意志</string>
+	<string name="egg_normal">一个有多种孵化可能的蛋</string>
+	<string name="egg_dead">温度变化太剧烈，蛋死了</string>
+	<string name="egg_hatched">您的蛋孵出了%1$s</string>
+	<string name="gold_spirit">黄金精神</string>
+	<string name="dark_spirit">漆黑意志</string>
+	<string name="no_money_dark">您没有足够的钱减少漆黑意志</string>
+	<string name="dark_cost">您可以用金钱来减少漆黑意志，%1$d金可降低1漆黑意志，输入需要降低的漆黑意志的数量：</string>
 	
-	<string name="selected_idle_time_option">select_idle_time_option</string>
-	<string name="idle_time_title">闲置时间长度</string>
-	<string name="idle_time_summary">当闲置手机撒超过一段时间，即进入睡眠</string>			
-	<string name="idle_time_dialog">闲置时间长度</string>
-	<string name="idle_time_default_value">1800</string>	
-	
-	<string name="other_option">other_option</string>
-	<string name="other_option_title">其他</string>
-	<string name="other_option_summary">其他选项</string>
-	
-	<string name="run_background_key">is_run_background</string>
-	<string name="run_background_title">后台运行</string>
-	<string name="run_background_summaryon">开启此选项，只要手机开机就会一直更新数据，升级较快，但若不按时照看，易饥饿或生病</string>
-	<string name="run_background_summaryoff">关闭此选项，只有当程序在前台运行并不锁屏的情况下，数据才会更新，升级较慢，但可以随时查看撒加状态</string>
-	
-	<string name="allow_notify_key">allow_notify</string>
-	<string name="allow_notify_title">打开通知栏</string>
-	<string name="allow_notify_summary">选中此选项，当手机撒状态异常（如饥饿或生病），会在状态栏进行提醒并打开LED灯</string>
-	
-	<string name="allow_auto_delete_key">allow_auto_delete</string>
-	<string name="allow_auto_delete_title">自动删除SD卡撒受文</string>	
-	<string name="allow_auto_delete_summaryon">开启此选项，手机撒会自动扫描并删除SD卡上的撒受文，作为饥饿时的食物来源，因此不太容易饿死，但是如果您对撒受情有独钟，开启前请三思</string>
-	<string name="allow_auto_delete_summaryOff">关闭此选项，您SD卡上的撒受文将十分安全，但手机撒在饥饿状态下的食物来源将被切断，可能会饿死</string>
-
-	<string name="allow_auto_download_key">allow_auto_download</string>
-	<string name="allow_auto_download_title">自动下载撒攻文</string>
-	<string name="allow_auto_download_summary">开启此选项，手机撒将自动联网并下载撒攻文至SD卡，如果您的手机包月流量有限，请关闭，避免不必要的支出</string>
-
-	<string name="five_min">5分钟</string>
-	<string name="fifteen_min">15分钟</string>
-	<string name="thirty_min">30分钟</string>
-	<string name="one_hour">1小时</string>
-	<string name="three_hour">3小时</string>
-	<string name="six_hour">6小时</string>
-	<string name="eight_hour">8小时</string>
-	<string name="ten_hour">10小时</string>
-	
-	<string name="quizOK">确认</string>
+	<string name="menu_about">关于</string>
+	<string name="about_text">版本: %1$s\n主页: https://code.google.com/p/jojo-pet-ahu/\</string>
 </resources>
