@@ -1,6 +1,5 @@
 package com.androidsaga;
 import java.util.Calendar;
-import java.util.IllegalFormatCodePointException;
 
 import com.androidsaga.action.*;
 import com.androidsaga.base.*;
@@ -11,8 +10,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore.Video;
-import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -476,14 +473,67 @@ public class SagaActivity extends Activity {
     	petLibrary.lastIdx = checkID;
     	charactorSelectImage[checkID].setImageBitmap(petLibrary.getThumbnailImage(pet.petData, checkID, true));       		
     	 		
-    	libraryCharactorName.setText(petLibrary.charactorNames[checkID]);
+    	libraryCharactorName.setText(petLibrary.charactorNames[pet.petData.curCharactor]);
     	libraryCharactorName.append(String.format(libraryLevel, pet.petData.level));
     	librarySelectCharactor.setClickable(true);
     	
-    	charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(checkID, pet.petData, checkID));    		
+    	charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(pet.petData.curCharactor, pet.petData, checkID));    		
     	libraryCharactorDetail.setText(petLibrary.getCharactorDescription(pet.petData.curCharactor, checkID, pet.petData));     	
     	
     	librarySelectCharactor.setText(petLibrary.getSelectBtnText(pet.petData.curCharactor, pet.petData, checkID));    	
+    }
+    
+    protected void changeCharactor(int newLevel) {
+    	
+    	action.clearPetData(pet.petData, newLevel);
+    	pet.petData.subSpecises  = 0;
+    	
+    	action.updatePetImage(pet);
+    	pet.resetStatus(-1);
+		pet.showString("", -1);	
+		
+    	petGame.resetGame();
+    	updateBackground(true);
+    }
+    
+    public void onClickSelectCharactor(View target) {   	
+    	String alertString = getString(R.string.charactor_selector_prompt);  
+    	alertString = String.format(alertString, petLibrary.charactorNames[pet.petData.curCharactor]);    	
+    	
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(alertString);
+		builder.setTitle("JOJO");
+		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub		
+				if( pet.petData.getMaxLevel(pet.petData.curCharactor) == ConstantValue.MAX_LEVEL) {					
+					changeCharactor(Math.min(petLibrary.lastIdx, ConstantValue.MAX_LEVEL-1)); 
+				}
+				else {
+					changeCharactor(0);
+				}
+				updateLibraryView(pet.petData.level);
+	        	
+				isHomeView = 1;
+		    	isFoodView = isGameView = isLibraryView = 0;
+		    	
+		    	HomeBtn.setImageResource(homeBtnImage[isHomeView]);		        
+		        FoodBtn.setImageResource(foodBtnImage[isFoodView]);
+		        GameBtn.setImageResource(gameBtnImage[isGameView]);
+		        libraryBtn.setImageResource(libraryBtnImage[isLibraryView]);
+		        
+	        	mainLayout.setVisibility(View.VISIBLE);
+	        	libraryView.setVisibility(View.GONE);  
+			}			
+		});
+		builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub				
+			}				
+		});
+		
+		AlertDialog ad = builder.create();
+		ad.show();   	
     }
     
     public void clickLibrary(View target)

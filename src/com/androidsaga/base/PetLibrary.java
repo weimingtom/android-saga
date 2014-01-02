@@ -155,12 +155,18 @@ public class PetLibrary {
 		Paint paint  = new Paint();		
 		paint.setAntiAlias(true);
 		
-		int availability = data.getCharactorAvailable(charactor);
-		if( charactor < 0 || availability == ConstantValue.NOT_AVAILABLE ||
-			idx >= ConstantValue.MAX_LEVEL + subspeciesDescription[charactor].length) {		
-			canvas.drawBitmap(lockedImage, lockedX, lockedY, paint);				
-		}	
+		boolean availability = false;
+		if(idx <= data.getMaxLevel(data.curCharactor) && idx != ConstantValue.MAX_LEVEL) {
+			availability = true;			
+		}
+		else if(idx > ConstantValue.MAX_LEVEL && idx < ConstantValue.MAX_LEVEL + subspeciesDescription.length) {
+			int subspecies = idx - ConstantValue.MAX_LEVEL;
+			availability = data.getSubspeciesFeed(data.curCharactor, subspecies);
+		}
 		
+		if(!availability) {
+			canvas.drawBitmap(lockedImage, lockedX, lockedY, paint);				
+		}			
 		else {
 			Bitmap charactorImg;
 			if(idx < ConstantValue.MAX_LEVEL) {
@@ -173,8 +179,7 @@ public class PetLibrary {
 			int charactorX = (width  - charactorImg.getWidth() ) / 2;
 			int charactorY = (height - charactorImg.getHeight()) / 2;			
 			
-			canvas.drawBitmap(charactorImg, charactorX, charactorY, paint);		
-			
+			canvas.drawBitmap(charactorImg, charactorX, charactorY, paint);					
 		}	
 		
 		paint.setAlpha(255);
