@@ -7,13 +7,13 @@ import android.graphics.Bitmap;
 public class PetImageDepot {
 
 	public static class PetImageList {		
-		public int[][] imageResID = new int[5][8];	
+		public int[][] imageResID = new int[ConstantValue.MAX_LEVEL][8];	
 		public int[]   subSpeciesID = new int[8];
 		public int	   subspeciesCount = 1;
 		
 		public PetImageList() {
 			// TODO Auto-generated constructor stub
-			for(int i = 0; i < 5; i++) {
+			for(int i = 0; i < ConstantValue.MAX_LEVEL; i++) {
 				for(int j = 0; j < imageResID[i].length; j++) {
 					imageResID[i][j] = -1;
 				}
@@ -21,7 +21,7 @@ public class PetImageDepot {
 		}
 		
 		public void setImages(Integer[][] resID) {
-			for(int i = 0; i < 5; i++) {
+			for(int i = 0; i < ConstantValue.MAX_LEVEL; i++) {
 				for(int j = 0; j < imageResID[i].length; j++) {
 					imageResID[i][j] = resID[i][j];
 				}
@@ -51,8 +51,8 @@ public class PetImageDepot {
 			imageDepot[i] = new PetImageList();
 		}			
 		
-		//imageDepot[ConstantValue.CAESAR].setImages(Caesar.IMG_ID);
-		//imageDepot[ConstantValue.CAESAR].setSubspecies(Caesar.SUBSPECIES_ID);
+		imageDepot[ConstantValue.SAGA].setImages(Saga.IMG_ID);
+		imageDepot[ConstantValue.SAGA].setSubspecies(Saga.SUBSPECIES_ID);
 	}
 
 	

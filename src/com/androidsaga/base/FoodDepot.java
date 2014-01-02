@@ -16,14 +16,14 @@ public class FoodDepot {
 		}
 		
 		// TODO Auto-generated constructor stub		
-		/*for(int i = 0; i < 6; i++) {			
-			foodLists[ConstantValue.JOHNNY].setFood(i, 
-					Johnny.FOOD_RESID[i],
+		for(int i = 0; i < 6; i++) {			
+			foodLists[ConstantValue.SAGA].setFood(i, 
+					Saga.FOOD_RESID[i],
 					ConstantValue.FOOD_COST[i],
-					Johnny.FOOD_SATISFY[i],
-					Johnny.FOOD_HP[i],
-					ctx.getResources().getString(Johnny.FOOD_DESCRIPTION[i]));
-		}*/			
+					Saga.FOOD_SATISFY[i],
+					Saga.FOOD_HP[i],
+					ctx.getResources().getString(Saga.FOOD_DESCRIPTION[i]));
+		}		
 	}
 	
 	public static Bitmap getFoodImage(Context ctx, int charactor, int foodIdx, int width, int height) {

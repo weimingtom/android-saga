@@ -27,7 +27,7 @@ public class ActionBase {
 	protected float periodHP;
 	protected float periodSatisfy;	
 	
-	protected String[] dialogStrings;
+	protected String[][] dialogStrings = new String[ConstantValue.MAX_LEVEL][];
 	protected String[] maxLevelStrings;
 	protected String[] foodStrings;
 	
@@ -90,7 +90,7 @@ public class ActionBase {
 			if(data.satisfy < 0.f) data.satisfy = 0.f;					
 				
 			if(data.satisfy > ConstantValue.EXP_LEVEL[data.level]) {				
-				pet.showString(dialogStrings[DIALOG_LEVELUP], 5000);				
+				pet.showString(dialogStrings[pet.petData.level][DIALOG_LEVELUP], 5000);				
 				onLevelUp(pet);
 			}
 					
@@ -167,7 +167,7 @@ public class ActionBase {
 			playLevelupVoice();
 		}
 		else {
-			pet.showString(dialogStrings[DIALOG_LEVELUP], 3000);
+			pet.showString(dialogStrings[pet.petData.level][DIALOG_LEVELUP], 3000);
 		}
 		
 		pet.isUpdate = true;
@@ -198,7 +198,7 @@ public class ActionBase {
 		if(pet.petData.curCharactor != ConstantValue.NONE) {
 			if(pet.petData.status == ConstantValue.STATUS_DEAD) {
 				pet.status = PetImageDepot.DEAD;
-				pet.showString(dialogStrings[DIALOG_DEAD], Integer.MAX_VALUE);			
+				pet.showString(dialogStrings[pet.petData.level][DIALOG_DEAD], Integer.MAX_VALUE);			
 				return;
 			}
 			
@@ -217,7 +217,7 @@ public class ActionBase {
 				//idle case
 				if(pet.petData.HP < ConstantValue.HP_LEVEL[pet.petData.level]*2/10) {
 					pet.status = PetImageDepot.SAD;
-					pet.showString(dialogStrings[DIALOG_HUNGRY], Integer.MAX_VALUE);					
+					pet.showString(dialogStrings[pet.petData.level][DIALOG_HUNGRY], Integer.MAX_VALUE);					
 				}
 				else {
 					pet.status = PetImageDepot.IDLE;
@@ -250,7 +250,7 @@ public class ActionBase {
 				pet.petData.satisfy -= 0.5f;
 				pet.setStatus(PetImageDepot.TEMP_ANGRY);			
 				
-				pet.showString(dialogStrings[DIALOG_AWAKEN], 2000);
+				pet.showString(dialogStrings[pet.petData.level][DIALOG_AWAKEN], 2000);
 				pet.resetStatus(2000);
 				
 				onAwakenExtra(pet.petData);
@@ -286,7 +286,7 @@ public class ActionBase {
 					else {
 						pet.petData.satisfy -= 0.5f;
 					}
-					pet.showString(dialogStrings[DIALOG_TOUCH_UNHAPPY], 2000);
+					pet.showString(dialogStrings[pet.petData.level][DIALOG_TOUCH_UNHAPPY], 2000);
 					pet.setStatus(PetImageDepot.TEMP_ANGRY);
 					pet.resetStatus(2000);
 					onTouchTooMuch(pet.petData);									
@@ -295,13 +295,13 @@ public class ActionBase {
 			
 			else {
 				// it will be satified when being touched
-				pet.petData.satisfy += 0.1f;
+				pet.petData.satisfy += 0.1f * pet.petData.level;
 				pet.setStatus(PetImageDepot.HAPPY);
 				if(!pet.petData.quiet) {
 					playTouchVoice();
 				}
 				else {
-					pet.showString(dialogStrings[DIALOG_TOUCH_HAPPY], Integer.MAX_VALUE);
+					pet.showString(dialogStrings[pet.petData.level][DIALOG_TOUCH_HAPPY], Integer.MAX_VALUE);
 				}
 			}
 		}		
@@ -319,13 +319,13 @@ public class ActionBase {
 				//move left
 				pet.setTargetX(petX-40);
 			}
-			pet.showString(dialogStrings[DIALOG_TOUCH_UNHAPPY], Integer.MAX_VALUE);			
+			pet.showString(dialogStrings[pet.petData.level][DIALOG_TOUCH_UNHAPPY], Integer.MAX_VALUE);			
 		}	
 		
 		// if it's very unhappy, just keep the status
 		// do nothing
 		else {
-			pet.showString(dialogStrings[DIALOG_LONELY], Integer.MAX_VALUE);
+			pet.showString(dialogStrings[pet.petData.level][DIALOG_LONELY], Integer.MAX_VALUE);
 		}	
 	}
 	
@@ -381,12 +381,12 @@ public class ActionBase {
 				
 				if(pet.petData.HP < 0) {
 					killPet(pet.petData);
-					pet.showString(dialogStrings[DIALOG_DROPDEAD], 2000);
+					pet.showString(dialogStrings[pet.petData.level][DIALOG_DROPDEAD], 2000);
 					pet.setStatus(PetImageDepot.DEAD);				
 				}
 				else {
 					pet.setStatus(PetImageDepot.SAD);
-					pet.showString(dialogStrings[DIALOG_DROP], 2000);
+					pet.showString(dialogStrings[pet.petData.level][DIALOG_DROP], 2000);
 					pet.resetStatus(2000);					
 				}
 			}
@@ -432,7 +432,7 @@ public class ActionBase {
 			if(pet.petData.satisfy < 0) pet.petData.satisfy = 0;
 			
 			pet.setStatus(PetImageDepot.TEMP_ANGRY);
-			pet.showString(dialogStrings[DIALOG_NOTHUNGRY], 2000);
+			pet.showString(dialogStrings[pet.petData.level][DIALOG_NOTHUNGRY], 2000);
 			pet.resetStatus(2000);
 		}
 		else {

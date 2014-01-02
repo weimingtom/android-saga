@@ -18,6 +18,8 @@ public class ConstantValue {
 	public static final Integer TOTAL_CHARACTOR = 32;
 	public static final Integer IMG_PER_ROW		= 8;
 	
+	public static final Integer SAGA = 0;
+	
 	/*public static final Integer JONATHAN 	= 0;
 	public static final Integer JOSEPH	 	= 1;
 	public static final Integer JOTARO	 	= 2;
@@ -68,7 +70,7 @@ public class ConstantValue {
 	public static final String KEY_FAT				= "fat";
 	public static final String KEY_HUNGRY 			= "hungry";
 	public static final String KEY_HP	 			= "HP";	
-	public static final String[] KEY_EXTRA			= {"extra0", "extra1", "extra2", "extra3", "extra4"};		
+	public static final String[] KEY_EXTRA			= {"extra0", "extra1", "extra2", "extra3", "extra4", "extra5", "extra6", "extra7"};		
 	
 	public static final String KEY_MONEY			= "money";
 	public static final String KEY_MONEY_FROZEN		= "money_frozen";
@@ -111,12 +113,12 @@ public class ConstantValue {
 	public static final Integer STATUS_SLEEP  	= 1;
 	public static final Integer STATUS_DEAD		= -1;
 	
-	public static final Integer[] HP_LEVEL  = { 5, 15, 30, 60, 100, Integer.MAX_VALUE };
-	public static final Integer[] EXP_LEVEL = { 20, 30, 40, 50, 60, Integer.MAX_VALUE };
-	public static final Integer[] INIT_EXP_LEVEL = { 10, 15, 20, 25, 30, 0 };
+	public static final Integer[] HP_LEVEL  = { 5, 10, 15, 20, 30, 40, 50, 60, 80, 100, Integer.MAX_VALUE };
+	public static final Integer[] EXP_LEVEL = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, Integer.MAX_VALUE };
+	public static final Integer[] INIT_EXP_LEVEL = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 0 };
 	
 	//public static final Integer[] FOOD_COST    = {0, 0, 5, 15, 50, 500};
-	public static final Integer[] FOOD_COST    = {0, 0, 0, 0, 0, 0};
+	public static final Integer[] FOOD_COST    = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	
 	public static final Integer EVENT_NONE = 0;
 	public static final Integer EVENT_LVUP = 1;

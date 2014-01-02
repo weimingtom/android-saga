@@ -24,7 +24,7 @@ public class Data {
 	public int   frozenMoney;	//money that can only be used in game
 	
 	public int 	 fat;			
-	public int[] extra = new int[5];	//other values, different meaning for different charactor
+	public int[] extra = new int[8];	//other values, different meaning for different charactor
 	public boolean quiet;
 	public int   version;
 	

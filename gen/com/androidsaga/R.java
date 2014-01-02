@@ -9,13 +9,49 @@ package com.androidsaga;
 
 public final class R {
     public static final class array {
-        public static final int charactor_name=0x7f060000;
-        public static final int satisfy_name=0x7f060001;
+        public static final int charactor_name=0x7f05000e;
+        /**   15, dead  
+         */
+        public static final int saga_dialog_lv0=0x7f050000;
+        /**   15, dead  
+         */
+        public static final int saga_dialog_lv1=0x7f050001;
+        /**   15, dead  
+         */
+        public static final int saga_dialog_lv2=0x7f050002;
+        /**   15, dead  
+         */
+        public static final int saga_dialog_lv3=0x7f050003;
+        /**   15, dead  
+         */
+        public static final int saga_dialog_lv4=0x7f050004;
+        /**   15, dead  
+         */
+        public static final int saga_dialog_lv5=0x7f050005;
+        /**   15, dead  
+         */
+        public static final int saga_dialog_lv6=0x7f050006;
+        /**   15, dead  
+         */
+        public static final int saga_dialog_lv7=0x7f050007;
+        /**   15, dead  
+         */
+        public static final int saga_dialog_lv8=0x7f050008;
+        /**   15, dead  
+         */
+        public static final int saga_dialog_lv9=0x7f050009;
+        public static final int saga_level_description=0x7f05000c;
+        /**   11, gyro hamberg  
+         */
+        public static final int saga_onfood=0x7f05000a;
+        public static final int saga_subspecies_alert=0x7f05000b;
+        public static final int saga_subspecies_description=0x7f05000d;
+        public static final int satisfy_name=0x7f05000f;
     }
     public static final class attr {
     }
     public static final class color {
-        public static final int bk_white=0x7f040000;
+        public static final int bk_white=0x7f060000;
     }
     public static final class drawable {
         public static final int ahaha=0x7f020000;
@@ -107,170 +143,204 @@ public final class R {
         public static final int previous_level=0x7f020056;
         public static final int previous_level_press=0x7f020057;
         public static final int saga=0x7f020058;
-        public static final int sleep01=0x7f020059;
-        public static final int sleep02=0x7f02005a;
+        public static final int sagalv0_angry=0x7f020059;
+        public static final int sagalv0_death=0x7f02005a;
+        public static final int sagalv0_hungry=0x7f02005b;
+        public static final int sagalv0_normal=0x7f02005c;
+        public static final int sagalv0_shy=0x7f02005d;
+        public static final int sagalv0_sleep=0x7f02005e;
+        public static final int sagalv1_angry=0x7f02005f;
+        public static final int sagalv1_death=0x7f020060;
+        public static final int sagalv1_hungry=0x7f020061;
+        public static final int sagalv1_normal=0x7f020062;
+        public static final int sagalv1_shy=0x7f020063;
+        public static final int sagalv1_sleep=0x7f020064;
+        public static final int sagalv2_angry=0x7f020065;
+        public static final int sagalv2_death=0x7f020066;
+        public static final int sagalv2_hungry=0x7f020067;
+        public static final int sagalv2_normal=0x7f020068;
+        public static final int sagalv2_shy=0x7f020069;
+        public static final int sagalv2_sleep=0x7f02006a;
+        public static final int sagalv3_angry=0x7f02006b;
+        public static final int sagalv3_death=0x7f02006c;
+        public static final int sagalv3_hungry=0x7f02006d;
+        public static final int sagalv3_normal=0x7f02006e;
+        public static final int sagalv3_shy=0x7f02006f;
+        public static final int sagalv3_sleep=0x7f020070;
+        public static final int sagalv4_angry=0x7f020071;
+        public static final int sagalv4_death=0x7f020072;
+        public static final int sagalv4_hungry=0x7f020073;
+        public static final int sagalv4_normal=0x7f020074;
+        public static final int sagalv4_shy=0x7f020075;
+        public static final int sagalv4_sleep=0x7f020076;
+        public static final int sagalv5_angry=0x7f020077;
+        public static final int sagalv5_death=0x7f020078;
+        public static final int sagalv5_hungry=0x7f020079;
+        public static final int sagalv5_normal=0x7f02007a;
+        public static final int sagalv5_shy=0x7f02007b;
+        public static final int sagalv5_sleep=0x7f02007c;
+        public static final int sagalv6_angry=0x7f02007d;
+        public static final int sagalv6_death=0x7f02007e;
+        public static final int sagalv6_hungry=0x7f02007f;
+        public static final int sagalv6_normal=0x7f020080;
+        public static final int sagalv6_shy=0x7f020081;
+        public static final int sagalv6_sleep=0x7f020082;
+        public static final int sagalv7_angry=0x7f020083;
+        public static final int sagalv7_death=0x7f020084;
+        public static final int sagalv7_hungry=0x7f020085;
+        public static final int sagalv7_normal=0x7f020086;
+        public static final int sagalv7_shy=0x7f020087;
+        public static final int sagalv7_sleep=0x7f020088;
+        public static final int sagalv8_angry=0x7f020089;
+        public static final int sagalv8_death=0x7f02008a;
+        public static final int sagalv8_hungry=0x7f02008b;
+        public static final int sagalv8_normal=0x7f02008c;
+        public static final int sagalv8_shy=0x7f02008d;
+        public static final int sagalv8_sleep=0x7f02008e;
+        public static final int sagalv9_angry=0x7f02008f;
+        public static final int sagalv9_death=0x7f020090;
+        public static final int sagalv9_hungry=0x7f020091;
+        public static final int sagalv9_normal=0x7f020092;
+        public static final int sagalv9_shy=0x7f020093;
+        public static final int sagalv9_sleep=0x7f020094;
+        public static final int sleep01=0x7f020095;
+        public static final int sleep02=0x7f020096;
     }
     public static final class id {
-        public static final int AboutText=0x7f080000;
-        public static final int ButtonLayout=0x7f08002d;
-        public static final int ClothBtn=0x7f080023;
-        public static final int EggLayout=0x7f08002a;
-        public static final int FoodButton=0x7f080033;
-        public static final int FoodLinearView=0x7f080017;
-        public static final int FoodView=0x7f080016;
-        public static final int GameButton=0x7f080034;
-        public static final int GameDescription=0x7f080024;
-        public static final int GameLayout=0x7f080019;
-        public static final int GameResult=0x7f080025;
-        public static final int GameScroll=0x7f080018;
-        public static final int HP2MoneyBtn=0x7f080027;
-        public static final int HeaderLayout=0x7f080004;
-        public static final int HomeButton=0x7f080032;
-        public static final int LibraryButton=0x7f080035;
-        public static final int LibraryCharactorName=0x7f080011;
-        public static final int LibraryDescription=0x7f080014;
-        public static final int LibraryDescriptionLayout=0x7f080013;
-        public static final int LibraryDetailImage=0x7f08000e;
-        public static final int LibraryDetailImageLayout=0x7f08000d;
-        public static final int LibraryDetailLayout=0x7f08000c;
-        public static final int LibraryLayout=0x7f08000b;
-        public static final int LibraryLevelLayout=0x7f08000f;
-        public static final int LibraryNextLevel=0x7f080012;
-        public static final int LibraryPreviousLevel=0x7f080010;
-        public static final int LibraryView=0x7f080009;
-        public static final int LinearLayout01=0x7f080003;
-        public static final int MainLayout=0x7f080007;
-        public static final int MainView=0x7f080008;
-        public static final int MyImage=0x7f08001e;
-        public static final int MyResult=0x7f08001f;
-        public static final int OpponentImage=0x7f08001b;
-        public static final int OpponentResult=0x7f08001c;
-        public static final int PrincipalBtn=0x7f080028;
-        public static final int RohenLayout=0x7f08001a;
-        public static final int RootLayout=0x7f080031;
-        public static final int ScissorBtn=0x7f080021;
-        public static final int SleepButton=0x7f080006;
-        public static final int Status_View=0x7f080005;
-        public static final int StoneBtn=0x7f080022;
-        public static final int TextView1=0x7f080001;
-        public static final int UnlockLayout=0x7f080029;
-        public static final int YourLayout=0x7f08001d;
-        public static final int chooseHandLaout=0x7f080020;
-        public static final int editText1=0x7f080002;
-        public static final int eggButton=0x7f08002e;
-        public static final int eggImage=0x7f08002b;
-        public static final int eggStatus=0x7f08002c;
-        public static final int gameSetLayout=0x7f080026;
-        public static final int libraryLayoutAll=0x7f08000a;
-        public static final int menu_clearall=0x7f080037;
-        public static final int menu_prefs=0x7f080036;
-        public static final int menu_prtsc=0x7f080038;
-        public static final int reduceDarkButton=0x7f08002f;
-        public static final int selectBtn=0x7f080015;
-        public static final int temperatureImage=0x7f080030;
+        public static final int AboutText=0x7f090000;
+        public static final int ButtonLayout=0x7f09002a;
+        public static final int ClothBtn=0x7f090020;
+        public static final int EggLayout=0x7f090027;
+        public static final int FoodButton=0x7f090030;
+        public static final int FoodLinearView=0x7f090014;
+        public static final int FoodView=0x7f090013;
+        public static final int GameButton=0x7f090031;
+        public static final int GameDescription=0x7f090021;
+        public static final int GameLayout=0x7f090016;
+        public static final int GameResult=0x7f090022;
+        public static final int GameScroll=0x7f090015;
+        public static final int HP2MoneyBtn=0x7f090024;
+        public static final int HeaderLayout=0x7f090004;
+        public static final int HomeButton=0x7f09002f;
+        public static final int LibraryButton=0x7f090032;
+        public static final int LibraryCharactorName=0x7f09000f;
+        public static final int LibraryDescription=0x7f090011;
+        public static final int LibraryDescriptionLayout=0x7f090010;
+        public static final int LibraryDetailImage=0x7f09000e;
+        public static final int LibraryDetailImageLayout=0x7f09000d;
+        public static final int LibraryDetailLayout=0x7f09000c;
+        public static final int LibraryLayout=0x7f09000b;
+        public static final int LibraryView=0x7f090009;
+        public static final int LinearLayout01=0x7f090003;
+        public static final int MainLayout=0x7f090007;
+        public static final int MainView=0x7f090008;
+        public static final int MyImage=0x7f09001b;
+        public static final int MyResult=0x7f09001c;
+        public static final int OpponentImage=0x7f090018;
+        public static final int OpponentResult=0x7f090019;
+        public static final int PrincipalBtn=0x7f090025;
+        public static final int RohenLayout=0x7f090017;
+        public static final int RootLayout=0x7f09002e;
+        public static final int ScissorBtn=0x7f09001e;
+        public static final int SleepButton=0x7f090006;
+        public static final int Status_View=0x7f090005;
+        public static final int StoneBtn=0x7f09001f;
+        public static final int TextView1=0x7f090001;
+        public static final int UnlockLayout=0x7f090026;
+        public static final int YourLayout=0x7f09001a;
+        public static final int chooseHandLaout=0x7f09001d;
+        public static final int editText1=0x7f090002;
+        public static final int eggButton=0x7f09002b;
+        public static final int eggImage=0x7f090028;
+        public static final int eggStatus=0x7f090029;
+        public static final int gameSetLayout=0x7f090023;
+        public static final int libraryLayoutAll=0x7f09000a;
+        public static final int menu_clearall=0x7f090034;
+        public static final int menu_prefs=0x7f090033;
+        public static final int menu_prtsc=0x7f090035;
+        public static final int reduceDarkButton=0x7f09002c;
+        public static final int selectBtn=0x7f090012;
+        public static final int temperatureImage=0x7f09002d;
     }
     public static final class layout {
         public static final int about_dialog=0x7f030000;
         public static final int game_dialog=0x7f030001;
         public static final int jojo_preference=0x7f030002;
         public static final int main=0x7f030003;
-        public static final int next_level=0x7f030004;
-        public static final int previous_level=0x7f030005;
     }
     public static final class menu {
-        public static final int mainmenu=0x7f070000;
+        public static final int mainmenu=0x7f080000;
+    }
+    public static final class raw {
+        public static final int saga_levelup=0x7f040000;
+        public static final int saga_touched=0x7f040001;
     }
     public static final class string {
-        public static final int about_text=0x7f05005a;
-        public static final int annasui_fish=0x7f05002e;
-        public static final int app_name=0x7f050000;
-        public static final int blood_tofu=0x7f050011;
-        public static final int body1=0x7f050022;
-        public static final int body2=0x7f050023;
-        public static final int body3=0x7f050024;
-        public static final int bomb=0x7f050021;
-        public static final int brandy=0x7f050032;
-        public static final int caesar_salad=0x7f050033;
-        public static final int cannot_resurrection=0x7f050038;
-        public static final int change_system_time=0x7f05004f;
-        public static final int charactor_selector_none=0x7f05000d;
-        public static final int charactor_selector_prompt=0x7f05000c;
-        public static final int chooseEgg=0x7f050050;
-        public static final int cigarette=0x7f05002d;
-        public static final int coffee=0x7f05001d;
-        public static final int dark_cost=0x7f050058;
-        public static final int dark_spirit=0x7f050056;
-        public static final int diego_tail=0x7f05001f;
-        public static final int diettea=0x7f05001e;
-        public static final int dio_bread=0x7f050013;
-        public static final int dio_fish=0x7f050030;
-        public static final int do_resurrection=0x7f050037;
-        public static final int egg_dead=0x7f050053;
-        public static final int egg_hatched=0x7f050054;
-        public static final int egg_normal=0x7f050052;
-        public static final int elina_grape=0x7f050014;
-        public static final int food_alert=0x7f050010;
-        public static final int food_cost=0x7f05000e;
-        public static final int food_no_enough_money=0x7f050036;
-        public static final int game_cloth=0x7f050042;
-        public static final int game_draw=0x7f050045;
-        public static final int game_lose=0x7f050044;
-        public static final int game_no_money=0x7f050046;
-        public static final int game_scissors=0x7f050041;
-        public static final int game_start=0x7f05003f;
-        public static final int game_stone=0x7f050040;
-        public static final int game_win=0x7f050043;
-        public static final int girl_breath=0x7f050035;
-        public static final int gold_spirit=0x7f050055;
-        public static final int grass=0x7f050020;
-        public static final int gyro_sandwitch=0x7f05001a;
-        public static final int hamon_pudding=0x7f050012;
-        public static final int herbtea=0x7f05001c;
-        public static final int hp2money_btn=0x7f050039;
-        public static final int hp2money_description=0x7f05003a;
-        public static final int hp_hamberg=0x7f05001b;
-        public static final int johnny_walker=0x7f050017;
-        public static final int jonathan_chocolate=0x7f050015;
-        public static final int jonathan_wine=0x7f050016;
-        public static final int joseph_nuddle=0x7f050018;
-        public static final int kakyoin_fish=0x7f05002f;
-        public static final int lamchop=0x7f050029;
-        public static final int library_choose=0x7f05004a;
-        public static final int library_clear=0x7f05004b;
-        public static final int library_lv=0x7f05004c;
-        public static final int library_no_selection=0x7f050047;
-        public static final int library_unavailable=0x7f050048;
-        public static final int menu_about=0x7f050059;
-        public static final int menu_clearall=0x7f050003;
-        public static final int menu_preference=0x7f050004;
-        public static final int menu_printscreen=0x7f050002;
-        public static final int money_status=0x7f05003d;
-        public static final int money_you_have=0x7f05000f;
-        public static final int mother_food=0x7f050026;
-        public static final int mouse=0x7f05002b;
-        public static final int my_pref=0x7f050001;
-        public static final int name_unknown=0x7f050049;
-        public static final int no_money_dark=0x7f050057;
-        public static final int odds_status=0x7f05003e;
-        public static final int pasta=0x7f05002a;
-        public static final int pigeon=0x7f050034;
-        public static final int pref_summary=0x7f050006;
-        public static final int pref_title=0x7f050005;
-        public static final int principal_btn=0x7f05003b;
-        public static final int principal_description=0x7f05003c;
-        public static final int pudding=0x7f050027;
-        public static final int quiet=0x7f050007;
-        public static final int quiet_summary_off=0x7f05000a;
-        public static final int quiet_summary_on=0x7f050009;
-        public static final int quiet_title=0x7f050008;
-        public static final int rabbit=0x7f050019;
-        public static final int reduceDark=0x7f050051;
-        public static final int shit=0x7f05002c;
-        public static final int soap=0x7f050031;
-        public static final int starbear=0x7f050025;
-        public static final int subspecies_type=0x7f05004d;
-        public static final int subspecies_unavailabe=0x7f05004e;
-        public static final int tomato_salad=0x7f050028;
-        public static final int version_unknown=0x7f05000b;
+        public static final int about_text=0x7f070041;
+        public static final int app_name=0x7f070000;
+        public static final int aquarius=0x7f07001b;
+        public static final int aries=0x7f070011;
+        public static final int cancer=0x7f070014;
+        public static final int cannot_resurrection=0x7f07001f;
+        public static final int capricorn=0x7f07001a;
+        public static final int change_system_time=0x7f070036;
+        public static final int charactor_selector_none=0x7f07000d;
+        public static final int charactor_selector_prompt=0x7f07000c;
+        public static final int chooseEgg=0x7f070037;
+        public static final int dark_cost=0x7f07003f;
+        public static final int dark_spirit=0x7f07003d;
+        public static final int do_resurrection=0x7f07001e;
+        public static final int egg_dead=0x7f07003a;
+        public static final int egg_hatched=0x7f07003b;
+        public static final int egg_normal=0x7f070039;
+        public static final int food_alert=0x7f070010;
+        public static final int food_cost=0x7f07000e;
+        public static final int food_no_enough_money=0x7f07001d;
+        public static final int game_cloth=0x7f070029;
+        public static final int game_draw=0x7f07002c;
+        public static final int game_lose=0x7f07002b;
+        public static final int game_no_money=0x7f07002d;
+        public static final int game_scissors=0x7f070028;
+        public static final int game_start=0x7f070026;
+        public static final int game_stone=0x7f070027;
+        public static final int game_win=0x7f07002a;
+        public static final int gemini=0x7f070013;
+        public static final int gold_spirit=0x7f07003c;
+        public static final int hp2money_btn=0x7f070020;
+        public static final int hp2money_description=0x7f070021;
+        public static final int leo=0x7f070015;
+        public static final int libra=0x7f070017;
+        public static final int library_choose=0x7f070031;
+        public static final int library_clear=0x7f070032;
+        public static final int library_lv=0x7f070033;
+        public static final int library_no_selection=0x7f07002e;
+        public static final int library_unavailable=0x7f07002f;
+        public static final int menu_about=0x7f070040;
+        public static final int menu_clearall=0x7f070003;
+        public static final int menu_preference=0x7f070004;
+        public static final int menu_printscreen=0x7f070002;
+        public static final int money_status=0x7f070024;
+        public static final int money_you_have=0x7f07000f;
+        public static final int my_pref=0x7f070001;
+        public static final int name_unknown=0x7f070030;
+        public static final int no_money_dark=0x7f07003e;
+        public static final int odds_status=0x7f070025;
+        public static final int pisces=0x7f07001c;
+        public static final int pref_summary=0x7f070006;
+        public static final int pref_title=0x7f070005;
+        public static final int principal_btn=0x7f070022;
+        public static final int principal_description=0x7f070023;
+        public static final int quiet=0x7f070007;
+        public static final int quiet_summary_off=0x7f07000a;
+        public static final int quiet_summary_on=0x7f070009;
+        public static final int quiet_title=0x7f070008;
+        public static final int reduceDark=0x7f070038;
+        public static final int sagittarius=0x7f070019;
+        public static final int scorpio=0x7f070018;
+        public static final int subspecies_type=0x7f070034;
+        public static final int subspecies_unavailabe=0x7f070035;
+        public static final int taurus=0x7f070012;
+        public static final int version_unknown=0x7f07000b;
+        public static final int virgo=0x7f070016;
     }
 }

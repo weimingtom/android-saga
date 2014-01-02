@@ -2,6 +2,7 @@ package com.androidsaga.base;
 
 import com.androidsaga.R;
 
+import android.R.integer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -20,12 +21,9 @@ public class PetLibrary {
 	public int lockedY;
 	public int width;
 	public int height;
+	public int lastIdx = 0;
 	
-	
-	protected int lastSelection 	= -1;
-	protected int lastLevel    		= 0;
-	protected int lastSubspecies 	= 0;
-	protected int border			= 4;
+	protected int border = 4;
 	
 	public String[][] levelDescription = new String[32][];
 	public String[][] subspeciesDescription = new String[32][];
@@ -50,11 +48,11 @@ public class PetLibrary {
 		charactorNames = ctx.getResources().getStringArray(R.array.charactor_name);
         satisfyNames   = ctx.getResources().getStringArray(R.array.satisfy_name);        
 		
-		//levelDescription[ConstantValue.CAESAR]		= ctx.getResources().getStringArray(R.array.caesar_level_description);
-		//subspeciesDescription[ConstantValue.CAESAR]	= ctx.getResources().getStringArray(R.array.caesar_subspecies_description);
+		levelDescription[ConstantValue.SAGA]		= ctx.getResources().getStringArray(R.array.saga_level_description);
+		subspeciesDescription[ConstantValue.SAGA]	= ctx.getResources().getStringArray(R.array.saga_subspecies_description);
 	}
 	
-	public Bitmap getThumbnailImage(Data data, int charactor, boolean isChecked) {
+	public Bitmap getThumbnailImage(Data data, int idx, boolean isChecked) {
 		Bitmap petThumbnailListImage = Bitmap.createBitmap(thumbnailSize, thumbnailSize, Config.ARGB_4444);	
 		Canvas canvas = new Canvas(petThumbnailListImage);
 		Paint paint  = new Paint();		
@@ -72,13 +70,28 @@ public class PetLibrary {
 		canvas.drawRect(0, 0, thumbnailSize, thumbnailSize, paint);
 		
 		paint.setColor(Color.WHITE);
-		int availability = data.getCharactorAvailable(charactor);
-		if(availability == ConstantValue.NOT_AVAILABLE) {
+		boolean availability = false;
+		if(idx <= data.getMaxLevel(data.curCharactor) && idx != ConstantValue.MAX_LEVEL) {
+			availability = true;			
+		}
+		else if(idx > ConstantValue.MAX_LEVEL && idx < ConstantValue.MAX_LEVEL + subspeciesDescription.length) {
+			int subspecies = idx - ConstantValue.MAX_LEVEL;
+			availability = data.getSubspeciesFeed(data.curCharactor, subspecies);
+		}
+			
+		if(!availability) {
 			canvas.drawBitmap(lockedThumbnail, 0, 0, paint);
 		}				
 		else {
-			Bitmap charactorThumbnailBitmap = PetImageDepot.getCharactorDefaultImage(
-					ctx, charactor, 0, thumbnailSize, thumbnailSize);
+			Bitmap charactorThumbnailBitmap;
+			if(idx < ConstantValue.MAX_LEVEL) {
+				charactorThumbnailBitmap = PetImageDepot.getCharactorDefaultImage(
+					ctx, data.curCharactor, idx, thumbnailSize, thumbnailSize);
+			}
+			else {
+				charactorThumbnailBitmap = PetImageDepot.getSubSpeciesImage(
+					ctx, data.curCharactor, idx-ConstantValue.MAX_LEVEL, thumbnailSize, thumbnailSize);
+			}
 			
 			int x = 0;			
 			if(charactorThumbnailBitmap.getHeight() > thumbnailSize) {
@@ -86,17 +99,9 @@ public class PetLibrary {
 						charactorThumbnailBitmap, thumbnailSize*thumbnailSize/charactorThumbnailBitmap.getHeight(), thumbnailSize, true);
 				x = (thumbnailSize - charactorThumbnailBitmap.getWidth())/2;
 			}
-			int y = (thumbnailSize - charactorThumbnailBitmap.getHeight())/2;
-					
-			if(availability == ConstantValue.IS_FEED) {
-				canvas.drawBitmap(charactorThumbnailBitmap, x, y, paint);				
-			}
-			else {
-				paint.setAlpha(128);
-				canvas.drawBitmap(charactorThumbnailBitmap, x, y, paint);
-				paint.setAlpha(127);
-				canvas.drawBitmap(lockedThumbnail, 0, 0, paint);
-			}
+			int y = (thumbnailSize - charactorThumbnailBitmap.getHeight())/2;					
+			
+			canvas.drawBitmap(charactorThumbnailBitmap, x, y, paint);					
 		}
 			
 		if(isChecked) {
@@ -104,47 +109,35 @@ public class PetLibrary {
 			paint.setStyle(Style.STROKE);
 			paint.setColor(Color.argb(255, 201, 233, 250));
 			paint.setStrokeWidth(4);
-			canvas.drawRect(0, 0, thumbnailSize, thumbnailSize, paint);	
-			
-			lastSelection = charactor;
-			if(charactor == data.curCharactor) {
-				lastLevel = data.level;
-			}
-			else {
-				lastLevel = 0;
-			}
+			canvas.drawRect(0, 0, thumbnailSize, thumbnailSize, paint);				
 		}
 				
 		return petThumbnailListImage;
-	}
+	}	
 	
-	public int getLastSelection() {
-		return lastSelection;
-	}
 	
-	public int getlastLevel() {
-		return lastLevel;
-	}
-	
-	public int getLastSubspecies() {
-		return lastSubspecies;
-	}
-	
-	public String getCharactorDescription(int charactor, int level, int subspecies, Data data) {
+	public String getCharactorDescription(int charactor, int idx, Data data) {
 		if(data.getCharactorAvailable(charactor) == ConstantValue.NOT_AVAILABLE) {
 			return charactor_unavailable;
 		}
-		if(level == ConstantValue.MAX_LEVEL) {			
+		
+		if(idx >= ConstantValue.MAX_LEVEL + subspeciesDescription[charactor].length) {
+			return "";
+		}		
+		
+		if(idx < ConstantValue.MAX_LEVEL) {
+			return levelDescription[charactor][idx];
+		}
+		else {
+			int subspecies = idx - ConstantValue.MAX_LEVEL;
 			if(data.getSubspeciesFeed(charactor, subspecies))
 				return subspeciesDescription[charactor][subspecies];
 			else {
 				String subspeciesStr = String.format(subspecies_type, subspecies);
 				subspeciesStr += subspecies_unavailable;
 				return subspeciesStr;
-			}			
-		}	
-		
-		return levelDescription[charactor][level];
+			}		
+		}		
 	}
 	
 	public void initDetailView(int _width, int _height) {
@@ -156,38 +149,32 @@ public class PetLibrary {
 		lockedY = (height - lockedImage.getHeight()) / 2;	
 	}
 	
-	public Bitmap getCharactorSelection(int charactor, Data data, int level, int subspecies) {
+	public Bitmap getCharactorSelection(int charactor, Data data, int idx) {
 		Bitmap charactorDetail = Bitmap.createBitmap(width, height, Config.ARGB_4444);	
 		Canvas canvas = new Canvas(charactorDetail);
 		Paint paint  = new Paint();		
 		paint.setAntiAlias(true);
 		
 		int availability = data.getCharactorAvailable(charactor);
-		if(charactor < 0 || availability == ConstantValue.NOT_AVAILABLE) {		
+		if( charactor < 0 || availability == ConstantValue.NOT_AVAILABLE ||
+			idx >= ConstantValue.MAX_LEVEL + subspeciesDescription[charactor].length) {		
 			canvas.drawBitmap(lockedImage, lockedX, lockedY, paint);				
 		}	
 		
 		else {
 			Bitmap charactorImg;
-			if(level < ConstantValue.MAX_LEVEL) {
-				charactorImg = PetImageDepot.getCharactorDefaultImage(ctx, charactor, level, width-2*border, height-2*border);
+			if(idx < ConstantValue.MAX_LEVEL) {
+				charactorImg = PetImageDepot.getCharactorDefaultImage(ctx, charactor, idx, width-2*border, height-2*border);
 			}
 			else {
-				charactorImg = PetImageDepot.getSubSpeciesImage(ctx, charactor, subspecies, width-2*border, height-2*border);
+				charactorImg = PetImageDepot.getSubSpeciesImage(ctx, charactor, idx-ConstantValue.MAX_LEVEL, width-2*border, height-2*border);
 			}		
 			
 			int charactorX = (width  - charactorImg.getWidth() ) / 2;
-			int charactorY = (height - charactorImg.getHeight()) / 2;
+			int charactorY = (height - charactorImg.getHeight()) / 2;			
 			
-			if(availability == ConstantValue.IS_FEED) {
-				canvas.drawBitmap(charactorImg, charactorX, charactorY, paint);
-			}
-			else {
-				paint.setAlpha(128);
-				canvas.drawBitmap(charactorImg, charactorX, charactorY, paint);
-				paint.setAlpha(127);
-				canvas.drawBitmap(lockedImage, lockedX, lockedY, paint);
-			}
+			canvas.drawBitmap(charactorImg, charactorX, charactorY, paint);		
+			
 		}	
 		
 		paint.setAlpha(255);
@@ -199,57 +186,7 @@ public class PetLibrary {
 		return charactorDetail;
 	}
 	
-	public Bitmap getCharactorLevel(int charactor, Data data, int level) {
-		lastLevel = Math.max(0, level);
-		
-		Bitmap charactorDetail = Bitmap.createBitmap(width, height, Config.ARGB_4444);	
-		Canvas canvas = new Canvas(charactorDetail);
-		Paint paint  = new Paint();		
-		paint.setAntiAlias(true);
-			
-		Bitmap charactorImg = PetImageDepot.getCharactorDefaultImage(ctx, charactor, level, width-2*border, height-2*border);		
-		int charactorX = (width  - charactorImg.getWidth() ) / 2;
-		int charactorY = (height - charactorImg.getHeight()) / 2;			
-			
-		canvas.drawBitmap(charactorImg, charactorX, charactorY, paint);		
-		
-		paint.setStrokeWidth(8);
-		paint.setColor(Color.WHITE);
-		paint.setStyle(Style.STROKE);
-		canvas.drawRect(0, 0, width, height, paint);
-		
-		return charactorDetail;
-	}
-	
-	public Bitmap getCharactorSubspecies(int charactor, Data data, int subspecies) {
-		lastSubspecies = Math.max(0, subspecies);
-		lastLevel = ConstantValue.MAX_LEVEL;
-		
-		Bitmap charactorDetail = Bitmap.createBitmap(width, height, Config.ARGB_4444);	
-		Canvas canvas = new Canvas(charactorDetail);
-		Paint paint  = new Paint();		
-		paint.setAntiAlias(true);
-			
-		if(data.getSubspeciesFeed(charactor, subspecies)) {
-			Bitmap charactorImg = PetImageDepot.getSubSpeciesImage(ctx, charactor, subspecies, width-2*border, height-2*border);			
-			int charactorX = (width  - charactorImg.getWidth() ) / 2;
-			int charactorY = (height - charactorImg.getHeight()) / 2;			
-				
-			canvas.drawBitmap(charactorImg, charactorX, charactorY, paint);	
-		}
-		else {
-			canvas.drawBitmap(lockedImage, lockedX, lockedY, paint);
-		}
-		
-		paint.setStrokeWidth(8);
-		paint.setColor(Color.WHITE);
-		paint.setStyle(Style.STROKE);
-		canvas.drawRect(0, 0, width, height, paint);
-		
-		return charactorDetail;
-	}
-	
-	public String getSelectBtnText(int charactor, Data petData) {
+	public String getSelectBtnText(int charactor, Data petData, int idx) {
 		String strBtn = "";
 		if(charactor == petData.curCharactor) {
 			strBtn = ctx.getResources().getString(R.string.library_clear);			
@@ -263,6 +200,6 @@ public class PetLibrary {
 			return String.format(strBtn, 0);
 		}
 		
-		return String.format(strBtn, Math.min(lastLevel, ConstantValue.MAX_LEVEL-1));		
+		return String.format(strBtn, Math.min(idx, ConstantValue.MAX_LEVEL-1));		
 	}
 }

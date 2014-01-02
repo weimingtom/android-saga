@@ -1,0 +1,235 @@
+<resources>
+    <string-array name="saga_dialog_lv0">
+	    <item>niuho～</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要和我说话</item> 	<!--  2, lonely  -->
+	    <item>我饿了</item> 	<!--  3, hungry  -->
+	    <item>你弄醒我了</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>我已经饱了!</item> 	<!--  6, reserved  -->
+	    <item>摔死我了</item> 	<!--  7, reserved  -->
+	    <item>摔死了…</item> 	<!--  8, reserved  -->
+	    <item>a</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+        <string-array name="saga_dialog_lv1">
+	    <item>niuho～</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要和我说话</item> 	<!--  2, lonely  -->
+	    <item>我饿了</item> 	<!--  3, hungry  -->
+	    <item>你弄醒我了</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>我已经饱了!</item> 	<!--  6, reserved  -->
+	    <item>摔死我了</item> 	<!--  7, reserved  -->
+	    <item>摔死了…</item> 	<!--  8, reserved  -->
+	    <item>a</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv2">
+	    <item>niuho～</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要和我说话</item> 	<!--  2, lonely  -->
+	    <item>我饿了</item> 	<!--  3, hungry  -->
+	    <item>你弄醒我了</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>我已经饱了!</item> 	<!--  6, reserved  -->
+	    <item>摔死我了</item> 	<!--  7, reserved  -->
+	    <item>摔死了…</item> 	<!--  8, reserved  -->
+	    <item>a</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv3">
+	    <item>niuho～</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要和我说话</item> 	<!--  2, lonely  -->
+	    <item>我饿了</item> 	<!--  3, hungry  -->
+	    <item>你弄醒我了</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>我已经饱了!</item> 	<!--  6, reserved  -->
+	    <item>摔死我了</item> 	<!--  7, reserved  -->
+	    <item>摔死了…</item> 	<!--  8, reserved  -->
+	    <item>a</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv4">
+	    <item>niuho～</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要和我说话</item> 	<!--  2, lonely  -->
+	    <item>我饿了</item> 	<!--  3, hungry  -->
+	    <item>你弄醒我了</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>我已经饱了!</item> 	<!--  6, reserved  -->
+	    <item>摔死我了</item> 	<!--  7, reserved  -->
+	    <item>摔死了…</item> 	<!--  8, reserved  -->
+	    <item>a</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv5">
+	    <item>niuho～</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要和我说话</item> 	<!--  2, lonely  -->
+	    <item>我饿了</item> 	<!--  3, hungry  -->
+	    <item>你弄醒我了</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>我已经饱了!</item> 	<!--  6, reserved  -->
+	    <item>摔死我了</item> 	<!--  7, reserved  -->
+	    <item>摔死了…</item> 	<!--  8, reserved  -->
+	    <item>a</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv6">
+	    <item>niuho～</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要和我说话</item> 	<!--  2, lonely  -->
+	    <item>我饿了</item> 	<!--  3, hungry  -->
+	    <item>你弄醒我了</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>我已经饱了!</item> 	<!--  6, reserved  -->
+	    <item>摔死我了</item> 	<!--  7, reserved  -->
+	    <item>摔死了…</item> 	<!--  8, reserved  -->
+	    <item>a</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv7">
+	    <item>niuho～</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要和我说话</item> 	<!--  2, lonely  -->
+	    <item>我饿了</item> 	<!--  3, hungry  -->
+	    <item>你弄醒我了</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>我已经饱了!</item> 	<!--  6, reserved  -->
+	    <item>摔死我了</item> 	<!--  7, reserved  -->
+	    <item>摔死了…</item> 	<!--  8, reserved  -->
+	    <item>a</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv8">
+	    <item>niuho～</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要和我说话</item> 	<!--  2, lonely  -->
+	    <item>我饿了</item> 	<!--  3, hungry  -->
+	    <item>你弄醒我了</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>我已经饱了!</item> 	<!--  6, reserved  -->
+	    <item>摔死我了</item> 	<!--  7, reserved  -->
+	    <item>摔死了…</item> 	<!--  8, reserved  -->
+	    <item>a</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv9">
+	    <item>niuho～</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要和我说话</item> 	<!--  2, lonely  -->
+	    <item>我饿了</item> 	<!--  3, hungry  -->
+	    <item>你弄醒我了</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>我已经饱了!</item> 	<!--  6, reserved  -->
+	    <item>摔死我了</item> 	<!--  7, reserved  -->
+	    <item>摔死了…</item> 	<!--  8, reserved  -->
+	    <item>a</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_onfood">
+        <item>好喝！</item>			<!--  0, herbtea  -->
+        <item>好喝！</item>			<!--  1, coffee  -->
+        <item>想吃肉…</item> 			<!--  2, grass  -->
+        <item>HP汉堡,赞!</item>		<!--  3, hamberg  -->
+        <item>好吃！</item>			<!--  4, rabbit  -->
+        <item>好吃！</item>			<!--  5, gyro hamberg  -->        
+        <item>好喝！</item>			<!--  6, herbtea  -->
+        <item>好喝！</item>			<!--  7, coffee  -->
+        <item>想吃肉…</item> 			<!--  8, grass  -->
+        <item>HP汉堡,赞!</item>		<!--  9, hamberg  -->
+        <item>好吃！</item>			<!--  10, rabbit  -->
+        <item>好吃！</item>			<!--  11, gyro hamberg  -->  
+    </string-array>
+    
+    <string-array name="saga_subspecies_alert">
+        <item>因为您的精心饲养，雷拉熊没有走上任何一条进化歧路，所以你得到了一个原著向结局（。</item>
+        <item>您太会赚钱了，您的雷拉熊进化成了一个土豪金牙谢！!</item>
+        <item>因为您无意中激活了雷拉熊的颜艺潜能，雷拉熊走上了搞笑艺人的星光大道。</item>
+        <item>雷拉熊喝了太多药，它变成了神医贾一乐。</item>
+        <item>雷拉熊吃了太多草，它变成了马头谢！</item>
+    </string-array>
+    
+    <string-array name="saga_level_description">
+        <item>攻击力:\t1雷拉\nHP:\t\t\t5雷拉\n技能:\t\t咬个球\n介绍:\t\t一个热爱玩具熊的熊孩子, 爱咬人,据说出生的时候嘴里衔着两个球。</item>
+        <item>攻击力:\t5雷拉\nHP:\t\t\t15雷拉\n技能:\t\t铁球拉皮\n介绍:\t\t进化后的雷拉熊, 继承了祖传家业, 人称熟女杀手, 人妻猎人, 与一巡世界某撩菜狂魔一样, 斩获无数女性的芳心。</item>
+        <item>攻击力:\t20雷拉\nHP:\t\t\t30雷拉\n技能:\t\t树叶擦PP\n介绍:\t\t进化后的雷拉熊, 耍得一手好铁球, 江湖人称"铁球大大"。</item>
+        <item>攻击力:\t50雷拉\nHP:\t\t\t60雷拉\n技能:\t\t绝对零度笑话\n介绍:\t\t进一步进化的雷拉熊, 拥有神之颜艺和连啾尼咪也赞不绝口的冷笑话。</item>
+        <item>攻击力:\t80雷拉\nHP:\t\t\t100雷拉\n技能:\t\t用自己的存在演示黄金比例的身材\n介绍:\t\t进化到极致的雷拉熊, 浑身都由完美的黄金矩形组成, 美的象征, 维纳斯算个球！</item>
+        <item>攻击力:\t1雷拉\nHP:\t\t\t5雷拉\n技能:\t\t咬个球\n介绍:\t\t一个热爱玩具熊的熊孩子, 爱咬人,据说出生的时候嘴里衔着两个球。</item>
+        <item>攻击力:\t5雷拉\nHP:\t\t\t15雷拉\n技能:\t\t铁球拉皮\n介绍:\t\t进化后的雷拉熊, 继承了祖传家业, 人称熟女杀手, 人妻猎人, 与一巡世界某撩菜狂魔一样, 斩获无数女性的芳心。</item>
+        <item>攻击力:\t20雷拉\nHP:\t\t\t30雷拉\n技能:\t\t树叶擦PP\n介绍:\t\t进化后的雷拉熊, 耍得一手好铁球, 江湖人称"铁球大大"。</item>
+        <item>攻击力:\t50雷拉\nHP:\t\t\t60雷拉\n技能:\t\t绝对零度笑话\n介绍:\t\t进一步进化的雷拉熊, 拥有神之颜艺和连啾尼咪也赞不绝口的冷笑话。</item>
+        <item>攻击力:\t80雷拉\nHP:\t\t\t100雷拉\n技能:\t\t用自己的存在演示黄金比例的身材\n介绍:\t\t进化到极致的雷拉熊, 浑身都由完美的黄金矩形组成, 美的象征, 维纳斯算个球！</item>
+    </string-array>
+    
+    <string-array name="saga_subspecies_description">
+        <item>雷拉熊的棺材\n\n一个原作向的棺材（。</item>
+        <item>土豪金牙谢\n\n金光闪闪的大金牙, 上面刻着GO!GO!ZEPPELI。此时已金牙成为了本体。</item>
+        <item>搞笑艺人谢\n\n与啾尼咪建立了Steel Band Run, 一举成为知名搞笑双人组的雷拉熊, 成名曲是披萨之歌。</item>
+        <item>神医贾一乐\n\n贾神医, 专业治疗瘫痪。</item>
+        <item>马头谢\n\n和女武神合体的雷拉熊, 素食主义者。</item>
+    </string-array>
+</resources>

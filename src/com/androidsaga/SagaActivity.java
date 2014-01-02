@@ -63,9 +63,9 @@ public class SagaActivity extends Activity {
 	private ImageView libraryBtn;
 	private ImageView StatusView;	
 	
-	private TextView[] foodTextViews 		= new TextView[6];
-	private ImageView[] foodImageViews 		= new ImageView[6];
-	private LinearLayout[] foodItemLayouts 	= new LinearLayout[6];
+	private TextView[] foodTextViews 		= new TextView[ConstantValue.MAX_LEVEL+2];
+	private ImageView[] foodImageViews 		= new ImageView[ConstantValue.MAX_LEVEL+2];
+	private LinearLayout[] foodItemLayouts 	= new LinearLayout[ConstantValue.MAX_LEVEL+2];
 
 	private Integer width;
 	private Integer height;
@@ -430,21 +430,11 @@ public class SagaActivity extends Activity {
     	laParams = charactorDetailImage.getLayoutParams();
     	laParams.height = petLibrary.height;
     	laParams.width = petLibrary.width;
-    	charactorDetailImage.setLayoutParams(laParams);    	
-    	
-    	ImageView previousBtn = (ImageView)findViewById(R.id.LibraryPreviousLevel);
-    	laParams = previousBtn.getLayoutParams();
-    	laParams.width = laParams.height = unitSize;
-    	previousBtn.setLayoutParams(laParams);
-    	
-    	ImageView nextBtn = (ImageView)findViewById(R.id.LibraryNextLevel);
-    	laParams = nextBtn.getLayoutParams();
-    	laParams.width = laParams.height = unitSize;
-    	nextBtn.setLayoutParams(laParams);
+    	charactorDetailImage.setLayoutParams(laParams);        	
     	
     	libraryCharactorName = (TextView)findViewById(R.id.LibraryCharactorName);
     	laParams = libraryCharactorName.getLayoutParams();        	
-    	laParams.width = width/2 - unitSize*2;
+    	laParams.width = width/2;
     	laParams.height = unitSize;
     	libraryCharactorName.setLayoutParams(laParams);
     
@@ -463,207 +453,37 @@ public class SagaActivity extends Activity {
     	for(int i = 0; i < ConstantValue.TOTAL_CHARACTOR; i++) {      					
 	    	charactorSelectImage[i].setImageBitmap(petLibrary.getThumbnailImage(pet.petData, i, pet.petData.curCharactor==i));	    		
     	} 	    	
-    	charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(pet.petData.curCharactor, pet.petData, 
-    			pet.petData.level, pet.petData.subSpecises));
+    	charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(pet.petData.curCharactor, pet.petData, pet.petData.level));
     	
     	libraryCharactorName.setText(R.string.name_unknown);
     	libraryCharactorDetail.setText(R.string.library_no_selection);
-    	librarySelectCharactor.setText(petLibrary.getSelectBtnText(-1, pet.petData));
+    	librarySelectCharactor.setText(petLibrary.getSelectBtnText(-1, pet.petData, 0));
     	librarySelectCharactor.setClickable(false);
     }
     
     protected void updateLibraryView(int checkID)
-    {
-    	//update select charactor view info
-    	/*int[] newID = new int[32];
-    	int newCount = petUnlock.getHatchedID(newID);  
-    	for(int i = 0; i < newCount; i++) {
-    		charactorSelectImage[newID[i]].setImageBitmap(
-    			petLibrary.getThumbnailImage(pet.petData, newID[i], false));	    
-    	}   */
-    	
+    {    	
     	if(checkID < 0) {
     		return;
     	}   	 	
     	
     	String libraryLevel = getResources().getString(R.string.library_lv);
     		
-    	if(petLibrary.getLastSelection() >= 0) {
-    		int uncheckID = petLibrary.getLastSelection();
+    	if(petLibrary.lastIdx >= 0) {
+    		int uncheckID = petLibrary.lastIdx;
     		charactorSelectImage[uncheckID].setImageBitmap(petLibrary.getThumbnailImage(pet.petData, uncheckID, false));
     	}
+    	petLibrary.lastIdx = checkID;
     	charactorSelectImage[checkID].setImageBitmap(petLibrary.getThumbnailImage(pet.petData, checkID, true));       		
+    	 		
+    	libraryCharactorName.setText(petLibrary.charactorNames[checkID]);
+    	libraryCharactorName.append(String.format(libraryLevel, pet.petData.level));
+    	librarySelectCharactor.setClickable(true);
     	
-    	if(pet.petData.curCharactor == checkID) {    		
-    		libraryCharactorName.setText(petLibrary.charactorNames[checkID]);
-    		libraryCharactorName.append(String.format(libraryLevel, pet.petData.level));
-    		librarySelectCharactor.setClickable(true);
-    		
-    		charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(
-    				checkID, pet.petData, pet.petData.level, pet.petData.subSpecises));
-    		
-    		libraryCharactorDetail.setText(petLibrary.getCharactorDescription(
-    				pet.petData.curCharactor, pet.petData.level, pet.petData.subSpecises, pet.petData));    			
-    	}
-    	else{    			
-    		int availability = pet.petData.getCharactorAvailable(checkID);
-    		charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(checkID, pet.petData, 0, 0));
-    		
-    		if(availability == ConstantValue.NOT_AVAILABLE) { 
-    			libraryCharactorName.setText(R.string.name_unknown);    				
-	    		libraryCharactorDetail.setText(R.string.library_unavailable);
-	    		librarySelectCharactor.setClickable(false);	    			
-	    	}
-	    	else {
-	    		libraryCharactorName.setText(petLibrary.charactorNames[checkID]);
-	    		if(availability == ConstantValue.IS_FEED) {
-	    			libraryCharactorName.append(String.format(libraryLevel, 0));
-	    		}
-	    		librarySelectCharactor.setClickable(true);	    			
-	    	}
-    		
-    		libraryCharactorDetail.setText(petLibrary.getCharactorDescription(
-    			petLibrary.getLastSelection(), petLibrary.getlastLevel(), petLibrary.getLastSubspecies(), pet.petData));   
-    	}
-    	librarySelectCharactor.setText(petLibrary.getSelectBtnText(checkID, pet.petData));    	
-    }
-    
-    public void onClickNextLevel(View target) {    	
-    	int nextLevel = petLibrary.getlastLevel();
-    	int nextSubspecies = petLibrary.getLastSubspecies();
-    	String libraryLevel = getResources().getString(R.string.library_lv);
+    	charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(checkID, pet.petData, checkID));    		
+    	libraryCharactorDetail.setText(petLibrary.getCharactorDescription(pet.petData.curCharactor, checkID, pet.petData));     	
     	
-    	if(nextLevel == ConstantValue.MAX_LEVEL) {
-    		nextSubspecies++;
-    		if(nextSubspecies >= PetImageDepot.getSubspeciesCount(petLibrary.getLastSelection())) return;
-    		
-    		charactorDetailImage.setImageBitmap(petLibrary.getCharactorSubspecies(
-    				petLibrary.getLastSelection(), pet.petData, nextSubspecies));
-    		
-    		libraryCharactorName.setText(petLibrary.charactorNames[petLibrary.getLastSelection()]);    		
-    		libraryCharactorName.append(String.format(libraryLevel, nextLevel));
-    		
-    	}
-    	else {
-    		nextLevel++;
-    		int maxLevel = pet.petData.getMaxLevel(petLibrary.getLastSelection());
-    		if(nextLevel > maxLevel && maxLevel < ConstantValue.MAX_LEVEL) {
-    			return;
-    		}
-    		
-    		if(nextLevel >= ConstantValue.MAX_LEVEL) {
-    			nextSubspecies = 0;
-    			charactorDetailImage.setImageBitmap(petLibrary.getCharactorSubspecies(
-    				petLibrary.getLastSelection(), pet.petData, nextSubspecies));
-    		}
-    		else {
-	    		charactorDetailImage.setImageBitmap(petLibrary.getCharactorLevel(
-	    				petLibrary.getLastSelection(), pet.petData, nextLevel));
-    		}
-    		libraryCharactorName.setText(petLibrary.charactorNames[petLibrary.getLastSelection()]);    		
-    		libraryCharactorName.append(String.format(libraryLevel, nextLevel));
-    	}
-    	
-    	libraryCharactorDetail.setText(petLibrary.getCharactorDescription(
-    			petLibrary.getLastSelection(), petLibrary.getlastLevel(), petLibrary.getLastSubspecies(), pet.petData)); 
-    	
-    	librarySelectCharactor.setText(petLibrary.getSelectBtnText(petLibrary.getLastSelection(), pet.petData));    	
-    }
-    
-    public void onClickPreviousLevel(View target) {
-    	int previousLevel = petLibrary.getlastLevel();
-    	int previousSubspecies = petLibrary.getLastSubspecies();
-    	String libraryLevel = getResources().getString(R.string.library_lv);
-    	
-    	if(previousLevel == ConstantValue.MAX_LEVEL) {
-    		previousSubspecies--;
-    		if(previousSubspecies < 0) {
-    			previousLevel--;
-    			charactorDetailImage.setImageBitmap(petLibrary.getCharactorLevel(
-        				petLibrary.getLastSelection(), pet.petData, previousLevel));
-    		}
-    		else {
-	    		charactorDetailImage.setImageBitmap(petLibrary.getCharactorSubspecies(
-	    				petLibrary.getLastSelection(), pet.petData, previousSubspecies));
-    		}
-    		
-    		libraryCharactorName.setText(petLibrary.charactorNames[petLibrary.getLastSelection()]);    		
-    		libraryCharactorName.append(String.format(libraryLevel, previousLevel));
-    		
-    	}
-    	else {
-    		previousLevel--;
-    		if(previousLevel < 0) return;
-    		
-    		charactorDetailImage.setImageBitmap(petLibrary.getCharactorLevel(
-    				petLibrary.getLastSelection(), pet.petData, previousLevel));
-    		libraryCharactorName.setText(petLibrary.charactorNames[petLibrary.getLastSelection()]);    		
-    		libraryCharactorName.append(String.format(libraryLevel, previousLevel));
-    	}
-    	
-    	libraryCharactorDetail.setText(petLibrary.getCharactorDescription(
-    			petLibrary.getLastSelection(), petLibrary.getlastLevel(), petLibrary.getLastSubspecies(), pet.petData)); 
-    	
-    	librarySelectCharactor.setText(petLibrary.getSelectBtnText(petLibrary.getLastSelection(), pet.petData));    
-    }
-    
-    protected void changeCharactor(int newCharactor, int level) {
-    	if(newCharactor != pet.petData.curCharactor) {
-    		pet.petData.status = ConstantValue.STATUS_NORMAL;
-    	}
-    	action.clearPetData(pet.petData, level);
-    	
-    	pet.petData.curCharactor = newCharactor;
-    	pet.petData.subSpecises  = 0;
-    	pet.petData.setCharactorFeed(newCharactor);
-    	
-    	action = ActionFactory.getAction(pet.petData.curCharactor, this);
-    	action.updatePetImage(pet);
-    	pet.resetStatus(-1);
-		pet.showString("", -1);	
-		
-    	petGame.resetGame();
-    	updateBackground(true);
-    }
-    
-    public void onClickSelectCharactor(View target) {   	
-    	String alertString = getString(R.string.charactor_selector_prompt);  
-    	alertString = String.format(alertString, petLibrary.charactorNames[petLibrary.getLastSelection()]);    	
-    	
-    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(alertString);
-		builder.setTitle("JOJO");
-		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub		
-				if( pet.petData.getMaxLevel(petLibrary.getLastSelection()) == ConstantValue.MAX_LEVEL) {
-					changeCharactor(petLibrary.getLastSelection(), Math.min(petLibrary.getlastLevel(), ConstantValue.MAX_LEVEL-1)); 
-				}
-				else {
-					changeCharactor(petLibrary.getLastSelection(), 0);
-				}
-				updateLibraryView(petLibrary.getLastSelection());
-	        	
-				isHomeView = 1;
-		    	isFoodView = isGameView = isLibraryView = 0;
-		    	
-		    	HomeBtn.setImageResource(homeBtnImage[isHomeView]);		        
-		        FoodBtn.setImageResource(foodBtnImage[isFoodView]);
-		        GameBtn.setImageResource(gameBtnImage[isGameView]);
-		        libraryBtn.setImageResource(libraryBtnImage[isLibraryView]);
-		        
-	        	mainLayout.setVisibility(View.VISIBLE);
-	        	libraryView.setVisibility(View.GONE);  
-			}			
-		});
-		builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub				
-			}				
-		});
-		
-		AlertDialog ad = builder.create();
-		ad.show();   	
+    	librarySelectCharactor.setText(petLibrary.getSelectBtnText(pet.petData.curCharactor, pet.petData, checkID));    	
     }
     
     public void clickLibrary(View target)
@@ -719,7 +539,7 @@ public class SagaActivity extends Activity {
     	
     	LinearLayout foodLayout = (LinearLayout)findViewById(R.id.FoodLinearView);
     	
-    	for(int i = 0; i < 6; i++) {
+    	for(int i = 0; i < foodItemLayouts.length; i++) {
     		foodItemLayouts[i] = new LinearLayout(this);
     		laParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     		foodItemLayouts[i].setLayoutParams(laParams);
@@ -752,7 +572,7 @@ public class SagaActivity extends Activity {
     	//update food info
     	if(pet.isCharactorInited()) {        	
 	        // set food description here  
-    		int showFoodLevel = Math.min(ConstantValue.MAX_LEVEL+1, pet.petData.getMaxLevel(pet.petData.curCharactor)+2);
+    		int showFoodLevel = Math.min(ConstantValue.MAX_LEVEL+2, pet.petData.getMaxLevel(pet.petData.curCharactor)+3);
     		
 	        for(int i = 0; i < showFoodLevel; i++) {	
 	        	foodItemLayouts[i].setVisibility(View.VISIBLE);
