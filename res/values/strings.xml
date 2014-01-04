@@ -33,7 +33,7 @@
 	<string name="aries">嘉米尔祖传配方，因为快过期了所以买1送10</string>
 	<string name="taurus">巴西风味牛肉面，有体力倍增的功效</string>
 	<string name="gemini">迷の生物，肉质鲜嫩，造型奇特，长25厘米</string>
-	<string name="cancer">后面两个字经常被屏蔽无法打广告以致滞销的急冻食品</string>
+	<string name="cancer">蟹肉棒，因为后面两个字经常被屏蔽无法打广告以致滞销的急冻食品</string>
 	<string name="leo">经常被投诉货不对板的丸子，100%不含狮子肉</string>
 	<string name="virgo">正宗印度咖喱，味道绕梁三日</string>
 	<string name="libra">庐山派哄小孩的秘密道具，附带爆衫Buff</string>
@@ -65,9 +65,9 @@
 	
 	
 	<string name="library_no_selection">当前没有选择角色</string>
-	<string name="library_unavailable">当前角色不可用</string>
+	<string name="library_unavailable">当前等级不可用</string>
 	<string name="name_unknown">？？？</string>	
-	<string name="library_choose">选择当前角色(Lv.%1$d)</string>
+	<string name="library_choose">选择当前等级(Lv.%1$d)</string>
 	<string name="library_clear">清空角色数据(Lv.%1$d)</string>
 	<string name="library_lv">lv. %1$d</string>
 	<string name="subspecies_type">结局%1$d\n</string>

@@ -7,16 +7,16 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class FoodDepot {
-	protected static FoodList[] foodLists = new FoodList[32];
+	protected static FoodList[] foodLists = new FoodList[1];
 	
 	
 	public static void initFoodDepot(Context ctx) {
-		for(int i = 0; i < 32; i++) {
+		for(int i = 0; i < 1; i++) {
 			foodLists[i] = new FoodList();
 		}
 		
 		// TODO Auto-generated constructor stub		
-		for(int i = 0; i < 6; i++) {			
+		for(int i = 0; i < 12; i++) {			
 			foodLists[ConstantValue.SAGA].setFood(i, 
 					Saga.FOOD_RESID[i],
 					ConstantValue.FOOD_COST[i],

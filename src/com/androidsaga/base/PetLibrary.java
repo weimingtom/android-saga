@@ -71,10 +71,10 @@ public class PetLibrary {
 		
 		paint.setColor(Color.WHITE);
 		boolean availability = false;
-		if(idx <= data.getMaxLevel(data.curCharactor) && idx != ConstantValue.MAX_LEVEL) {
+		if( (idx <= data.getMaxLevel(data.curCharactor) && idx < ConstantValue.MAX_LEVEL)) {
 			availability = true;			
 		}
-		else if(idx > ConstantValue.MAX_LEVEL && idx < ConstantValue.MAX_LEVEL + subspeciesDescription.length) {
+		else if(idx >= ConstantValue.MAX_LEVEL && idx < ConstantValue.MAX_LEVEL + subspeciesDescription.length) {
 			int subspecies = idx - ConstantValue.MAX_LEVEL;
 			availability = data.getSubspeciesFeed(data.curCharactor, subspecies);
 		}
@@ -117,12 +117,13 @@ public class PetLibrary {
 	
 	
 	public String getCharactorDescription(int charactor, int idx, Data data) {
-		if(data.getCharactorAvailable(charactor) == ConstantValue.NOT_AVAILABLE) {
-			return charactor_unavailable;
-		}
-		
 		if(idx >= ConstantValue.MAX_LEVEL + subspeciesDescription[charactor].length) {
 			return "";
+		}	
+		
+		if( data.getCharactorAvailable(charactor) == ConstantValue.NOT_AVAILABLE ||
+			(!data.isLevelMax() && idx > data.level)) {
+			return charactor_unavailable;
 		}		
 		
 		if(idx < ConstantValue.MAX_LEVEL) {

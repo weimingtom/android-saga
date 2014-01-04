@@ -2,9 +2,7 @@ package com.androidsaga.action;
 
 import java.util.Random;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.util.Log;
@@ -67,7 +65,8 @@ public class ActionBase {
 		data.HP = 0.f;
 		data.status = ConstantValue.STATUS_DEAD;	
 		data.setPreMaxLevel(data.curCharactor, data.getMaxLevel(data.curCharactor));
-		data.setMaxLevel(data.curCharactor, 0);		
+		data.setMaxLevel(data.curCharactor, 0);	
+		data.saveData();
 	}
 	
 	public void onUpdatePerSecond(PetBase pet) {
@@ -170,6 +169,7 @@ public class ActionBase {
 			pet.showString(dialogStrings[pet.petData.level][DIALOG_LEVELUP], 3000);
 		}
 		
+		pet.petData.saveData();
 		pet.isUpdate = true;
 	}
 	
@@ -461,41 +461,14 @@ public class ActionBase {
 		}
 	}
 	
-	public void onResurrection(final Data petData, String name) {		
-		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-		String alertString;
-		if(petData.money > 0) 
-			alertString = ctx.getResources().getString(R.string.do_resurrection);
-		else
-			alertString = ctx.getResources().getString(R.string.cannot_resurrection);
-		
-		alertString = String.format(alertString, name);
-		builder.setMessage(alertString);
-		builder.setTitle("JOJO");		    			
-		
-		if(petData.money > 0)
-		{
-			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub	
-					petData.money = petData.frozenMoney = 0;
-					petData.status = ConstantValue.STATUS_NORMAL;
-					petData.HP = 0.1f;						
-					
-					petData.setMaxLevel(petData.curCharactor, petData.getPreMaxLevel(petData.curCharactor));
-					onResurrectionExtra(petData);
-				}			
-			});
-		}
-		
-		builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub				
-			}				
-		});
-		
-		AlertDialog ad = builder.create();
-		ad.show();  	
+	public void onResurrection(final Data petData) {		
+		// TODO Auto-generated method stub	
+		petData.money = petData.frozenMoney = 0;
+		petData.HP = 0.1f;		
+		petData.status = ConstantValue.STATUS_NORMAL;									
+							
+		petData.setMaxLevel(petData.curCharactor, petData.getPreMaxLevel(petData.curCharactor));
+		onResurrectionExtra(petData);		
 	}
 	
 	protected void onResurrectionExtra(Data petData) {

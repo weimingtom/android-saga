@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -116,6 +117,8 @@ public class SagaActivity extends Activity {
 	
 	private PetGame petGame;
 	private PetLibrary petLibrary;
+	
+	private int curLevel = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -464,8 +467,21 @@ public class SagaActivity extends Activity {
     		return;
     	}   	 	
     	
-    	String libraryLevel = getResources().getString(R.string.library_lv);
-    		
+    	if(curLevel < pet.petData.level && curLevel < ConstantValue.MAX_LEVEL) {
+    		for(int i = curLevel+1; i <= pet.petData.level; i++) {    	
+	    		charactorSelectImage[i].setImageBitmap(
+	    			petLibrary.getThumbnailImage(pet.petData, i, false));	    
+	    	}      		
+    	}
+    	else if(curLevel == ConstantValue.MAX_LEVEL) {
+    		for(int i = 0; i < Saga.SUBSPECIES_ID.length; i++) {    			
+    			charactorSelectImage[i+ConstantValue.MAX_LEVEL].setImageBitmap(
+    				petLibrary.getThumbnailImage(pet.petData, ConstantValue.MAX_LEVEL+i, false));    			
+    		}    		
+    	}
+    	curLevel = pet.petData.level;
+    	
+    	String libraryLevel = getResources().getString(R.string.library_lv);    		
     	if(petLibrary.lastIdx >= 0) {
     		int uncheckID = petLibrary.lastIdx;
     		charactorSelectImage[uncheckID].setImageBitmap(petLibrary.getThumbnailImage(pet.petData, uncheckID, false));
@@ -541,7 +557,12 @@ public class SagaActivity extends Activity {
     	isLibraryView = 1;
     	isFoodView = isGameView = isHomeView = 0;
     	
-    	updateLibraryView(pet.petData.curCharactor);
+    	if(pet.petData.level < ConstantValue.MAX_LEVEL) {
+    		updateLibraryView(pet.petData.level);
+    	}
+    	else if(pet.petData.level == ConstantValue.MAX_LEVEL) {
+    		updateLibraryView(ConstantValue.MAX_LEVEL + pet.petData.subSpecises);
+    	}
     	
     	mainLayout.setVisibility(View.GONE);
     	gameView.setVisibility(View.GONE);
@@ -614,6 +635,7 @@ public class SagaActivity extends Activity {
     		laParams = new ViewGroup.LayoutParams(width*2/3, width/3);
     		foodTextViews[i].setLayoutParams(laParams);
     		foodTextViews[i].setGravity(Gravity.CENTER);
+    		foodTextViews[i].setTextColor(Color.BLACK);
     		foodItemLayouts[i].addView(foodTextViews[i]);
     		foodLayout.addView(foodItemLayouts[i]);
     	}    	
@@ -1006,6 +1028,39 @@ public class SagaActivity extends Activity {
     	}       
     }
     
+    protected void onResurrection() {
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		String alertString;
+		if(pet.petData.money > 0) 
+			alertString = getResources().getString(R.string.do_resurrection);
+		else
+			alertString = getResources().getString(R.string.cannot_resurrection);
+		
+		alertString = String.format(alertString, petLibrary.charactorNames[pet.petData.curCharactor]);
+		builder.setMessage(alertString);
+		builder.setTitle("JOJO");		    			
+		
+		if(pet.petData.money > 0)
+		{
+			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub	
+					action.onResurrection(pet.petData);					
+					updateBackground(true);
+				}			
+			});
+		}
+		
+		builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub				
+			}				
+		});
+		
+		AlertDialog ad = builder.create();
+		ad.show();  	
+    }
+    
   //实现onTouchEvent方法 
     public boolean onTouchEvent(MotionEvent event) {   
     	if(isHomeView == 1 && pet.isCharactorInited()) {
@@ -1018,7 +1073,7 @@ public class SagaActivity extends Activity {
 		    		//record the initial position
 		    		//ask for resurrection
 		    		if(pet.petData.status == ConstantValue.STATUS_DEAD) {
-		    			action.onResurrection(pet.petData, petLibrary.charactorNames[pet.petData.curCharactor]);	
+		    			onResurrection();	
 		    			updateBackground(true);
 		    		}
 		    		else {

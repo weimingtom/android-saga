@@ -9,7 +9,7 @@ public class FoodList {
 		public String description;
 	}
 	
-	public Food[] foods = new Food[8];
+	public Food[] foods = new Food[16];
 	
 	FoodList() {
 		for(int i = 0; i < foods.length; i++) {

@@ -22,8 +22,8 @@ public class Saga extends ActionBase {
 		R.drawable.food_diego_tail, R.drawable.food_diettea, R.drawable.food_bodyhead
 	};	
 			
-	public static final Integer[] FOOD_SATISFY = {1, 1, 2, 5, 10, 15, 20, 30, 50, 99};	
-	public static final Float  [] FOOD_HP	   = {0.1f, 0.1f, 0.15f, 0.2f, 0.25f, 0.3f, 0.35f, 0.4f, 0.45f, 0.5f};
+	public static final Integer[] FOOD_SATISFY = {1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 10, 99};	
+	public static final Float  [] FOOD_HP	   = {0.1f, 0.1f, 0.1f, 0.15f, 0.15f, 0.2f, 0.2f, 0.25f, 0.25f, 0.3f, 0.3f, 0.5f};
 				
 	public static final Integer[] FOOD_DESCRIPTION = {
 		R.string.aries, R.string.taurus, R.string.cancer, R.string.leo, R.string.virgo, R.string.libra,
