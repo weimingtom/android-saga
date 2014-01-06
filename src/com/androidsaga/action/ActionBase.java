@@ -38,6 +38,7 @@ public class ActionBase {
 	public static final Integer DIALOG_NOTHUNGRY		= 6;
 	public static final Integer DIALOG_DROP			= 7;
 	public static final Integer DIALOG_DROPDEAD		= 8;
+	public static final Integer DIALOG_ANGRY		= 9;
 	public static final Integer DIALOG_DEAD			= 15;	
 	
 	protected static int TOUCH = 0;
@@ -295,7 +296,7 @@ public class ActionBase {
 			
 			else {
 				// it will be satified when being touched
-				pet.petData.satisfy += 0.1f * pet.petData.level;
+				pet.petData.satisfy += 0.1f * (pet.petData.level + 1);
 				pet.setStatus(PetImageDepot.HAPPY);
 				if(!pet.petData.quiet) {
 					playTouchVoice();
@@ -319,7 +320,7 @@ public class ActionBase {
 				//move left
 				pet.setTargetX(petX-40);
 			}
-			pet.showString(dialogStrings[pet.petData.level][DIALOG_TOUCH_UNHAPPY], Integer.MAX_VALUE);			
+			pet.showString(dialogStrings[pet.petData.level][DIALOG_ANGRY], Integer.MAX_VALUE);			
 		}	
 		
 		// if it's very unhappy, just keep the status
