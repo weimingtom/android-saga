@@ -30,18 +30,18 @@
 	<string name="money_you_have">您有%1$d金币</string>
 	<string name="food_alert">您当前选定的食物需要%1$d金币，确定继续吗？</string>	
 	
-	<string name="aries">嘉米尔祖传配方，因为快过期了所以买1送10</string>
-	<string name="taurus">巴西风味牛肉面，有体力倍增的功效</string>
-	<string name="gemini">迷の生物，肉质鲜嫩，造型奇特，长25厘米</string>
-	<string name="cancer">蟹肉棒，因为后面两个字经常被屏蔽无法打广告以致滞销的急冻食品</string>
-	<string name="leo">经常被投诉货不对板的丸子，100%不含狮子肉</string>
-	<string name="virgo">正宗印度咖喱，味道绕梁三日</string>
-	<string name="libra">庐山派哄小孩的秘密道具，附带爆衫Buff</string>
-	<string name="scorpio">五欧毛一斤的毒苹果做的，小孩吃了会不识数，只能数到14</string>
-	<string name="sagittarius">秘制黄金烤翅，据说只有无上装猛男才能烤制出正宗希腊口味</string>
-	<string name="capricorn">经常被错写成“羊羯子”，因为羊脊骨形似蝎子而得名，要用特制刀具劈开</string>
-	<string name="aquarius">西伯利亚风味，绝对零度出品。</string>
-	<string name="pisces">用三种玫瑰花瓣酿造，喝了会产生幻觉以为自己是世界上最美丽的人</string>
+	<string name="food1">嘉米尔祖传配方，因为快过期了所以买1送10</string>
+	<string name="food2">巴西风味牛肉面，有体力倍增的功效</string>	
+	<string name="food3">蟹肉棒，因为后面两个字经常被屏蔽无法打广告以致滞销的急冻食品</string>
+	<string name="food4">经常被投诉货不对板的丸子，100%不含狮子肉</string>
+	<string name="food5">正宗印度咖喱，味道绕梁三日</string>
+	<string name="food6">庐山派哄小孩的秘密道具，附带爆衫Buff</string>
+	<string name="food7">五欧毛一斤的毒苹果做的，小孩吃了会不识数，只能数到14</string>
+	<string name="food8">秘制黄金烤翅，据说只有无上装猛男才能烤制出正宗希腊口味</string>
+	<string name="food9">经常被错写成“羊羯子”，因为羊脊骨形似蝎子而得名，要用特制刀具劈开</string>
+	<string name="food10">西伯利亚风味，绝对零度出品。</string>
+	<string name="food11">用三种玫瑰花瓣酿造，喝了会产生幻觉以为自己是世界上最美丽的人</string>
+	<string name="food12">迷の生物，肉质鲜嫩，造型奇特，长25厘米</string>
 	
 	<string name="food_no_enough_money">你没有足够的钱买这个食物！</string>
 	<string name="do_resurrection">您要用所有的金币复活你的%1$s吗？确定后金币将清空</string>

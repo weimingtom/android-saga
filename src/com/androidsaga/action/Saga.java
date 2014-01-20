@@ -1,33 +1,48 @@
 package com.androidsaga.action;
 
+import java.util.Calendar;
+
 import com.androidsaga.R;
 import com.androidsaga.base.*;
 
+import android.R.integer;
+import android.R.raw;
 import android.content.Context;
 
 public class Saga extends ActionBase {
 	
-	/*protected static final Integer EXTRA_BRANDY		= 0;	
-	protected static final Integer EXTRA_TOUCH		= 1;
-	protected static final Integer EXTRA_UNHAPPY	= 2;
-	protected static final Integer EXTRA_TOTALTIME	= 3;
-	protected static final Integer EXTRA_WOMAN		= 4;
-	*/
+	protected static final Integer EXTRA_TOUCH		= 0;	
+	protected static final Integer EXTRA_BLACK		= 1;
+	protected static final Integer EXTRA_LEVEL		= 2;
+	protected static final Integer EXTRA_ANGRYTIME	= 3;
+	protected static final Integer EXTRA_TOTALTIME	= 4;
+	
+	protected static final Integer FOOD_MILK 	= 0;
+	protected static final Integer FOOD_BULL 	= 1;
+	protected static final Integer FOOD_CRAB 	= 2;
+	protected static final Integer FOOD_LION	= 3;
+	protected static final Integer FOOD_INDIAN	= 4;
+	protected static final Integer FOOD_CANDY	= 5;
+	protected static final Integer FOOD_APPLE	= 6;
+	protected static final Integer FOOD_CHICKEN	= 7;
+	protected static final Integer FOOD_GOAT	= 8;
+	protected static final Integer FOOD_ICE		= 9;
+	protected static final Integer FOOD_ROSE	= 10;
+	protected static final Integer FOOD_XX		= 11;
 	
 	// 食物的售价和改变好感值
 	public static final Integer[] FOOD_RESID   = {
-		R.drawable.food_annasui, R.drawable.food_blood_tofu, R.drawable.food_bodybear, 
-		R.drawable.food_bodycarrot, R.drawable.food_bomb, R.drawable.food_caesar_salad,
-		R.drawable.food_chocolate, R.drawable.food_cigarette, R.drawable.food_coffee,
-		R.drawable.food_diego_tail, R.drawable.food_diettea, R.drawable.food_bodyhead
+		R.drawable.food_01, R.drawable.food_02, R.drawable.food_03, R.drawable.food_04, 
+		R.drawable.food_05, R.drawable.food_06, R.drawable.food_07, R.drawable.food_08, 
+		R.drawable.food_09, R.drawable.food_10, R.drawable.food_11, R.drawable.food_12
 	};	
 			
 	public static final Integer[] FOOD_SATISFY = {1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 10, 99};	
 	public static final Float  [] FOOD_HP	   = {0.1f, 0.1f, 0.1f, 0.15f, 0.15f, 0.2f, 0.2f, 0.25f, 0.25f, 0.3f, 0.3f, 0.5f};
 				
 	public static final Integer[] FOOD_DESCRIPTION = {
-		R.string.aries, R.string.taurus, R.string.cancer, R.string.leo, R.string.virgo, R.string.libra,
-		R.string.scorpio, R.string.sagittarius, R.string.capricorn, R.string.aquarius, R.string.pisces, R.string.gemini
+		R.string.food1, R.string.food2, R.string.food3, R.string.food4, R.string.food5, R.string.food6, 
+		R.string.food7, R.string.food8, R.string.food9, R.string.food10, R.string.food11, R.string.food12
 	};
 	
 	public static final Integer[][] IMG_ID = { 
@@ -153,26 +168,39 @@ public class Saga extends ActionBase {
 		},	
 	};
 	
-	public static final int END_NORMAL  	= 0;
-	public static final int END_BRANDY 	 	= 1;
-	public static final int END_NOPLUME 	= 2;
-	public static final int END_WOMANBODAY 	= 3;
-	public static final int END_MARIO		= 4;
+	public static final int END_NORMAL  = 0;
+	public static final int END_NUDE	= 1;
+	public static final int END_MEGAMI 	= 2;
+	public static final int END_DOCTOR 	= 3;
+	public static final int END_CEO		= 4;
+	public static final int END_FATHER	= 5;
 	
 	// subspecies images
 	public static final Integer[] SUBSPECIES_ID = {
-		R.drawable.caesar_blood,
-		R.drawable.caesar_brandy,
-		R.drawable.caesar_noplume,
-		R.drawable.caesar_girl,
-		R.drawable.caesar_mario
+		R.drawable.ending_0,
+		R.drawable.ending_1,
+		R.drawable.ending_2,
+		R.drawable.ending_3,
+		R.drawable.ending_4,
+		R.drawable.ending_5
 	};
+	
+	protected int[] soundPoolLevelMax = new int[16];	
 	
 	public Saga(Context _ctx) {
 		super(_ctx);
 		
-		soundPoolMap[TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-        soundPoolMap[LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 2);      
+		for(int i = 0; i < ConstantValue.MAX_LEVEL; i++) {
+			soundPoolMap[i][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
+	        soundPoolMap[i][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 2);      
+		}
+		
+		soundPoolLevelMax[END_NORMAL] = soundPool.load(ctx, R.raw.ending_tomb, 1);
+		soundPoolLevelMax[END_DOCTOR] = soundPool.load(ctx, R.raw.ending_doctor, 2);
+		soundPoolLevelMax[END_MEGAMI] = soundPool.load(ctx, R.raw.ending_megami, 3);
+		soundPoolLevelMax[END_CEO]	  = soundPool.load(ctx, R.raw.ending_ceo, 4);
+		soundPoolLevelMax[END_NUDE]	  = soundPool.load(ctx, R.raw.ending_nocloth, 5);
+		soundPoolLevelMax[END_FATHER] = soundPool.load(ctx, R.raw.ending_father, 6);
         
         dialogStrings[0]   = ctx.getResources().getStringArray(R.array.saga_dialog_lv0);
         dialogStrings[1]   = ctx.getResources().getStringArray(R.array.saga_dialog_lv1);
@@ -190,15 +218,175 @@ public class Saga extends ActionBase {
 	}	
 	
 	@Override
+	protected void onLevelUp(PetBase pet) {
+		pet.petData.extra[EXTRA_LEVEL] |= (1 << pet.petData.level);		
+		super.onLevelUp(pet);
+	}
+	
+	@Override
+	protected void setupUpdateStep(Data petData) {
+		if(petData.level == 9) {
+			Calendar c = Calendar.getInstance();
+			int hour = c.get(Calendar.HOUR_OF_DAY);
+			
+			// it's daylight
+			if(hour > 6 && hour < 18) {
+				hpStep = 0.1f;
+				satisfyStep = 0.01f;
+			}
+			// it's night
+			else if(hour < 6 || hour > 18) {
+				hpStep = 0.0005f;
+				satisfyStep = 0.002f;
+			}
+			// it's morning and dawn
+			else {
+				hpStep = 0.005f;
+				satisfyStep = 0.005f;
+			}
+		}
+		else {
+			hpStep = 0.0005f;
+			satisfyStep = 0.002f;
+		}
+	}
+	
+	@Override
+	protected void getPeriodStep(Data petData, int elapsedTime) {
+		if(petData.level == 9) {
+			Calendar c = Calendar.getInstance();
+			int hour = c.get(Calendar.HOUR_OF_DAY);
+			int dayPassed = elapsedTime/(24*3600);
+			elapsedTime -= dayPassed*24*3600;
+			
+			periodHP = (float)dayPassed*24*3600*0.001f;
+			periodSatisfy = (float)dayPassed*24*3600*0.002f;
+			
+			int previousHour = hour - elapsedTime/3600;
+			if(previousHour < 0) previousHour = 0;
+			
+			// in daylight
+			if(hour > 6 && hour < 18) {			
+				if(previousHour > 6 && previousHour < 18) {
+					periodHP += 0.1f*elapsedTime;
+					periodSatisfy += 0.01f*elapsedTime;
+				}
+				else {
+					periodHP += 0.005*elapsedTime;
+					periodSatisfy += 0.0005*elapsedTime;
+				}			
+			}
+			// in night
+			else {			
+				if(previousHour > 6 && previousHour < 18) {
+					periodHP += 0.005*elapsedTime;
+					periodSatisfy += 0.0005*elapsedTime;				
+				}
+				else {
+					periodHP += 0.0005f*elapsedTime;
+					periodSatisfy += 0.002f*elapsedTime;
+				}			
+			}
+		}
+		else {
+			periodHP += 0.0005f*elapsedTime;
+			periodSatisfy += 0.002f*elapsedTime;
+		}
+	}
+	
+	@Override
+	protected void onTouchExtra(Data petData) {
+		petData.extra[EXTRA_TOUCH]++;
+	}
+	
+	@Override
+	protected void onTouchTooMuch(Data petData) {
+		petData.extra[EXTRA_BLACK]++;
+	}
+	
+	@Override
+	protected void onFoodTooMuch(Data petData) {
+		petData.extra[EXTRA_BLACK]++;
+	}
+	
+	@Override
+	protected void onAwakenExtra(Data petData) {
+		petData.extra[EXTRA_BLACK]++;
+	}
+	
+	@Override
+	protected void updateExtra(PetBase pet, int elapsedTime) {
+		if(pet.petData.satisfy < ConstantValue.EXP_LEVEL[pet.petData.level]*3/10) {
+			pet.petData.extra[EXTRA_ANGRYTIME] += elapsedTime;
+		}
+		pet.petData.extra[EXTRA_TOTALTIME] += elapsedTime;
+	}
+	
+	@Override
+	protected void onFoodExtra(PetBase pet, int foodIdx) {		
+		pet.petData.food[foodIdx]++;
+	}
+	
+	@Override
+	public void updatePetImage(PetBase pet) {
+		if( pet.petData.isLevelMax()) {
+			pet.updatePetImages(pet.petData.level, true);
+		}
+		else {
+			pet.updatePetImages(pet.petData.level, false);
+		}
+		
+		if(pet.petData.isLevelMax()) {
+			pet.setMaxLevelString(maxLevelStrings[pet.petData.subSpecises]);
+		}
+	}
+	
+	@Override
 	public void onLevelMax(PetBase pet) {
 		int subspecies = 0;
-		//int[] availSubspecies = new int[SUBSPECIES_ID.length];		
-		subspecies = rnd.nextInt(SUBSPECIES_ID.length); //availSubspecies[rnd.nextInt(availSubspeciesCount)];
+		int[] availSubspecies = new int[SUBSPECIES_ID.length];		
+		int availSubspeciesCount = 0;
+		
+		if(pet.petData.food[FOOD_XX] > 0) {
+			if( pet.petData.money >= 5000 && pet.petData.food[FOOD_LION] >= 5) {
+				availSubspecies[availSubspeciesCount++] = END_CEO;
+			}
+			
+			if( pet.petData.food[FOOD_MILK] >= 10 && pet.petData.food[FOOD_CHICKEN] >= 5) {
+				availSubspecies[availSubspeciesCount++] = END_FATHER;
+			}
+			
+			if( pet.petData.food[FOOD_CANDY] >= 5 && pet.petData.extra[EXTRA_BLACK] >= 25) {
+				availSubspecies[availSubspeciesCount++] = END_NUDE;
+			}
+			
+			if( pet.petData.food[FOOD_ROSE] >= 5 && pet.petData.extra[EXTRA_BLACK] == 0 &&
+				pet.petData.extra[EXTRA_ANGRYTIME] == 0) {
+				availSubspecies[availSubspeciesCount++] = END_MEGAMI;
+			}
+			
+			if( pet.petData.food[FOOD_INDIAN] >= 5 && pet.petData.extra[EXTRA_TOUCH] >= 250) {
+				availSubspecies[availSubspeciesCount++] = END_DOCTOR;
+			}
+		}
+		
+		if(availSubspeciesCount == 0) {
+			availSubspecies[availSubspeciesCount++] = END_NORMAL;
+		}
+		
+		subspecies = availSubspecies[rnd.nextInt(availSubspeciesCount)];
+		
+		if(!pet.petData.quiet) {
+			playVoice(soundPoolLevelMax[subspecies]);
+		}	
 		
 		pet.petData.setSubspeciesFeed(subspecies);
-		pet.updatePetImages(pet.petData.curCharactor, false);
+		pet.updatePetImages(pet.petData.curCharactor, true);
+		
 		pet.setMaxLevelString(maxLevelStrings[pet.petData.subSpecises]);
 		pet.resetStatus(-1);
-		pet.showString("", -1);		
+		pet.showString("", -1);	
+		
+		updateLibraryMaxLv = true;
 	}	
 }

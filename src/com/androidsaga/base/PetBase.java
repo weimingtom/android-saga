@@ -242,11 +242,16 @@ public class PetBase {
 					paint.setColor(Color.WHITE);
 					paint.setAntiAlias(true);
 					
+					// break string					
+					int count = paint.breakText(dialogString, true, ConstantValue.scalePix(ctx, 120), null);	
+					int stringLen = dialogString.length();					
+					int textRows = (stringLen + count - 1) / count;
+					
 					Point coord = new Point(x+petWidth-ConstantValue.scalePix(ctx, 100),
 											y-ConstantValue.scalePix(ctx, 20));
 					RectF oval = new RectF(	coord.x, coord.y, 
 											coord.x+ConstantValue.scalePix(ctx, 200), 
-											coord.y+ConstantValue.scalePix(ctx, 100));
+											coord.y+ConstantValue.scalePix(ctx, 100 + (textRows-1)*24) );
 					canvas.drawOval(oval, paint);
 					
 					paint.setStyle(Style.STROKE);
@@ -254,14 +259,25 @@ public class PetBase {
 					paint.setColor(Color.BLACK);
 					canvas.drawOval(oval, paint);
 					
-					// draw string
+					// draw string	
 					paint.setStyle(Style.FILL);
 					paint.setStrokeWidth(2);
 					paint.setTextSize(ConstantValue.scalePix(ctx, 24));
-					canvas.drawText(dialogString, 
-									coord.x+ConstantValue.scalePix(ctx, 40), 
-									coord.y+ConstantValue.scalePix(ctx, 50), 
-									paint);
+					
+					int i = 0;
+					while(stringLen > count) {
+						canvas.drawText(dialogString.substring(i*count, (i+1)*count), 
+										coord.x+ConstantValue.scalePix(ctx, 40),
+										coord.y+ConstantValue.scalePix(ctx, 64),
+										paint);
+						i++;
+						stringLen -= count;
+						coord.y += ConstantValue.scalePix(ctx, 24);
+					}
+					canvas.drawText(dialogString.substring(i*count, dialogString.length()), 
+									coord.x+ConstantValue.scalePix(ctx, 40),
+									coord.y+ConstantValue.scalePix(ctx, 64),
+									paint);	
 				}
 			}
 			else 

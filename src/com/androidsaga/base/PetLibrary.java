@@ -23,6 +23,8 @@ public class PetLibrary {
 	public int height;
 	public int lastIdx = 0;
 	
+	public int curLevel = -1;
+	
 	protected int border = 4;
 	
 	public String[][] levelDescription = new String[32][];
@@ -74,7 +76,8 @@ public class PetLibrary {
 		if( (idx <= data.getMaxLevel(data.curCharactor) && idx < ConstantValue.MAX_LEVEL)) {
 			availability = true;			
 		}
-		else if(idx >= ConstantValue.MAX_LEVEL && idx < ConstantValue.MAX_LEVEL + subspeciesDescription.length) {
+		else if(data.getMaxLevel(data.curCharactor) == ConstantValue.MAX_LEVEL &&
+				idx >= ConstantValue.MAX_LEVEL && idx < ConstantValue.MAX_LEVEL + subspeciesDescription.length) {
 			int subspecies = idx - ConstantValue.MAX_LEVEL;
 			availability = data.getSubspeciesFeed(data.curCharactor, subspecies);
 		}
@@ -122,7 +125,7 @@ public class PetLibrary {
 		}	
 		
 		if( data.getCharactorAvailable(charactor) == ConstantValue.NOT_AVAILABLE ||
-			(!data.isLevelMax() && idx > data.level)) {
+			(!data.isLevelMax() && idx > data.getMaxLevel(charactor))) {
 			return charactor_unavailable;
 		}		
 		
@@ -131,7 +134,8 @@ public class PetLibrary {
 		}
 		else {
 			int subspecies = idx - ConstantValue.MAX_LEVEL;
-			if(data.getSubspeciesFeed(charactor, subspecies))
+			if( data.getMaxLevel(data.curCharactor) == ConstantValue.MAX_LEVEL &&
+				data.getSubspeciesFeed(charactor, subspecies))
 				return subspeciesDescription[charactor][subspecies];
 			else {
 				String subspeciesStr = String.format(subspecies_type, subspecies);
@@ -160,7 +164,8 @@ public class PetLibrary {
 		if(idx <= data.getMaxLevel(data.curCharactor) && idx != ConstantValue.MAX_LEVEL) {
 			availability = true;			
 		}
-		else if(idx > ConstantValue.MAX_LEVEL && idx < ConstantValue.MAX_LEVEL + subspeciesDescription.length) {
+		else if(data.getMaxLevel(data.curCharactor) == ConstantValue.MAX_LEVEL &&
+				idx > ConstantValue.MAX_LEVEL && idx < ConstantValue.MAX_LEVEL + subspeciesDescription.length) {
 			int subspecies = idx - ConstantValue.MAX_LEVEL;
 			availability = data.getSubspeciesFeed(data.curCharactor, subspecies);
 		}

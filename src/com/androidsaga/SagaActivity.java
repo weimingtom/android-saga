@@ -118,9 +118,9 @@ public class SagaActivity extends Activity {
 	private PetGame petGame;
 	private PetLibrary petLibrary;
 	
-	private int curLevel = -1;
-
-    @Override
+	private boolean updateMaxLv = true;
+	
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);        
@@ -467,19 +467,31 @@ public class SagaActivity extends Activity {
     		return;
     	}   	 	
     	
-    	if(curLevel < pet.petData.level && curLevel < ConstantValue.MAX_LEVEL) {
-    		for(int i = curLevel+1; i <= pet.petData.level; i++) {    	
+    	if(action.updateLibraryDead) {
+    		for(int i = 0; i < ConstantValue.MAX_LEVEL+Saga.SUBSPECIES_ID.length; i++) {    	
 	    		charactorSelectImage[i].setImageBitmap(
-	    			petLibrary.getThumbnailImage(pet.petData, i, false));	    
-	    	}      		
-    	}
-    	else if(curLevel == ConstantValue.MAX_LEVEL) {
-    		for(int i = 0; i < Saga.SUBSPECIES_ID.length; i++) {    			
-    			charactorSelectImage[i+ConstantValue.MAX_LEVEL].setImageBitmap(
-    				petLibrary.getThumbnailImage(pet.petData, ConstantValue.MAX_LEVEL+i, false));    			
+	    			petLibrary.getThumbnailImage(pet.petData, i, false));	
     		}    		
     	}
-    	curLevel = pet.petData.level;
+    	else {
+    		if(petLibrary.curLevel < pet.petData.level && petLibrary.curLevel < ConstantValue.MAX_LEVEL) {
+    			for(int i = petLibrary.curLevel+1; i <= pet.petData.level; i++) {    	
+    	    		charactorSelectImage[i].setImageBitmap(
+    	    			petLibrary.getThumbnailImage(pet.petData, i, false));	    
+    	    	}       	
+    		}
+    		
+    		if(action.updateLibraryMaxLv || this.updateMaxLv) {
+        		for(int i = 0; i < Saga.SUBSPECIES_ID.length; i++) {    			
+        			charactorSelectImage[i+ConstantValue.MAX_LEVEL].setImageBitmap(
+        				petLibrary.getThumbnailImage(pet.petData, ConstantValue.MAX_LEVEL+i, false));    			
+        		}
+        		
+        		this.updateMaxLv = false;
+        	}
+    	}
+    	
+    	petLibrary.curLevel = pet.petData.level;
     	
     	String libraryLevel = getResources().getString(R.string.library_lv);    		
     	if(petLibrary.lastIdx >= 0) {
@@ -1151,6 +1163,7 @@ public class SagaActivity extends Activity {
     	long lastCloseTime = pet.petData.loadData();
     	long elapsedTime = (System.currentTimeMillis() - lastCloseTime) / 1000; 			 	 
 		action.onUpdatePeriod(pet, (int)elapsedTime);  
+		
 		//petUnlock.updateEggPeriod(elapsedTime);
 		updateBackground(true);
     }

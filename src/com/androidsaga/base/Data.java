@@ -25,6 +25,7 @@ public class Data {
 	
 	public int 	 fat;			
 	public int[] extra = new int[8];	//other values, different meaning for different charactor
+	public int[] food  = new int[16];
 	public boolean quiet;
 	public int   version;
 	
@@ -144,6 +145,10 @@ public class Data {
 			extra[i]= prefs.getInt(ConstantValue.KEY_EXTRA[i]	, 0);	
 		}
 		
+		for(int i = 0; i < food.length; i++) {
+			food[i] = prefs.getInt(ConstantValue.KEY_FOOD[i], 0);
+		}
+		
 		fat		= prefs.getInt(ConstantValue.KEY_FAT		, 0);	
 		
 		satisfy	= prefs.getFloat(ConstantValue.KEY_SATISFY	, ConstantValue.INIT_EXP_LEVEL[0]);
@@ -166,7 +171,11 @@ public class Data {
 			
 		for(int i = 0; i < extra.length; i++) {
 			editor.putInt(ConstantValue.KEY_EXTRA[i], extra[i]);
-		}		
+		}
+		
+		for(int i = 0; i < food.length; i++) {
+			editor.putInt(ConstantValue.KEY_FOOD[i], food[i]);
+		}
 		
 		editor.putInt(ConstantValue.KEY_FAT, fat);
 		

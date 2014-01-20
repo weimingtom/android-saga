@@ -71,6 +71,8 @@ public class ConstantValue {
 	public static final String KEY_HUNGRY 			= "hungry";
 	public static final String KEY_HP	 			= "HP";	
 	public static final String[] KEY_EXTRA			= {"extra0", "extra1", "extra2", "extra3", "extra4", "extra5", "extra6", "extra7"};		
+	public static final String[] KEY_FOOD			= {"food0", "food1", "food2", "food3", "food4", "food5", "food6", "food7", "food8",
+													   "food9", "food10", "food11", "food12", "food13", "food14", "food15"};
 	
 	public static final String KEY_MONEY			= "money";
 	public static final String KEY_MONEY_FROZEN		= "money_frozen";

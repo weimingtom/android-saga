@@ -190,46 +190,48 @@
 	</string-array>
 	
     <string-array name="saga_onfood">
-        <item>好喝！</item>			<!--  0, herbtea  -->
-        <item>好喝！</item>			<!--  1, coffee  -->
-        <item>想吃肉…</item> 			<!--  2, grass  -->
-        <item>HP汉堡,赞!</item>		<!--  3, hamberg  -->
-        <item>好吃！</item>			<!--  4, rabbit  -->
-        <item>好吃！</item>			<!--  5, gyro hamberg  -->        
-        <item>好喝！</item>			<!--  6, herbtea  -->
-        <item>好喝！</item>			<!--  7, coffee  -->
-        <item>想吃肉…</item> 			<!--  8, grass  -->
-        <item>HP汉堡,赞!</item>		<!--  9, hamberg  -->
-        <item>好吃！</item>			<!--  10, rabbit  -->
-        <item>好吃！</item>			<!--  11, gyro hamberg  -->  
+        <item>打倒假奶粉！打倒史昂！</item>			<!--  0, herbtea  -->
+        <item>好牛，好面！</item>			<!--  1, coffee  -->
+        <item>这难道是迪斯的【】吗……</item> 			<!--  2, grass  -->
+        <item>想不到小艾也会骗人</item>		<!--  3, hamberg  -->
+        <item>吃了会有咖喱臭的…</item>			<!--  4, rabbit  -->
+        <item>爆衫，我喜欢！</item>			<!--  5, gyro hamberg  -->        
+        <item>吃了会变文盲的…</item>			<!--  6, herbtea  -->
+        <item>如果上下都不穿，是不是味道更正宗？</item>			<!--  7, coffee  -->
+        <item>不愧是修罗做的</item> 			<!--  8, grass  -->
+        <item>透心凉啊</item>		<!--  9, hamberg  -->
+        <item>星矢认证的美人，根本不是幻觉</item>			<!--  10, rabbit  -->
+        <item>朋友，你听说过25cm吗？</item>			<!--  11, gyro hamberg  -->  
     </string-array>
     
     <string-array name="saga_subspecies_alert">
-        <item>因为您的精心饲养，雷拉熊没有走上任何一条进化歧路，所以你得到了一个原著向结局（。</item>
-        <item>您太会赚钱了，您的雷拉熊进化成了一个土豪金牙谢！!</item>
-        <item>因为您无意中激活了雷拉熊的颜艺潜能，雷拉熊走上了搞笑艺人的星光大道。</item>
-        <item>雷拉熊喝了太多药，它变成了神医贾一乐。</item>
-        <item>雷拉熊吃了太多草，它变成了马头谢！</item>
+        <item>因为您的精心饲养，您的撒加没有走上任何一条进化歧路，所以您得到了一个原作向的结局（。</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
     </string-array>
     
     <string-array name="saga_level_description">
-        <item>攻击力:\t1雷拉\nHP:\t\t\t5雷拉\n技能:\t\卖萌\n介绍:\t\t蓝头发的小婴儿，有一个双胞胎弟弟，最喜欢的玩具是橡皮鸭子。</item>
-        <item>攻击力:\t5雷拉\nHP:\t\t\t15雷拉\n技能:\t\t打弟弟\n介绍:\t\t幼儿园的老师区分他和弟弟的方式是看谁生气时头发会变色。</item>
-        <item>攻击力:\t20雷拉\nHP:\t\t\t30雷拉\n技能:\t\t暴打弟弟\n介绍:\t\t因为可爱乖巧而很受大人们宠爱，一旦心情不好会变得很暴躁。</item>
-        <item>攻击力:\t50雷拉\nHP:\t\t\t60雷拉\n技能:\t\龙珠雷达\n介绍:\t\t迷上了动画片的小学生，梦想是收集龙珠实现统治世界的愿望。</item>
-        <item>攻击力:\t80雷拉\nHP:\t\t\t100雷拉\n技能:\t\t撒加领域\n介绍:\t\t加入了网球社的中二学生，觉得不苟言笑的样子比较酷。</item>
-        <item>攻击力:\t1雷拉\nHP:\t\t\t5雷拉\n技能:\t\t教练我想打篮球,不让我打我就打你\n介绍:\t\t喜欢看NBA于是跑去打篮球的高中生。</item>
-        <item>攻击力:\t5雷拉\nHP:\t\t\t15雷拉\n技能:\t\t燃烧小宇宙\n介绍:\t\t加入了名为“圣域”的神秘组织，为成为圣斗士而努力修行。</item>
-        <item>攻击力:\t20雷拉\nHP:\t\t\t30雷拉\n技能:\t\t异次元空间垃圾场\n介绍:\t\t当上了黄金圣斗士，因为出众的表现成为教皇候选人。</item>
-        <item>攻击力:\t50雷拉\nHP:\t\t\t60雷拉\n技能:\t\t幻陇洗脑拳绝\n介绍:\t\t如愿以偿当上了教皇，只是手段不太正大光明。</item>
-        <item>攻击力:\t80雷拉\nHP:\t\t\t100雷拉\n技能:\t\t哈哈哈哈哈你去死吧\n介绍:\t\t穿上哈迪斯的冥衣从地狱回来，声称要取雅典娜的首级？！</item>
+        <item>攻击力:\t1小宇宙\nHP:\t\t\t5小宇宙\n技能:\t\卖萌\n介绍:\t\t蓝头发的小婴儿，有一个双胞胎弟弟，最喜欢的玩具是橡皮鸭子。</item>
+        <item>攻击力:\t5小宇宙\nHP:\t\t\t10小宇宙\n技能:\t\t打弟弟\n介绍:\t\t幼儿园的老师区分他和弟弟的方式是看谁生气时头发会变色。</item>
+        <item>攻击力:\t8小宇宙\nHP:\t\t\t15小宇宙\n技能:\t\t暴打弟弟\n介绍:\t\t因为可爱乖巧而很受大人们宠爱，一旦心情不好会变得很暴躁。</item>
+        <item>攻击力:\t10小宇宙\nHP:\t\t\t20小宇宙\n技能:\t\撒派气功\n介绍:\t\t迷上了动画片的小学生，梦想是收集龙珠实现统治世界的愿望。</item>
+        <item>攻击力:\t15小宇宙\nHP:\t\t\t30小宇宙\n技能:\t\t撒加领域\n介绍:\t\t加入了网球社的中二学生，觉得不苟言笑的样子比较酷。</item>
+        <item>攻击力:\t20小宇宙\nHP:\t\t\t40小宇宙\n技能:\t\t教练我想打篮球,不让我打篮球就打弟弟\n介绍:\t\t喜欢看NBA于是跑去打篮球的高中生。</item>
+        <item>攻击力:\t30小宇宙\nHP:\t\t\t50小宇宙\n技能:\t\t燃烧小宇宙\n介绍:\t\t加入了名为“圣域”的神秘组织，为成为圣斗士而努力修行。</item>
+        <item>攻击力:\t40小宇宙\nHP:\t\t\t60小宇宙\n技能:\t\t异次元垃圾场\n介绍:\t\t当上了黄金圣斗士，因为出众的表现成为教皇候选人。</item>
+        <item>攻击力:\t50小宇宙\nHP:\t\t\t80小宇宙\n技能:\t\t幻陇洗脑拳\n介绍:\t\t如愿以偿当上了教皇，只是手段不太正大光明。</item>
+        <item>攻击力:\t80小宇宙\nHP:\t\t\t100小宇宙\n技能:\t\t哈哈哈哈哈你去死吧\n介绍:\t\t穿上哈迪斯的冥衣从地狱回来，声称要取雅典娜的首级？！因为是冥衣，所以不要在白天养他哦～</item>
     </string-array>
     
     <string-array name="saga_subspecies_description">
-        <item>雷拉熊的棺材\n\n一个原作向的棺材（。</item>
-        <item>土豪金牙谢\n\n金光闪闪的大金牙, 上面刻着GO!GO!ZEPPELI。此时已金牙成为了本体。</item>
-        <item>搞笑艺人谢\n\n与啾尼咪建立了Steel Band Run, 一举成为知名搞笑双人组的雷拉熊, 成名曲是披萨之歌。</item>
-        <item>神医贾一乐\n\n贾神医, 专业治疗瘫痪。</item>
-        <item>马头谢\n\n和女武神合体的雷拉熊, 素食主义者。</item>
-    </string-array>
+        <item>一座坟\n\n双子座的撒加与其他十一位黄金圣斗士结集在冥界叹息墙前，化作希望的阳光！圣域只余空坟，供后人怀缅……</item>
+        <item>裸奔撒\n\n攻略十二宫的强者，被十二位黄金圣斗士侍奉为圣域的领导。可惜饲养过程中他似乎打开了奇怪的开关，养成了某种奇葩的癖好……</item>
+        <item>女神撒\n\n因为杰出的表现受到雅典娜的信任，在圣战结束后被委任为女神在大地上的代言人。不过总感觉有哪里不对……</item>
+        <item>院长撒\n\n您在饲养过程中摸撒加过于频繁，撒加觉醒了技能【摸谁谁怀孕】。欢迎光临圣域不孕不育专科医院。院长的祖传独门秘方“摸谁谁怀孕”中奖率100%%，还有50%%几率生双胞胎哦！</item>
+        <item>总裁撒\n\n圣战结束后升职加薪，当上总经理，出任CEO，成功让圣域集团上市，走上人生巅峰。据说以撒加为原型的偶像剧即将开拍，名为《精分总裁爱上我》。</item>
+        <item>奶爸撒\n\n因为时间之神克洛诺斯的恶作剧，圣域的时间倒流了十三年。撒加再一次肩负起照顾婴儿雅典娜的重任。但愿历史不会重演……吧。</item>   
+     </string-array>
 </resources>

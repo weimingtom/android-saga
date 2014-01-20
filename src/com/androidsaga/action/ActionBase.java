@@ -2,6 +2,7 @@ package com.androidsaga.action;
 
 import java.util.Random;
 
+import android.R.integer;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -17,7 +18,7 @@ public class ActionBase {
 	protected Random rnd = new Random(System.currentTimeMillis());	
 	protected SoundPool soundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
 	protected Context ctx;
-	protected int[] soundPoolMap = new int[4];
+	protected int[][] soundPoolMap = new int[ConstantValue.MAX_LEVEL][4];	
 	
 	protected float hpStep = 0.0005f;
 	protected float satisfyStep = 0.002f;
@@ -44,16 +45,19 @@ public class ActionBase {
 	protected static int TOUCH = 0;
 	protected static int LEVELUP = 1;
 	
+	public boolean updateLibraryDead  = false;
+	public boolean updateLibraryMaxLv = false;
+	
 	public ActionBase(Context _ctx) {
 		ctx = _ctx;
 		lastTouch = System.currentTimeMillis();		
 	}
 	
-	protected void setupUpdateStep() {
+	protected void setupUpdateStep(Data petData) {
 		
 	}
 	
-	protected void getPeriodStep(int elapsedTime) {
+	protected void getPeriodStep(Data petData, int elapsedTime) {
 		periodHP = (float)elapsedTime*hpStep;
 		periodSatisfy = (float)elapsedTime*satisfyStep;
 	}
@@ -68,12 +72,14 @@ public class ActionBase {
 		data.setPreMaxLevel(data.curCharactor, data.getMaxLevel(data.curCharactor));
 		data.setMaxLevel(data.curCharactor, 0);	
 		data.saveData();
+		
+		updateLibraryDead = true;
 	}
 	
 	public void onUpdatePerSecond(PetBase pet) {
 		Data data = pet.petData;
 		
-		setupUpdateStep();
+		setupUpdateStep(pet.petData);
 		
 		// do nothing if level max	 
 		if(pet.petData.isLevelMax())  return;
@@ -117,7 +123,7 @@ public class ActionBase {
 			Alert.showAlert("JOJO", ctx.getResources().getString(R.string.change_system_time), ctx);
 			return;
 		}
-		getPeriodStep(elapsedTime);
+		getPeriodStep(pet.petData, elapsedTime);
 		
 		if(data.curCharactor != ConstantValue.NONE) {			
 			
@@ -160,18 +166,17 @@ public class ActionBase {
 			onLevelMax(pet);
 		}
 		else {
+			if(!pet.petData.quiet) {
+				playVoice(soundPoolMap[pet.petData.level][LEVELUP]);
+			}
+			else {
+				pet.showString(dialogStrings[pet.petData.level][DIALOG_LEVELUP], 3000);
+			}			
 			pet.updatePetImages(pet.petData.level, false);
 		}
 		
-		if(!pet.petData.quiet) {
-			playLevelupVoice();
-		}
-		else {
-			pet.showString(dialogStrings[pet.petData.level][DIALOG_LEVELUP], 3000);
-		}
-		
 		pet.petData.saveData();
-		pet.isUpdate = true;
+		pet.isUpdate = true;		
 	}
 	
 	protected void playVoice(int soundID) {
@@ -182,14 +187,6 @@ public class ActionBase {
         //float volume = streamVolumeCurrent/streamVolumeMax;   
 		float volume = mgr.getStreamVolume(AudioManager.STREAM_MUSIC);  
         soundPool.play(soundID, volume, volume, 1, 0, 1.f);	
-	}
-	
-	protected void playTouchVoice() {
-		playVoice(soundPoolMap[TOUCH]);
-	}
-	
-	protected void playLevelupVoice() {
-		playVoice(soundPoolMap[LEVELUP]);
 	}
 	
 	public void onUpdateStatus(PetBase pet) {
@@ -232,6 +229,10 @@ public class ActionBase {
 	}
 	
 	protected void onAwakenExtra(Data petData) {
+		
+	}
+	
+	protected void onTouchExtra(Data petData) {
 		
 	}
 	
@@ -299,7 +300,7 @@ public class ActionBase {
 				pet.petData.satisfy += 0.1f * (pet.petData.level + 1);
 				pet.setStatus(PetImageDepot.HAPPY);
 				if(!pet.petData.quiet) {
-					playTouchVoice();
+					playVoice(soundPoolMap[pet.petData.level][TOUCH]);
 				}
 				else {
 					pet.showString(dialogStrings[pet.petData.level][DIALOG_TOUCH_HAPPY], Integer.MAX_VALUE);
@@ -328,6 +329,8 @@ public class ActionBase {
 		else {
 			pet.showString(dialogStrings[pet.petData.level][DIALOG_LONELY], Integer.MAX_VALUE);
 		}	
+		
+		onTouchExtra(pet.petData);
 	}
 	
 	protected void onTouchTooMuch(Data petData) {
@@ -414,6 +417,10 @@ public class ActionBase {
 		}
 	}
 	
+	protected void onFoodTooMuch(Data petData) {
+		
+	}
+	
 	public void onFood(PetBase pet, int foodIdx) {
 		// do nothing if level max	 
 		if(pet.petData.isLevelMax())  return;	
@@ -432,6 +439,7 @@ public class ActionBase {
 			pet.petData.satisfy -= Math.abs(food.satisfy);
 			if(pet.petData.satisfy < 0) pet.petData.satisfy = 0;
 			
+			onFoodTooMuch(pet.petData);
 			pet.setStatus(PetImageDepot.TEMP_ANGRY);
 			pet.showString(dialogStrings[pet.petData.level][DIALOG_NOTHUNGRY], 2000);
 			pet.resetStatus(2000);
@@ -479,6 +487,7 @@ public class ActionBase {
 	public void clearPetData(Data petData, int level) {		
 		if(petData.status != ConstantValue.STATUS_DEAD) {
 			for(int i = 0; i < petData.extra.length; i++) petData.extra[i] = 0;
+			for(int i = 0; i < petData.food.length ; i++) petData.food[i]  = 0;
 			petData.fat = 0;
 		}		
 		
