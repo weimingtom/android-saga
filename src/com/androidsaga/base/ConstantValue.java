@@ -150,9 +150,8 @@ public class ConstantValue {
 		if(resourceID < 0) return null;
 		
 		Bitmap origBitmap = BitmapFactory.decodeResource(
-							ctx.getResources(), resourceID);
+							ctx.getResources(), resourceID);		
 		
-		//Log.i("jojo", Integer.toString(scaleWidth)+","+ Integer.toString(origBitmap.getWidth()));		
 		int width  = origBitmap.getWidth();
 		int height = origBitmap.getHeight();	
 		int newHeight = height*scaleWidth/width;
@@ -170,7 +169,6 @@ public class ConstantValue {
 		Bitmap origBitmap = BitmapFactory.decodeResource(
 							ctx.getResources(), resourceID);
 		
-		//Log.i("jojo", Integer.toString(scaleWidth)+","+ Integer.toString(origBitmap.getWidth()));
 		int width  = origBitmap.getWidth();
 		int height = origBitmap.getHeight();		
 		

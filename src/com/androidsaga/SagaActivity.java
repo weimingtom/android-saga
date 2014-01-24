@@ -530,7 +530,7 @@ public class SagaActivity extends Activity {
     	
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(alertString);
-		builder.setTitle("JOJO");
+		builder.setTitle("SAGA");
 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub		
@@ -698,7 +698,7 @@ public class SagaActivity extends Activity {
 	    	alertString = String.format(alertString, food.cost);
 	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(alertString);
-			builder.setTitle("JOJO");
+			builder.setTitle("SAGA");
 			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub					
@@ -729,7 +729,7 @@ public class SagaActivity extends Activity {
     	}
     	else {
     		String alertString = getResources().getString(R.string.food_no_enough_money);
-    		Alert.showAlert("JOJO", alertString, this);
+    		Alert.showAlert("SAGA", alertString, this);
     	}
     }
     
@@ -870,6 +870,7 @@ public class SagaActivity extends Activity {
 		}
 		
 		updateGameView();
+		petGame.playGameVoice(result, pet.petData.quiet);
 		
 		gameResult.setTextColor(textColor[result]);
 		gameResult.setText(stringID[result]);
@@ -881,7 +882,7 @@ public class SagaActivity extends Activity {
     		return;
     	
     	if(pet.petData.money + pet.petData.frozenMoney <= 0) {
-    		Alert.showAlert("JOJO", getResources().getString(R.string.game_no_money), this);
+    		Alert.showAlert("SAGA", getResources().getString(R.string.game_no_money), this);
     		return;
     	}
     	
@@ -893,7 +894,7 @@ public class SagaActivity extends Activity {
     		return;
     	
     	if(pet.petData.money + pet.petData.frozenMoney <= 0) {
-    		Alert.showAlert("JOJO", getResources().getString(R.string.game_no_money), this);
+    		Alert.showAlert("SAGA", getResources().getString(R.string.game_no_money), this);
     		return;
     	}
     	
@@ -905,7 +906,7 @@ public class SagaActivity extends Activity {
     		return;
     		
     	if(pet.petData.money + pet.petData.frozenMoney <= 0) {
-    		Alert.showAlert("JOJO", getResources().getString(R.string.game_no_money), this);
+    		Alert.showAlert("SAGA", getResources().getString(R.string.game_no_money), this);
     		return;
     	}
     	    	
@@ -923,7 +924,7 @@ public class SagaActivity extends Activity {
 
         // create a dialog
         new AlertDialog.Builder(SagaActivity.this)
-        	.setTitle("JOJO")        	
+        	.setTitle("SAGA")        	
             .setView(textEntryView)
             .setNegativeButton("Cancel",
             	new DialogInterface.OnClickListener() {
@@ -978,7 +979,7 @@ public class SagaActivity extends Activity {
 
         // create a dialog
         new AlertDialog.Builder(SagaActivity.this)
-        	.setTitle("JOJO")        	
+        	.setTitle("SAGA")        	
             .setView(textEntryView)
             .setNegativeButton("Cancel",
             	new DialogInterface.OnClickListener() {
@@ -1050,7 +1051,7 @@ public class SagaActivity extends Activity {
 		
 		alertString = String.format(alertString, petLibrary.charactorNames[pet.petData.curCharactor]);
 		builder.setMessage(alertString);
-		builder.setTitle("JOJO");		    			
+		builder.setTitle("SAGA");		    			
 		
 		if(pet.petData.money > 0)
 		{
@@ -1093,19 +1094,16 @@ public class SagaActivity extends Activity {
 			    		pet.setMouseDownY();
 			    		action.onTouchDown(pet, x, y);
 			    		vibrator.vibrate(25);
-		    		}
-		    		Log.i("jojo", "Mouse down" + Integer.toString(x) + ","+ Integer.toString(y));
+		    		}		    		
 		    		break;
 		    		
 		    	case MotionEvent.ACTION_MOVE:
 		    		pet.movePet(x, y);
-		    		pet.setOrigPos(x, y);
-		    		Log.i("jojo", "Mouse move" + Integer.toString(x) + ","+ Integer.toString(y));
+		    		pet.setOrigPos(x, y);		    		
 		    		break;
 		    	case MotionEvent.ACTION_UP:
 		    		pet.setMouseUpY();
-		    		action.onTouchUp(pet);
-		    		Log.i("jojo", "Mouse up" + Integer.toString(x) + ","+ Integer.toString(y));
+		    		action.onTouchUp(pet);		    		
 		    		break;
 		    	}
 	    	}
@@ -1116,7 +1114,7 @@ public class SagaActivity extends Activity {
     } 
 
    
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.pet_main, menu);
@@ -1127,7 +1125,7 @@ public class SagaActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item){
     	if(item.getItemId() == R.id.menu_prefs) {
     		Intent intent = new Intent()
-			.setClass(this, com.jojopet.JoJoPreferenceActivity.class);
+			.setClass(this, com.androidsaga.SagaPreferenceActivity.class);
     		this.startActivityForResult(intent, 0);
     	}
     	else if(item.getItemId() == R.id.menu_about) {
@@ -1138,7 +1136,7 @@ public class SagaActivity extends Activity {
             aboutText.setText(String.format(aboutString, ConstantValue.getVersion(this)));
 
             // create a dialog
-            new AlertDialog.Builder(PetMainActivity.this)
+            new AlertDialog.Builder(SagaActivity.this)
             	.setTitle("About")        	
                 .setView(aboutView)
                 
@@ -1152,8 +1150,7 @@ public class SagaActivity extends Activity {
                 ).show();  
     	}
     	return true;
-    }
-    */
+    }    
     
     @Override
     public void onResume() {

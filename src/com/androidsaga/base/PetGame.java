@@ -1,8 +1,12 @@
 package com.androidsaga.base;
 
 import java.util.Random;
+
+import android.R.integer;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.AudioManager;
+import android.media.SoundPool;
 
 import com.androidsaga.R;
 
@@ -17,6 +21,10 @@ public class PetGame {
 	protected int[] opponentImgCount = new int[3];
 		
 	protected Random rnd = new Random(System.currentTimeMillis());
+	
+	protected SoundPool soundPool  = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
+	protected int[][] soundPoolMap = new int[3][4];	
+	protected int[]   soundCount   = new int[3];
 	
 	public static int STONE	  = 0;
 	public static int SCISSORS = 1;	
@@ -33,7 +41,19 @@ public class PetGame {
 	protected int opponentImgIdx = 0;
 	
 	public PetGame(Context _ctx, int width, int height) {
-		ctx = _ctx;		
+		ctx = _ctx;	
+		
+		soundPoolMap[WIN][0] = soundPool.load(ctx, R.raw.game_win0, 1); 
+		soundPoolMap[WIN][1] = soundPool.load(ctx, R.raw.game_win1, 1);
+		soundCount[WIN] = 2;
+		
+		soundPoolMap[LOSE][0] = soundPool.load(ctx, R.raw.game_lose0, 1);
+		soundPoolMap[LOSE][1] = soundPool.load(ctx, R.raw.game_lose1, 1);
+		soundPoolMap[LOSE][2] = soundPool.load(ctx, R.raw.game_lose2, 1);
+		soundCount[LOSE] = 3;
+		
+		soundPoolMap[DRAW][0] = soundPool.load(ctx, R.raw.game_start, 1);
+		soundCount[DRAW] = 1;
 		
 		opponentImg[DRAW][0] = ConstantValue.scaleButtonBitmap(ctx, R.drawable.game_start, width, height);
 		opponentImgCount[DRAW] = 1;
@@ -43,7 +63,8 @@ public class PetGame {
 		opponentImg[WIN][2]  = ConstantValue.scaleButtonBitmap(ctx, R.drawable.game_win03, width, height);
 		opponentImg[WIN][3]  = ConstantValue.scaleButtonBitmap(ctx, R.drawable.game_win04, width, height);
 		opponentImg[WIN][4]  = ConstantValue.scaleButtonBitmap(ctx, R.drawable.game_win05, width, height);
-		opponentImgCount[WIN] = 5;
+		opponentImg[WIN][5]  = ConstantValue.scaleButtonBitmap(ctx, R.drawable.game_win06, width, height);
+		opponentImgCount[WIN] = 6;
 		
 		opponentImg[LOSE][0]  = ConstantValue.scaleButtonBitmap(ctx, R.drawable.game_lose01, width, height);
 		opponentImg[LOSE][1]  = ConstantValue.scaleButtonBitmap(ctx, R.drawable.game_lose02, width, height);
@@ -62,6 +83,16 @@ public class PetGame {
 		myHandImg[SCISSORS] = ConstantValue.scaleButtonBitmap(ctx, R.drawable.game_my_scissors, width, height);
 		
 		result = DRAW;
+	}
+	
+	public void playGameVoice(int result, boolean quiet) {
+		if(!quiet) {
+			AudioManager mgr = (AudioManager)ctx.getSystemService(Context.AUDIO_SERVICE); 	       
+			float volume = mgr.getStreamVolume(AudioManager.STREAM_MUSIC);  
+			
+			int idx = rnd.nextInt(soundCount[result]);
+	        soundPool.play(soundPoolMap[result][idx], volume, volume, 1, 0, 1.f);	
+		}
 	}
 	
 	public void resetGame() {

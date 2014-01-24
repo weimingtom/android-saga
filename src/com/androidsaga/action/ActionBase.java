@@ -18,7 +18,10 @@ public class ActionBase {
 	protected Random rnd = new Random(System.currentTimeMillis());	
 	protected SoundPool soundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
 	protected Context ctx;
-	protected int[][] soundPoolMap = new int[ConstantValue.MAX_LEVEL][4];	
+	protected int[][] soundPoolMap = new int[ConstantValue.MAX_LEVEL][2];	
+	protected int[] soundPoolDying = new int[8];
+	protected int[] soundPoolAngry = new int[8];
+	protected int   soundPoolResurrection;
 	
 	protected float hpStep = 0.0005f;
 	protected float satisfyStep = 0.002f;
@@ -37,12 +40,12 @@ public class ActionBase {
 	public static final Integer DIALOG_AWAKEN			= 4;
 	public static final Integer DIALOG_LEVELUP			= 5;
 	public static final Integer DIALOG_NOTHUNGRY		= 6;
-	public static final Integer DIALOG_DROP			= 7;
-	public static final Integer DIALOG_DROPDEAD		= 8;
-	public static final Integer DIALOG_ANGRY		= 9;
-	public static final Integer DIALOG_DEAD			= 15;	
+	public static final Integer DIALOG_DROP				= 7;
+	public static final Integer DIALOG_DROPDEAD			= 8;
+	public static final Integer DIALOG_ANGRY			= 9;
+	public static final Integer DIALOG_DEAD				= 15;	
 	
-	protected static int TOUCH = 0;
+	protected static int TOUCH   = 0;
 	protected static int LEVELUP = 1;
 	
 	public boolean updateLibraryDead  = false;
@@ -66,12 +69,22 @@ public class ActionBase {
 		
 	}
 	
+	protected void playAngryVoice(boolean quiet) {
+		
+	}
+	
+	protected void playDyingVoice(boolean quiet) {
+		
+	}
+	
 	protected void killPet(Data data) {
 		data.HP = 0.f;
 		data.status = ConstantValue.STATUS_DEAD;	
 		data.setPreMaxLevel(data.curCharactor, data.getMaxLevel(data.curCharactor));
 		data.setMaxLevel(data.curCharactor, 0);	
 		data.saveData();
+		
+		playDyingVoice(data.quiet);
 		
 		updateLibraryDead = true;
 	}
@@ -120,7 +133,7 @@ public class ActionBase {
 			//	pet.petData.charactorInfo[i] = ConstantValue.DEFAULT_CHARACTOR_SETTING[i];
 			//}
 			pet.petData.setCharactorFeed(pet.petData.curCharactor);
-			Alert.showAlert("JOJO", ctx.getResources().getString(R.string.change_system_time), ctx);
+			Alert.showAlert("SAGA", ctx.getResources().getString(R.string.change_system_time), ctx);
 			return;
 		}
 		getPeriodStep(pet.petData, elapsedTime);
@@ -256,6 +269,8 @@ public class ActionBase {
 				pet.resetStatus(2000);
 				
 				onAwakenExtra(pet.petData);
+				
+				playAngryVoice(pet.petData.quiet);
 				return;
 			}
 			return;
@@ -268,8 +283,7 @@ public class ActionBase {
 		// if it's happy, just change the status
 		if(pet.petData.satisfy > ConstantValue.EXP_LEVEL[pet.petData.level]*3/10) {
 			
-			long currentTouch = System.currentTimeMillis();
-			Log.i("jojo", Long.toString(currentTouch));
+			long currentTouch = System.currentTimeMillis();			
 			// increase hits if 2 touch within 0.5s
 			if(currentTouch - lastTouch < 500) {
 				hits++;
@@ -288,6 +302,7 @@ public class ActionBase {
 					else {
 						pet.petData.satisfy -= 0.5f;
 					}
+					playAngryVoice(pet.petData.quiet);
 					pet.showString(dialogStrings[pet.petData.level][DIALOG_TOUCH_UNHAPPY], 2000);
 					pet.setStatus(PetImageDepot.TEMP_ANGRY);
 					pet.resetStatus(2000);
@@ -321,6 +336,7 @@ public class ActionBase {
 				//move left
 				pet.setTargetX(petX-40);
 			}
+			playAngryVoice(pet.petData.quiet);
 			pet.showString(dialogStrings[pet.petData.level][DIALOG_ANGRY], Integer.MAX_VALUE);			
 		}	
 		
@@ -389,6 +405,7 @@ public class ActionBase {
 					pet.setStatus(PetImageDepot.DEAD);				
 				}
 				else {
+					playDyingVoice(pet.petData.quiet);
 					pet.setStatus(PetImageDepot.SAD);
 					pet.showString(dialogStrings[pet.petData.level][DIALOG_DROP], 2000);
 					pet.resetStatus(2000);					
@@ -477,6 +494,9 @@ public class ActionBase {
 		petData.status = ConstantValue.STATUS_NORMAL;									
 							
 		petData.setMaxLevel(petData.curCharactor, petData.getPreMaxLevel(petData.curCharactor));
+		if(!petData.quiet) {
+			playVoice(soundPoolResurrection);
+		}
 		onResurrectionExtra(petData);		
 	}
 	

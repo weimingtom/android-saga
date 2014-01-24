@@ -63,16 +63,11 @@ public class PetBase {
         
         width  = _width;
         height = _height;
-        headerHeight = _headerHeight;          
+        headerHeight = _headerHeight;                  
         
-        Log.i("jojo", "creating bitmap"+"("+Integer.toString(width)+","+Integer.toString(height)+")");
-        bmp 	 = Bitmap.createBitmap(width, height, Config.ARGB_8888);  
-        
-        Log.i("jojo", "creating canvas");
-        canvas = new Canvas(bmp); 
-        
-        Log.i("jojo", "creating paint");
-        paint = new Paint();        
+        bmp    = Bitmap.createBitmap(width, height, Config.ARGB_8888);  
+        canvas = new Canvas(bmp);        
+        paint  = new Paint();        
         
         PetImageDepot.initPetImageDepot();
         statusTimer = new Timer();

@@ -86,5 +86,5 @@
 	<string name="dark_cost">您可以用金钱来减少漆黑意志，%1$d金可降低1漆黑意志，输入需要降低的漆黑意志的数量：</string>
 	
 	<string name="menu_about">关于</string>
-	<string name="about_text">版本: %1$s\n主页: https://code.google.com/p/jojo-pet-ahu/\</string>
+	<string name="about_text">版本: %1$s\n主页: https://code.google.com/p/android-saga/\</string>
 </resources>

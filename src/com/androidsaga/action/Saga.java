@@ -190,17 +190,56 @@ public class Saga extends ActionBase {
 	public Saga(Context _ctx) {
 		super(_ctx);
 		
-		for(int i = 0; i < ConstantValue.MAX_LEVEL; i++) {
-			soundPoolMap[i][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-	        soundPoolMap[i][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 2);      
-		}
 		
-		soundPoolLevelMax[END_NORMAL] = soundPool.load(ctx, R.raw.ending_tomb, 1);
-		soundPoolLevelMax[END_DOCTOR] = soundPool.load(ctx, R.raw.ending_doctor, 2);
-		soundPoolLevelMax[END_MEGAMI] = soundPool.load(ctx, R.raw.ending_megami, 3);
-		soundPoolLevelMax[END_CEO]	  = soundPool.load(ctx, R.raw.ending_ceo, 4);
-		soundPoolLevelMax[END_NUDE]	  = soundPool.load(ctx, R.raw.ending_nocloth, 5);
-		soundPoolLevelMax[END_FATHER] = soundPool.load(ctx, R.raw.ending_father, 6);
+		soundPoolMap[0][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
+	    soundPoolMap[0][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1);   
+	    
+	    soundPoolMap[1][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
+	    soundPoolMap[1][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1);  
+	    
+	    soundPoolMap[2][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
+	    soundPoolMap[2][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1); 
+	    
+	    soundPoolMap[3][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
+	    soundPoolMap[3][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1); 
+	    
+	    soundPoolMap[4][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
+	    soundPoolMap[4][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1); 
+	    
+	    soundPoolMap[5][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
+	    soundPoolMap[5][LEVELUP] = soundPool.load(ctx, R.raw.levelup05, 1); 
+	    
+	    soundPoolMap[6][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
+	    soundPoolMap[6][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1); 
+	    
+	    soundPoolMap[7][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
+	    soundPoolMap[7][LEVELUP] = soundPool.load(ctx, R.raw.levelup07, 1); 
+	    
+	    soundPoolMap[8][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
+	    soundPoolMap[8][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1);  
+	    
+	    soundPoolMap[9][TOUCH]   = soundPool.load(ctx, R.raw.touched09, 1);  
+	    soundPoolMap[9][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1);   	    
+		
+		soundPoolAngry[0] = 0;
+		soundPoolAngry[1] = soundPool.load(ctx, R.raw.angry0, 1); soundPoolAngry[0]++;
+		soundPoolAngry[2] = soundPool.load(ctx, R.raw.angry1, 1); soundPoolAngry[0]++;
+		soundPoolAngry[3] = soundPool.load(ctx, R.raw.angry2, 1); soundPoolAngry[0]++;
+		soundPoolAngry[4] = soundPool.load(ctx, R.raw.angry3, 1); soundPoolAngry[0]++;
+		
+		soundPoolDying[0] = 0;
+		soundPoolDying[1] = soundPool.load(ctx, R.raw.dying0, 1); soundPoolDying[0]++;
+		soundPoolDying[2] = soundPool.load(ctx, R.raw.dying1, 1); soundPoolDying[0]++;
+		soundPoolDying[3] = soundPool.load(ctx, R.raw.dying2, 1); soundPoolDying[0]++;
+		
+		soundPoolResurrection = soundPool.load(ctx, R.raw.resurrection, 1);
+		
+		soundPoolLevelMax[END_NORMAL] = soundPool.load(ctx, R.raw.ending_tomb,    1);
+		soundPoolLevelMax[END_DOCTOR] = soundPool.load(ctx, R.raw.ending_doctor,  1);
+		soundPoolLevelMax[END_MEGAMI] = soundPool.load(ctx, R.raw.ending_megami,  1);
+		soundPoolLevelMax[END_CEO]	  = soundPool.load(ctx, R.raw.ending_ceo,     1);
+		soundPoolLevelMax[END_NUDE]	  = soundPool.load(ctx, R.raw.ending_nocloth, 1);
+		soundPoolLevelMax[END_FATHER] = soundPool.load(ctx, R.raw.ending_father,  1);
         
         dialogStrings[0]   = ctx.getResources().getStringArray(R.array.saga_dialog_lv0);
         dialogStrings[1]   = ctx.getResources().getStringArray(R.array.saga_dialog_lv1);
@@ -291,6 +330,22 @@ public class Saga extends ActionBase {
 		else {
 			periodHP += 0.0005f*elapsedTime;
 			periodSatisfy += 0.002f*elapsedTime;
+		}
+	}
+	
+	@Override
+	protected void playAngryVoice(boolean quiet) {
+		if(!quiet) {
+			int idx = rnd.nextInt(soundPoolAngry[0]) + 1;
+			playVoice(idx);
+		}
+	}
+	
+	@Override 
+	protected void playDyingVoice(boolean quiet) {
+		if(!quiet) {
+			int idx = rnd.nextInt(soundPoolDying[0]) + 1;
+			playVoice(idx);
 		}
 	}
 	
