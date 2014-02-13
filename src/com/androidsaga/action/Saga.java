@@ -191,46 +191,39 @@ public class Saga extends ActionBase {
 		super(_ctx);
 		
 		
-		soundPoolMap[0][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-	    soundPoolMap[0][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1);   
-	    
-	    soundPoolMap[1][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-	    soundPoolMap[1][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1);  
-	    
-	    soundPoolMap[2][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-	    soundPoolMap[2][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1); 
-	    
-	    soundPoolMap[3][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-	    soundPoolMap[3][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1); 
-	    
-	    soundPoolMap[4][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-	    soundPoolMap[4][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1); 
-	    
-	    soundPoolMap[5][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-	    soundPoolMap[5][LEVELUP] = soundPool.load(ctx, R.raw.levelup05, 1); 
-	    
-	    soundPoolMap[6][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-	    soundPoolMap[6][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1); 
-	    
-	    soundPoolMap[7][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-	    soundPoolMap[7][LEVELUP] = soundPool.load(ctx, R.raw.levelup07, 1); 
-	    
-	    soundPoolMap[8][TOUCH]   = soundPool.load(ctx, R.raw.saga_touched, 1);  
-	    soundPoolMap[8][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1);  
-	    
-	    soundPoolMap[9][TOUCH]   = soundPool.load(ctx, R.raw.touched09, 1);  
-	    soundPoolMap[9][LEVELUP] = soundPool.load(ctx, R.raw.saga_levelup, 1);   	    
+		soundPoolLvUp[0] = soundPool.load(ctx, R.raw.levelup01, 1);   
+	    soundPoolLvUp[1] = soundPool.load(ctx, R.raw.levelup01, 1);
+	    soundPoolLvUp[2] = soundPool.load(ctx, R.raw.levelup01, 1);
+	    soundPoolLvUp[3] = soundPool.load(ctx, R.raw.levelup03, 1); 
+	    soundPoolLvUp[4] = soundPool.load(ctx, R.raw.levelup04, 1); 
+	    soundPoolLvUp[5] = soundPool.load(ctx, R.raw.levelup05, 1); 
+	    soundPoolLvUp[6] = soundPool.load(ctx, R.raw.levelup06, 1); 
+	    soundPoolLvUp[7] = soundPool.load(ctx, R.raw.levelup07, 1); 
+	    soundPoolLvUp[8] = soundPool.load(ctx, R.raw.levelup08, 1);  
+	    soundPoolLvUp[9] = soundPool.load(ctx, R.raw.levelup09, 1);   	    
 		
-		soundPoolAngry[0] = 0;
-		soundPoolAngry[1] = soundPool.load(ctx, R.raw.angry0, 1); soundPoolAngry[0]++;
-		soundPoolAngry[2] = soundPool.load(ctx, R.raw.angry1, 1); soundPoolAngry[0]++;
-		soundPoolAngry[3] = soundPool.load(ctx, R.raw.angry2, 1); soundPoolAngry[0]++;
-		soundPoolAngry[4] = soundPool.load(ctx, R.raw.angry3, 1); soundPoolAngry[0]++;
+	    soundPoolTouch[0][0] = 0;
+		soundPoolTouch[0][1] = soundPool.load(ctx, R.raw.touch0_child, 1); soundPoolTouch[0][0]++;
+		soundPoolTouch[0][2] = soundPool.load(ctx, R.raw.touch1_child, 1); soundPoolTouch[0][0]++;
+		soundPoolTouch[1][0] = 0;
+		soundPoolTouch[1][1] = soundPool.load(ctx, R.raw.touch0, 1); soundPoolTouch[1][0]++;
+		soundPoolTouch[1][2] = soundPool.load(ctx, R.raw.touch1, 1); soundPoolTouch[1][0]++;
 		
-		soundPoolDying[0] = 0;
-		soundPoolDying[1] = soundPool.load(ctx, R.raw.dying0, 1); soundPoolDying[0]++;
-		soundPoolDying[2] = soundPool.load(ctx, R.raw.dying1, 1); soundPoolDying[0]++;
-		soundPoolDying[3] = soundPool.load(ctx, R.raw.dying2, 1); soundPoolDying[0]++;
+		soundPoolAngry[0][0] = 0;
+		soundPoolAngry[0][1] = soundPool.load(ctx, R.raw.angry0_child, 1); soundPoolAngry[0][0]++;
+		soundPoolAngry[0][2] = soundPool.load(ctx, R.raw.angry1_child, 1); soundPoolAngry[0][0]++;
+		soundPoolAngry[1][0] = 0;
+		soundPoolAngry[1][1] = soundPool.load(ctx, R.raw.angry0, 1); soundPoolAngry[1][0]++;
+		soundPoolAngry[1][2] = soundPool.load(ctx, R.raw.angry1, 1); soundPoolAngry[1][0]++;
+		
+		soundPoolDying[0][0] = 0;
+		soundPoolDying[0][1] = soundPool.load(ctx, R.raw.dying0_child, 1); soundPoolDying[0][0]++;
+		soundPoolDying[0][2] = soundPool.load(ctx, R.raw.dying1_child, 1); soundPoolDying[0][0]++;
+		soundPoolDying[0][3] = soundPool.load(ctx, R.raw.dying2_child, 1); soundPoolDying[0][0]++;
+		soundPoolDying[1][0] = 0;
+		soundPoolDying[1][1] = soundPool.load(ctx, R.raw.dying0, 1); soundPoolDying[1][0]++;
+		soundPoolDying[1][2] = soundPool.load(ctx, R.raw.dying1, 1); soundPoolDying[1][0]++;
+		soundPoolDying[1][3] = soundPool.load(ctx, R.raw.dying2, 1); soundPoolDying[1][0]++;
 		
 		soundPoolResurrection = soundPool.load(ctx, R.raw.resurrection, 1);
 		
@@ -334,17 +327,28 @@ public class Saga extends ActionBase {
 	}
 	
 	@Override
-	protected void playAngryVoice(boolean quiet) {
-		if(!quiet) {
-			int idx = rnd.nextInt(soundPoolAngry[0]) + 1;
+	protected void playAngryVoice(Data data) {
+		if(!data.quiet) {
+			int soundType = (data.level > 3 ? 1 : 0);
+			int idx = soundPoolAngry[soundType][rnd.nextInt(soundPoolAngry[soundType][0]) + 1];
 			playVoice(idx);
 		}
 	}
 	
 	@Override 
-	protected void playDyingVoice(boolean quiet) {
-		if(!quiet) {
-			int idx = rnd.nextInt(soundPoolDying[0]) + 1;
+	protected void playDyingVoice(Data data) {
+		if(!data.quiet) {
+			int soundType = (data.level > 3 ? 1 : 0);
+			int idx = soundPoolDying[soundType][rnd.nextInt(soundPoolDying[soundType][0]) + 1];
+			playVoice(idx);
+		}
+	}
+	
+	@Override 
+	protected void playTouchVoice(Data data) {
+		if(!data.quiet) {
+			int soundType = (data.level > 3 ? 1 : 0);
+			int idx = soundPoolTouch[soundType][rnd.nextInt(soundPoolTouch[soundType][0]) + 1];
 			playVoice(idx);
 		}
 	}

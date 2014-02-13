@@ -870,7 +870,6 @@ public class SagaActivity extends Activity {
 		}
 		
 		updateGameView();
-		petGame.playGameVoice(result, pet.petData.quiet);
 		
 		gameResult.setTextColor(textColor[result]);
 		gameResult.setText(stringID[result]);

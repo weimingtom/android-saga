@@ -22,10 +22,6 @@ public class PetGame {
 		
 	protected Random rnd = new Random(System.currentTimeMillis());
 	
-	protected SoundPool soundPool  = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
-	protected int[][] soundPoolMap = new int[3][4];	
-	protected int[]   soundCount   = new int[3];
-	
 	public static int STONE	  = 0;
 	public static int SCISSORS = 1;	
 	public static int CLOTH	  = 2;
@@ -42,18 +38,6 @@ public class PetGame {
 	
 	public PetGame(Context _ctx, int width, int height) {
 		ctx = _ctx;	
-		
-		soundPoolMap[WIN][0] = soundPool.load(ctx, R.raw.game_win0, 1); 
-		soundPoolMap[WIN][1] = soundPool.load(ctx, R.raw.game_win1, 1);
-		soundCount[WIN] = 2;
-		
-		soundPoolMap[LOSE][0] = soundPool.load(ctx, R.raw.game_lose0, 1);
-		soundPoolMap[LOSE][1] = soundPool.load(ctx, R.raw.game_lose1, 1);
-		soundPoolMap[LOSE][2] = soundPool.load(ctx, R.raw.game_lose2, 1);
-		soundCount[LOSE] = 3;
-		
-		soundPoolMap[DRAW][0] = soundPool.load(ctx, R.raw.game_start, 1);
-		soundCount[DRAW] = 1;
 		
 		opponentImg[DRAW][0] = ConstantValue.scaleButtonBitmap(ctx, R.drawable.game_start, width, height);
 		opponentImgCount[DRAW] = 1;
@@ -83,16 +67,6 @@ public class PetGame {
 		myHandImg[SCISSORS] = ConstantValue.scaleButtonBitmap(ctx, R.drawable.game_my_scissors, width, height);
 		
 		result = DRAW;
-	}
-	
-	public void playGameVoice(int result, boolean quiet) {
-		if(!quiet) {
-			AudioManager mgr = (AudioManager)ctx.getSystemService(Context.AUDIO_SERVICE); 	       
-			float volume = mgr.getStreamVolume(AudioManager.STREAM_MUSIC);  
-			
-			int idx = rnd.nextInt(soundCount[result]);
-	        soundPool.play(soundPoolMap[result][idx], volume, volume, 1, 0, 1.f);	
-		}
 	}
 	
 	public void resetGame() {

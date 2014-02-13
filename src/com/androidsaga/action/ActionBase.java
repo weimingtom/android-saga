@@ -18,9 +18,10 @@ public class ActionBase {
 	protected Random rnd = new Random(System.currentTimeMillis());	
 	protected SoundPool soundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
 	protected Context ctx;
-	protected int[][] soundPoolMap = new int[ConstantValue.MAX_LEVEL][2];	
-	protected int[] soundPoolDying = new int[8];
-	protected int[] soundPoolAngry = new int[8];
+	protected int[][] soundPoolTouch = new int[2][8];	
+	protected int[][] soundPoolDying = new int[2][8];
+	protected int[][] soundPoolAngry = new int[2][8];
+	protected int[]   soundPoolLvUp  = new int[ConstantValue.MAX_LEVEL];
 	protected int   soundPoolResurrection;
 	
 	protected float hpStep = 0.0005f;
@@ -69,11 +70,15 @@ public class ActionBase {
 		
 	}
 	
-	protected void playAngryVoice(boolean quiet) {
+	protected void playAngryVoice(Data data) {
 		
 	}
 	
-	protected void playDyingVoice(boolean quiet) {
+	protected void playDyingVoice(Data data) {
+		
+	}
+	
+	protected void playTouchVoice(Data data) {
 		
 	}
 	
@@ -84,7 +89,7 @@ public class ActionBase {
 		data.setMaxLevel(data.curCharactor, 0);	
 		data.saveData();
 		
-		playDyingVoice(data.quiet);
+		playDyingVoice(data);
 		
 		updateLibraryDead = true;
 	}
@@ -180,7 +185,7 @@ public class ActionBase {
 		}
 		else {
 			if(!pet.petData.quiet) {
-				playVoice(soundPoolMap[pet.petData.level][LEVELUP]);
+				playVoice(soundPoolLvUp[pet.petData.level]);
 			}
 			else {
 				pet.showString(dialogStrings[pet.petData.level][DIALOG_LEVELUP], 3000);
@@ -270,7 +275,7 @@ public class ActionBase {
 				
 				onAwakenExtra(pet.petData);
 				
-				playAngryVoice(pet.petData.quiet);
+				playAngryVoice(pet.petData);
 				return;
 			}
 			return;
@@ -302,7 +307,7 @@ public class ActionBase {
 					else {
 						pet.petData.satisfy -= 0.5f;
 					}
-					playAngryVoice(pet.petData.quiet);
+					playAngryVoice(pet.petData);
 					pet.showString(dialogStrings[pet.petData.level][DIALOG_TOUCH_UNHAPPY], 2000);
 					pet.setStatus(PetImageDepot.TEMP_ANGRY);
 					pet.resetStatus(2000);
@@ -315,7 +320,7 @@ public class ActionBase {
 				pet.petData.satisfy += 0.1f * (pet.petData.level + 1);
 				pet.setStatus(PetImageDepot.HAPPY);
 				if(!pet.petData.quiet) {
-					playVoice(soundPoolMap[pet.petData.level][TOUCH]);
+					playTouchVoice(pet.petData);
 				}
 				else {
 					pet.showString(dialogStrings[pet.petData.level][DIALOG_TOUCH_HAPPY], Integer.MAX_VALUE);
@@ -336,7 +341,7 @@ public class ActionBase {
 				//move left
 				pet.setTargetX(petX-40);
 			}
-			playAngryVoice(pet.petData.quiet);
+			playAngryVoice(pet.petData);
 			pet.showString(dialogStrings[pet.petData.level][DIALOG_ANGRY], Integer.MAX_VALUE);			
 		}	
 		
@@ -405,7 +410,7 @@ public class ActionBase {
 					pet.setStatus(PetImageDepot.DEAD);				
 				}
 				else {
-					playDyingVoice(pet.petData.quiet);
+					playDyingVoice(pet.petData);
 					pet.setStatus(PetImageDepot.SAD);
 					pet.showString(dialogStrings[pet.petData.level][DIALOG_DROP], 2000);
 					pet.resetStatus(2000);					
