@@ -165,7 +165,7 @@ public class PetLibrary {
 			availability = true;			
 		}
 		else if(data.getMaxLevel(data.curCharactor) == ConstantValue.MAX_LEVEL &&
-				idx > ConstantValue.MAX_LEVEL && idx < ConstantValue.MAX_LEVEL + subspeciesDescription.length) {
+				idx >= ConstantValue.MAX_LEVEL && idx < ConstantValue.MAX_LEVEL + subspeciesDescription.length) {
 			int subspecies = idx - ConstantValue.MAX_LEVEL;
 			availability = data.getSubspeciesFeed(data.curCharactor, subspecies);
 		}

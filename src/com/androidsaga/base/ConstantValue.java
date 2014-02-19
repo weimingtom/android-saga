@@ -120,7 +120,7 @@ public class ConstantValue {
 	public static final Integer[] INIT_EXP_LEVEL = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 0 };
 	
 	//public static final Integer[] FOOD_COST    = {0, 0, 5, 15, 50, 500};
-	public static final Integer[] FOOD_COST    = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	public static final Integer[] FOOD_COST    = {0, 0, 0, 5, 10, 15, 20, 30, 40, 60, 100, 999};
 	
 	public static final Integer EVENT_NONE = 0;
 	public static final Integer EVENT_LVUP = 1;

@@ -38,7 +38,7 @@ public class StatusBase {
 		paint.setTextSkewX(-0.25f);
 		paint.setTypeface(Typeface.DEFAULT_BOLD);
 		paint.setStyle(Style.FILL);
-		paint.setColor(Color.BLACK);
+		paint.setColor(Color.DKGRAY);
 		canvas.drawText("Lv: " + Integer.toString(petData.level), 
 			width - ConstantValue.scalePix(ctx, 64), startPosY, paint);
 		
