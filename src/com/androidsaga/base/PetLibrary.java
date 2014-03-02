@@ -124,8 +124,8 @@ public class PetLibrary {
 			return "";
 		}	
 		
-		if( data.getCharactorAvailable(charactor) == ConstantValue.NOT_AVAILABLE ||
-			(!data.isLevelMax() && idx > data.getMaxLevel(charactor))) {
+		if(!data.isLevelMax() && idx > data.getMaxLevel(charactor) &&
+		    idx < ConstantValue.MAX_LEVEL ) {
 			return charactor_unavailable;
 		}		
 		

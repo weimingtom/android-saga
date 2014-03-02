@@ -491,7 +491,7 @@ public class SagaActivity extends Activity {
         	}
     	}
     	
-    	petLibrary.curLevel = pet.petData.level;
+    	petLibrary.curLevel = Math.min(checkID, ConstantValue.MAX_LEVEL);
     	
     	String libraryLevel = getResources().getString(R.string.library_lv);    		
     	if(petLibrary.lastIdx >= 0) {
@@ -502,7 +502,7 @@ public class SagaActivity extends Activity {
     	charactorSelectImage[checkID].setImageBitmap(petLibrary.getThumbnailImage(pet.petData, checkID, true));       		
     	 		
     	libraryCharactorName.setText(petLibrary.charactorNames[pet.petData.curCharactor]);
-    	libraryCharactorName.append(String.format(libraryLevel, pet.petData.level));
+    	libraryCharactorName.append(String.format(libraryLevel, petLibrary.curLevel));
     	librarySelectCharactor.setClickable(true);
     	
     	charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(pet.petData.curCharactor, pet.petData, checkID));    		
