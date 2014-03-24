@@ -1,0 +1,283 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/LinearLayout01" 
+	android:layout_height="fill_parent" 
+	android:layout_width="fill_parent"
+	android:orientation="vertical"
+	tools:context=".PetMainActivity">
+
+	<LinearLayout android:id="@+id/HeaderLayout" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent"
+		android:orientation="horizontal">
+	
+		<ImageView android:id="@+id/Status_View"
+			android:layout_width="wrap_content"		
+			android:layout_height="wrap_content"
+		/>
+				
+		<ImageView android:id="@+id/SleepButton"
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"	
+			android:scaleType="centerInside"	
+			android:onClick="clickSleep"
+		/>
+	</LinearLayout>
+	
+	<LinearLayout
+	    android:id="@+id/MainLayout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+		
+	    <ImageView
+	        android:id="@+id/MainView"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+		    
+	</LinearLayout>
+
+	<LinearLayout
+	    android:id="@+id/BathLayout"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:background="#7fffffff"
+	    android:gravity="center"
+	    android:orientation="vertical" >
+
+	    <ImageView
+	        android:id="@+id/BathTub"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+
+	    <ImageView
+	        android:id="@+id/Gauge_View"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+	</LinearLayout>
+	
+	<ScrollView android:id="@+id/LibraryView"	    
+    	android:visibility="gone" 	
+    	android:layout_width="fill_parent" 	        
+	    android:layout_height="fill_parent"
+	    android:background="#7fffffff"
+    	android:scrollbars="vertical">  
+	 	 
+	    <LinearLayout android:id="@+id/libraryLayoutAll"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+		    <LinearLayout android:id="@+id/LibraryLayout" 	        
+		        android:layout_width="wrap_content" 	        
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical">         
+		  	</LinearLayout>	   
+		  	
+		    <LinearLayout android:id="@+id/LibraryDetailLayout"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal">
+		        <LinearLayout android:id="@+id/LibraryDetailImageLayout"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:orientation="vertical">	        "
+			        <ImageView android:id="@+id/LibraryDetailImage"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:scaleType="centerInside" />
+			        
+			        <TextView android:id="@+id/LibraryCharactorName"	
+			            android:gravity="center"	  
+			            android:background="@drawable/library_level_bk"      
+			            android:textColor="#ff000000"    
+			            android:layout_width="fill_parent"
+			          	android:layout_height="wrap_content" />    	            
+
+		        </LinearLayout>
+		        
+		        <LinearLayout android:id="@+id/LibraryDescriptionLayout"
+		            android:layout_width="fill_parent"
+		            android:layout_height="fill_parent"
+		            android:orientation="vertical"
+		            android:gravity="center">
+			        
+		            <TextView android:id="@+id/LibraryDescription"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:textColor="#ff000000"
+		                android:paddingLeft="8dp"
+		                android:paddingRight="8dp"
+		                android:gravity="center_vertical"/>
+		            <Button android:id="@+id/selectBtn"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:onClick="onClickSelectCharactor" />
+		        </LinearLayout>
+		    </LinearLayout>	 
+	    </LinearLayout>
+	</ScrollView>
+	
+	<ScrollView android:id="@+id/FoodView"	    
+    	android:visibility="gone" 	
+    	android:layout_width="fill_parent" 	        
+	    android:layout_height="fill_parent"	    
+    	android:scrollbars="vertical">    	
+	    
+	    <LinearLayout android:id="@+id/FoodLinearView"
+	        android:orientation="vertical"
+	        android:layout_width="fill_parent"	 
+	        android:background="#7fffffff"       
+	        android:layout_height="wrap_content">
+	    </LinearLayout>   	    
+	</ScrollView>
+	
+	<ScrollView android:id="@+id/GameScroll"
+	    android:visibility="gone" 	
+    	android:layout_width="fill_parent" 	        
+	    android:layout_height="fill_parent"
+    	android:scrollbars="vertical">
+		<LinearLayout android:id="@+id/GameLayout"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:background="#7fffffff">
+		    <LinearLayout android:id="@+id/RohenLayout"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal">
+		        <ImageView android:id="@+id/OpponentImage"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:padding="16dp" 
+		            android:scaleType="centerInside" />
+		        
+		        <ImageView android:id="@+id/OpponentResult"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:paddingTop="16dp"
+		            android:paddingBottom="16dp"
+		            android:scaleType="centerInside" />
+		    </LinearLayout>	    
+			
+			
+			<LinearLayout android:id="@+id/YourLayout"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal">	          
+		        <ImageView android:id="@+id/MyImage"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:padding="16dp" 
+		            android:scaleType="centerInside" />
+		        "
+		        <ImageView android:id="@+id/MyResult"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" 
+		            android:paddingTop="16dp"
+		            android:paddingBottom="16dp"
+		            android:scaleType="centerInside" />	
+		            
+		        <LinearLayout android:id="@+id/chooseHandLaout"
+		            android:layout_width="fill_parent"
+		            android:layout_height="fill_parent"
+		            android:orientation="vertical">
+		            <ImageView android:id="@+id/ScissorBtn"
+		                android:layout_width="wrap_content"	
+		                android:layout_height="wrap_content"	                
+		                android:onClick="onClickScissors"
+		                android:src="@drawable/game_my_scissors"
+		                android:scaleType="centerInside"/>  
+		                
+		            <ImageView android:id="@+id/StoneBtn"
+		                android:layout_width="fill_parent"	
+		                android:layout_height="wrap_content"	               
+		                android:onClick="onClickStone"
+		                android:src="@drawable/game_my_stone"
+		                android:scaleType="centerInside"/>
+		             
+		            <ImageView android:id="@+id/ClothBtn"
+		                android:layout_width="fill_parent"	
+		                android:layout_height="wrap_content"	                
+		                android:onClick="onClickCloth"
+		                android:src="@drawable/game_my_cloth"
+		                android:scaleType="centerInside"/>  
+		                         
+		        </LinearLayout>             
+		    </LinearLayout>	 
+		    
+			<TextView android:id="@+id/GameDescription"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content" 
+			    android:maxLines="2"
+			    android:textColor="#ff000000"
+			    android:gravity="center" />"
+			    
+			<TextView android:id="@+id/GameResult"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content" 
+			    android:maxLines="1"
+			    android:textColor="#ff000000"
+			    android:gravity="center" />"
+			
+			<LinearLayout android:id="@+id/gameSetLayout"
+			    android:orientation="horizontal"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content">
+			    "
+			    <Button android:id="@+id/HP2MoneyBtn"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="@string/hp2money_btn"
+				    android:onClick="clickHP2Money"/>		   
+			    
+			    <Button android:id="@+id/PrincipalBtn"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="@string/principal_btn" 				    
+				    android:onClick="clickPrincipal"/>
+			    
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+		
+	<LinearLayout android:id="@+id/RootLayout" 
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content"
+		android:orientation="horizontal">
+		
+		<ImageView android:id="@+id/HomeButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/home2"			
+			android:onClick="clickHome"
+		/>
+
+		<ImageView
+		    android:id="@+id/BathButton"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:onClick="clickBath"
+		    android:src="@drawable/bath2" />
+			
+		<ImageView android:id="@+id/FoodButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/food2"			
+			android:onClick="clickFood"
+		/>
+		
+		<ImageView android:id="@+id/GameButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/game2"			
+			android:onClick="clickGame"
+		/>	
+				
+		<ImageView android:id="@+id/LibraryButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/library2"
+			android:onClick="clickLibrary"
+		/>				
+	</LinearLayout>		
+</LinearLayout>

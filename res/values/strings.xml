@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>      
+	<string name="app_name">Saga</string>
+	
+	<string name="my_pref">设置</string>
+
+	<string name="menu_printscreen">截图</string>
+	<string name="menu_clearall">清除全部</string>	
+	<string name="menu_preference">设置</string>	
+	<string name="pref_title">常用设置</string>
+	<string name="pref_summary">一些系统设置</string>
+	<string name="quiet">quiet</string>
+	<string name="quiet_title">静音</string>
+	<string name="quiet_summary_on">关闭音效</string>
+	<string name="quiet_summary_off">开启音效</string>
+    
+    <string name="charactor_name">撒加</string><string name="satisfy_name">好感值</string>
+	
+    <string name="version_unknown">0.0.0</string>
+    
+	<string name="charactor_selector_prompt">你选择的角色是%1$s，确认后之前的角色数据将会清空！</string>
+	<string name="charactor_selector_none">您当前没有选择任何角色</string>
+	<string name="food_cost">%1$s，%2$s%%HP\n需要%3$d金币，</string>
+	<string name="money_you_have">您有%1$d金币</string>
+	<string name="food_alert">您当前选定的食物需要%1$d金币，确定继续吗？</string>	
+	
+	<string name="food1">嘉米尔祖传配方，因为快过期了所以买1送10</string>
+	<string name="food2">巴西风味牛肉面，有体力倍增的功效</string>	
+	<string name="food3">蟹肉棒，因为后面两个字经常被屏蔽无法打广告以致滞销的急冻食品</string>
+	<string name="food4">经常被投诉货不对板的丸子，100%不含狮子肉</string>
+	<string name="food5">正宗印度咖喱，味道绕梁三日</string>
+	<string name="food6">庐山派哄小孩的秘密道具，附带爆衫Buff</string>
+	<string name="food7">五欧毛一斤的毒苹果做的，小孩吃了会不识数，只能数到14</string>
+	<string name="food8">秘制黄金烤翅，据说只有无上装猛男才能烤制出正宗希腊口味</string>
+	<string name="food9">经常被错写成“羊羯子”，因为羊脊骨形似蝎子而得名，要用特制刀具劈开</string>
+	<string name="food10">西伯利亚风味，绝对零度出品。</string>
+	<string name="food11">用三种玫瑰花瓣酿造，喝了会产生幻觉以为自己是世界上最美丽的人</string>
+	<string name="food12">迷の生物，肉质鲜嫩，造型奇特，长25厘米</string>
+	
+	<string name="food_no_enough_money">你没有足够的钱买这个食物！</string>
+	<string name="do_resurrection">您要用所有的金币复活你的%1$s吗？确定后金币将清空</string>
+	<string name="cannot_resurrection">对不起，您没有金币来复活您的%1$s，请去选择界面重新选择</string>
+		
+	<string name="hp2money_btn">兑换金币</string>	
+	<string name="hp2money_description">输入您需要转换成金币的HP，1 HP可兑换5金。由HP兑换的金币只可用于游戏，不可购买物品</string>
+	<string name="principal_btn">设置本金</string>
+	<string name="principal_description">输入您的本金</string>
+	
+	<string name="money_status">您一共有%1$d金币，其中有%2$d金币可供消费\n</string>
+	<string name="odds_status">本金是%1$d金币\n</string>
+	<string name="game_start">开始游戏</string>
+	<string name="game_stone">石头</string>
+	<string name="game_scissors">剪刀</string>
+	<string name="game_cloth">布</string>
+	<string name="game_win">您赢了！</string>
+	<string name="game_lose">您输了！</string>
+	<string name="game_draw">平局</string>
+	<string name="game_no_money">请先兑换金币</string>
+	
+	
+	<string name="library_no_selection">当前没有选择角色</string>
+	<string name="library_unavailable">当前等级不可用</string>
+	<string name="name_unknown">？？？</string>	
+	<string name="library_choose">选择当前等级(Lv.%1$d)</string>
+	<string name="library_clear">清空角色数据(Lv.%1$d)</string>
+	<string name="library_lv">lv. %1$d</string>
+	<string name="subspecies_type">结局%1$d\n</string>
+	<string name="subspecies_unavailabe">您还未养出过这个结局</string>
+	
+	<string name="change_system_time">你能想到调系统时间算你狠，不过我也想到了嘻嘻嘻，所以把所有的数据都清空啦嘻嘻嘻（</string>
+		
+	<string name="chooseEgg">领取新蛋</string>
+	<string name="reduceDark">降低漆黑意志</string>
+	<string name="egg_normal">一个有多种孵化可能的蛋</string>
+	<string name="egg_dead">温度变化太剧烈，蛋死了</string>
+	<string name="egg_hatched">您的蛋孵出了%1$s</string>
+	<string name="gold_spirit">黄金精神</string>
+	<string name="dark_spirit">漆黑意志</string>
+	<string name="no_money_dark">您没有足够的钱减少漆黑意志</string>
+	<string name="dark_cost">您可以用金钱来减少漆黑意志，%1$d金可降低1漆黑意志，输入需要降低的漆黑意志的数量：</string>
+	
+	<string name="menu_about">关于</string>
+	<string name="about_text">版本: %1$s\n主页: https://code.google.com/p/android-saga/\</string>
+	
+	
+</resources>

@@ -1,0 +1,237 @@
+<resources>
+    <string-array name="saga_dialog_lv0">
+	    <item>嘤……</item> 	<!--  0, touch happy  -->
+	    <item>呜……</item> 	<!--  1, touch unhappy  -->
+	    <item>……</item> 	<!--  2, lonely  -->
+	    <item>呜呜</item> 	<!--  3, hungry  -->
+	    <item>嘤！</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>嘤嘤！</item> 	<!--  6, reserved  -->
+	    <item>嗷！</item> 	<!--  7, reserved  -->
+	    <item>……</item> 	<!--  8, reserved  -->
+	    <item>嗷嗷！</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>……</item> 	<!--  15, dead  -->
+	</string-array>
+	
+        <string-array name="saga_dialog_lv1">
+	    <item>哎~</item> 	<!--  0, touch happy  -->
+	    <item>讨厌！</item> 	<!--  1, touch unhappy  -->
+	    <item>走开！</item> 	<!--  2, lonely  -->
+	    <item>饭饭！</item> 	<!--  3, hungry  -->
+	    <item>困……</item> 	<!--  4, awaken  -->
+	    <item>Level up!</item> 	<!--  5, reserved  -->
+	    <item>饱饱！</item> 	<!--  6, reserved  -->
+	    <item>痛痛！</item> 	<!--  7, reserved  -->
+	    <item>……</item> 	<!--  8, reserved  -->
+	    <item>坏蛋！</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>……</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv2">
+	    <item>啦啦啦~</item> 	<!--  0, touch happy  -->
+	    <item>别摸了！</item> 	<!--  1, touch unhappy  -->
+	    <item>不和你玩了！</item> 	<!--  2, lonely  -->
+	    <item>有什么好吃的吗</item> 	<!--  3, hungry  -->
+	    <item>让我再睡会……</item> 	<!--  4, awaken  -->
+	    <item>变身！</item> 	<!--  5, reserved  -->
+	    <item>好饱……</item> 	<!--  6, reserved  -->
+	    <item>哎呀！</item> 	<!--  7, reserved  -->
+	    <item>……</item> 	<!--  8, reserved  -->
+	    <item>等着瞧！</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>……</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv3">
+	    <item>好痒~</item> 	<!--  0, touch happy  -->
+	    <item>把手拿开啦！</item> 	<!--  1, touch unhappy  -->
+	    <item>我不想和你说话……</item> 	<!--  2, lonely  -->
+	    <item>还没开饭吗？</item> 	<!--  3, hungry  -->
+	    <item>咦我又打瞌睡了吗？</item> 	<!--  4, awaken  -->
+	    <item>赛亚人变身！</item> 	<!--  5, reserved  -->
+	    <item>我吃饱了。</item> 	<!--  6, reserved  -->
+	    <item>好痛！</item> 	<!--  7, reserved  -->
+	    <item>对不起，加隆；对不起，各位…………</item> 	<!--  8, reserved  -->
+	    <item>我生气了！</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>对不起，加隆；对不起，各位…………</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv4">
+	    <item>嗯……</item> 	<!--  0, touch happy  -->
+	    <item>哼！</item> 	<!--  1, touch unhappy  -->
+	    <item>别烦我！</item> 	<!--  2, lonely  -->
+	    <item>想吃鳗鱼茶……</item> 	<!--  3, hungry  -->
+	    <item>刚才不小心睡着了</item> 	<!--  4, awaken  -->
+	    <item>全力以赴！</item> 	<!--  5, reserved  -->
+	    <item>我吃饱了。</item> 	<!--  6, reserved  -->
+	    <item>摔痛我的人不可饶恕！</item> 	<!--  7, reserved  -->
+	    <item>这不是网球拍，是暗器。</item> 	<!--  8, reserved  -->
+	    <item>给我去罚跑！</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>这不是网球拍，是暗器。</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv5">
+	    <item>嗯……</item> 	<!--  0, touch happy  -->
+	    <item>哼！</item> 	<!--  1, touch unhappy  -->
+	    <item>安静点！</item> 	<!--  2, lonely  -->
+	    <item>肚子一饿就体力不支……</item> 	<!--  3, hungry  -->
+	    <item>下半场开始了吗？</item> 	<!--  4, awaken  -->
+	    <item>教练我要当圣斗士！</item> 	<!--  5, reserved  -->
+	    <item>我吃饱了。</item> 	<!--  6, reserved  -->
+	    <item>出来混，迟早要还！</item> 	<!--  7, reserved  -->
+	    <item>我再强调一遍，是暗器。</item> 	<!--  8, reserved  -->
+	    <item>不要叫我小撒！</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>我再强调一遍，是暗器。</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv6">
+	    <item>嗯……</item> 	<!--  0, touch happy  -->
+	    <item>哼！</item> 	<!--  1, touch unhappy  -->
+	    <item>不要打扰我练功</item> 	<!--  2, lonely  -->
+	    <item>饿着肚子没有力气训练啊</item> 	<!--  3, hungry  -->
+	    <item>我睡醒了</item> 	<!--  4, awaken  -->
+	    <item>获得了黄金圣衣！</item> 	<!--  5, reserved  -->
+	    <item>我吃饱了。</item> 	<!--  6, reserved  -->
+	    <item>身为圣斗士这点痛不算什么</item> 	<!--  7, reserved  -->
+	    <item>双子座的大娃，扑街</item> 	<!--  8, reserved  -->
+	    <item>哈哈哈哈你去死吧！</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>双子座的大娃，扑街</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv7">
+	    <item>嗯哼……</item> 	<!--  0, touch happy  -->
+	    <item>哼！</item> 	<!--  1, touch unhappy  -->
+	    <item>再烦我把你关海牢！</item> 	<!--  2, lonely  -->
+	    <item>燃烧小宇宙是很消耗体力的</item> 	<!--  3, hungry  -->
+	    <item>我刚才是睡着了吗？</item> 	<!--  4, awaken  -->
+	    <item>我要成为圣域的支配者！</item> 	<!--  5, reserved  -->
+	    <item>我吃饱了。</item> 	<!--  6, reserved  -->
+	    <item>哼！有圣衣护体一点都不觉得痛！</item> 	<!--  7, reserved  -->
+	    <item>生是圣域人，死是圣域的死人，不含糊</item> 	<!--  8, reserved  -->
+	    <item>都是史昂的错！</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>生是圣域人，死是圣域的死人，不含糊</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv8">
+	    <item>嗯哼……</item> 	<!--  0, touch happy  -->
+	    <item>放肆！</item> 	<!--  1, touch unhappy  -->
+	    <item>我要去冥想（泡澡）谁也不许打扰</item> 	<!--  2, lonely  -->
+	    <item>厨房怎么还不送饭过来！</item> 	<!--  3, hungry  -->
+	    <item>是谁吵醒本教皇</item> 	<!--  4, awaken  -->
+	    <item>雅典娜，请相信我是正义的</item> 	<!--  5, reserved  -->
+	    <item>我吃饱了。</item> 	<!--  6, reserved  -->
+	    <item>混帐！竟然敢摔本教皇</item> 	<!--  7, reserved  -->
+	    <item>雅典娜，这是我的水费单……</item> 	<!--  8, reserved  -->
+	    <item>我的圣衣，来覆盖我的身体吧！</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>雅典娜，这是我的水费单……</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_dialog_lv9">
+	    <item>嗯哼……</item> 	<!--  0, touch happy  -->
+	    <item>滚！</item> 	<!--  1, touch unhappy  -->
+	    <item>闭嘴！</item> 	<!--  2, lonely  -->
+	    <item>咦，复活的身体也会觉得饥饿吗？</item> 	<!--  3, hungry  -->
+	    <item>没时间休息了啊</item> 	<!--  4, awaken  -->
+	    <item>为了大地的爱与正义！</item> 	<!--  5, reserved  -->
+	    <item>我吃饱了。</item> 	<!--  6, reserved  -->
+	    <item>绝对不能在这里被打败</item> 	<!--  7, reserved  -->
+	    <item>雅典娜就拜托你们了</item> 	<!--  8, reserved  -->
+	    <item>银河星爆！</item> 	<!--  9, reserved  -->
+	    <item>a</item> 	<!--  10, reserved  -->
+	    <item>a</item> 	<!--  11, reserved  -->
+	    <item>a</item> 	<!--  12, reserved  -->
+	    <item>a</item> 	<!--  13, reserved  -->
+	    <item>a</item> 	<!--  14, reserved  -->
+	    <item>雅典娜就拜托你们了</item> 	<!--  15, dead  -->
+	</string-array>
+	
+    <string-array name="saga_onfood">
+        <item>打倒假奶粉！打倒史昂！</item>			<!--  0, herbtea  -->
+        <item>好牛，好面！</item>			<!--  1, coffee  -->
+        <item>这难道是迪斯的【】吗……</item> 			<!--  2, grass  -->
+        <item>想不到小艾也会骗人</item>		<!--  3, hamberg  -->
+        <item>吃了会有咖喱臭的…</item>			<!--  4, rabbit  -->
+        <item>爆衫，我喜欢！</item>			<!--  5, gyro hamberg  -->        
+        <item>吃了会变文盲的…</item>			<!--  6, herbtea  -->
+        <item>如果上下都不穿，是不是味道更正宗？</item>			<!--  7, coffee  -->
+        <item>不愧是修罗做的</item> 			<!--  8, grass  -->
+        <item>透心凉啊</item>		<!--  9, hamberg  -->
+        <item>星矢认证的美人，根本不是幻觉</item>			<!--  10, rabbit  -->
+        <item>朋友，你听说过25cm吗？</item>			<!--  11, gyro hamberg  -->  
+    </string-array>
+    
+    <string-array name="saga_subspecies_alert">
+        <item>因为您的精心饲养，您的撒加没有走上任何一条进化歧路，所以您得到了一个原作向的结局（。</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    
+    <string-array name="saga_level_description">
+        <item>攻击力:\t1小宇宙\nHP:\t\t\t5小宇宙\n技能:\t\t卖萌\n介绍:\t\t蓝头发的小婴儿，有一个双胞胎弟弟，最喜欢的玩具是橡皮鸭子。</item>
+        <item>攻击力:\t5小宇宙\nHP:\t\t\t10小宇宙\n技能:\t\t打弟弟\n介绍:\t\t幼儿园的老师区分他和弟弟的方式是看谁生气时头发会变色。</item>
+        <item>攻击力:\t8小宇宙\nHP:\t\t\t15小宇宙\n技能:\t\t暴打弟弟\n介绍:\t\t因为可爱乖巧而很受大人们宠爱，一旦心情不好会变得很暴躁。</item>
+        <item>攻击力:\t10小宇宙\nHP:\t\t\t20小宇宙\n技能:\t\t撒派气功\n介绍:\t\t迷上了动画片的小学生，梦想是收集龙珠实现统治世界的愿望。</item>
+        <item>攻击力:\t15小宇宙\nHP:\t\t\t30小宇宙\n技能:\t\t撒加领域\n介绍:\t\t加入了网球社的中二学生，觉得不苟言笑的样子比较酷。</item>
+        <item>攻击力:\t20小宇宙\nHP:\t\t\t40小宇宙\n技能:\t\t教练我想打篮球,不让我打篮球就打弟弟\n介绍:\t\t喜欢看NBA于是跑去打篮球的高中生。</item>
+        <item>攻击力:\t30小宇宙\nHP:\t\t\t50小宇宙\n技能:\t\t燃烧小宇宙\n介绍:\t\t加入了名为“圣域”的神秘组织，为成为圣斗士而努力修行。</item>
+        <item>攻击力:\t40小宇宙\nHP:\t\t\t60小宇宙\n技能:\t\t异次元垃圾场\n介绍:\t\t当上了黄金圣斗士，因为出众的表现成为教皇候选人。</item>
+        <item>攻击力:\t50小宇宙\nHP:\t\t\t80小宇宙\n技能:\t\t幻陇洗脑拳\n介绍:\t\t如愿以偿当上了教皇，只是手段不太正大光明。</item>
+        <item>攻击力:\t80小宇宙\nHP:\t\t\t100小宇宙\n技能:\t\t哈哈哈哈哈你去死吧\n介绍:\t\t穿上哈迪斯的冥衣从地狱回来，声称要取雅典娜的首级？！因为是冥衣，所以不要在白天养他哦～</item>
+    </string-array>
+    
+    <string-array name="saga_subspecies_description">
+        <item>一座坟\n\n双子座的撒加与其他十一位黄金圣斗士结集在冥界叹息墙前，化作希望的阳光！圣域只余空坟，供后人怀缅……</item>
+        <item>裸奔撒\n\n攻略十二宫的强者，被十二位黄金圣斗士侍奉为圣域的领导。可惜饲养过程中他似乎打开了奇怪的开关，养成了某种奇葩的癖好……</item>
+        <item>女神撒\n\n因为杰出的表现受到雅典娜的信任，在圣战结束后被委任为女神在大地上的代言人。不过总感觉有哪里不对……</item>
+        <item>院长撒\n\n您在饲养过程中摸撒加过于频繁，撒加觉醒了技能【摸谁谁怀孕】。欢迎光临圣域不孕不育专科医院。院长的祖传独门秘方“摸谁谁怀孕”中奖率100%%，还有50%%几率生双胞胎哦！</item>
+        <item>总裁撒\n\n圣战结束后升职加薪，当上总经理，出任CEO，成功让圣域集团上市，走上人生巅峰。据说以撒加为原型的偶像剧即将开拍，名为《精分总裁爱上我》。</item>
+        <item>奶爸撒\n\n因为时间之神克洛诺斯的恶作剧，圣域的时间倒流了十三年。撒加再一次肩负起照顾婴儿雅典娜的重任。但愿历史不会重演……吧。</item>   
+     </string-array>
+</resources>
