@@ -22,6 +22,7 @@ public class PetBase {
 	protected Canvas canvas;
 	
 	public boolean isUpdate = true;
+	public boolean isBathing = false;
 	
 	protected Paint  paint;	
 	protected Bitmap[] petImages = new Bitmap[8];
@@ -183,22 +184,21 @@ public class PetBase {
 		}
 	}
 	
-	public void updatePetImages(int level, boolean bIsFillHeight) {	
+	public void updatePetImages(boolean bIsFillHeight) {	
 		if(isCharactorInited()) {	
 			
 			petWidth  = width*2/3;
 			petHeight = height*2/3;
 			if(!petData.isLevelMax()) {
-				petImages = PetImageDepot.initImageLevel(ctx, petData.curCharactor, petData.level, petWidth, petHeight);				
+				petImages = PetImageDepot.initImageLevel(ctx, petData.level, petWidth, petHeight);				
 			}
 			else {
 				if(bIsFillHeight) {
-					petImages[0] = PetImageDepot.getSubSpeciesClipImage(ctx, petData.curCharactor, petData.subSpecises, width, height);
+					petImages[0] = PetImageDepot.getSubSpeciesClipImage(ctx, petData.subSpecises, width, height);
 				}
 				else {
-					petImages[0] = PetImageDepot.getSubSpeciesImage(ctx, petData.curCharactor, petData.subSpecises, petWidth, petHeight);
+					petImages[0] = PetImageDepot.getSubSpeciesImage(ctx, petData.subSpecises, petWidth, petHeight);
 				}
-				//maxLevelString = DialogDepot.getMaxLevelString(petData.curCharactor, petData.subSpecises);
 			}
 			
 			petWidth = petImages[0].getWidth();

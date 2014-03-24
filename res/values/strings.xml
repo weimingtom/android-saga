@@ -14,13 +14,7 @@
 	<string name="quiet_summary_on">关闭音效</string>
 	<string name="quiet_summary_off">开启音效</string>
     
-    <string-array name="charactor_name">
-        <item>撒加</item>
-    </string-array>
-    
-    <string-array name="satisfy_name">
-        <item>好感值</item>    
-    </string-array>
+    <string name="charactor_name">撒加</string><string name="satisfy_name">好感值</string>
 	
     <string name="version_unknown">0.0.0</string>
     
@@ -87,4 +81,6 @@
 	
 	<string name="menu_about">关于</string>
 	<string name="about_text">版本: %1$s\n主页: https://code.google.com/p/android-saga/\</string>
+	
+	
 </resources>

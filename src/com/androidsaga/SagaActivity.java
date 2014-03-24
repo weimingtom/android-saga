@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -24,7 +23,6 @@ import android.graphics.Bitmap.Config;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -57,7 +55,7 @@ public class SagaActivity extends Activity {
 	private ImageView FoodBtn;
 	private ImageView GameBtn;
 	private ImageView SleepBtn;
-	//private ImageView unlockBtn;
+	private ImageView BathBtn;
 	private ImageView libraryBtn;
 	private ImageView StatusView;	
 	
@@ -68,6 +66,7 @@ public class SagaActivity extends Activity {
 	private Integer width;
 	private Integer height;
 	private Integer btnSize;
+	private Integer tagSize;
 	
 	private PetBase pet;
 	private ActionBase action;
@@ -75,9 +74,13 @@ public class SagaActivity extends Activity {
 	private ScrollView 		libraryView;
 	private ScrollView 		foodView;
 	private ScrollView 		gameView;	
+	private LinearLayout 		bathView;	
 	private LinearLayout 	mainLayout;
 	private StatusBase 		statusBase;
-	//private LinearLayout 	unlockView;
+	private CleanGauge 		cleanGauge;
+
+	private ImageView GaugeView;	
+	private ImageView TubView;
 	
 	private ImageView[] charactorSelectImage = new ImageView[32];
 	private ImageView charactorDetailImage;
@@ -108,15 +111,22 @@ public class SagaActivity extends Activity {
 	private int isFoodView		= 0;
 	private int isLibraryView	= 0;
 	private int isGameView		= 0;
-	//private int isUnlock 		= 0;
+	private int isBathView 		= 0;
+	
+	private int bathleft;
+	private int bathright;
+	private int bathtop;
+	private int bathbottom;	
 	
 	private int[] homeBtnImage 		= {R.drawable.home1		, R.drawable.home2};
+	private int[] bathBtnImage		= {R.drawable.bath1		, R.drawable.bath2};
 	private int[] gameBtnImage		= {R.drawable.game1		, R.drawable.game2};
 	private int[] foodBtnImage		= {R.drawable.food1		, R.drawable.food2};
 	private int[] libraryBtnImage	= {R.drawable.library1	, R.drawable.library2};
 	
 	private PetGame petGame;
 	private PetLibrary petLibrary;
+	private PetBath petBath;
 	
 	private boolean updateMaxLv = true;
 	
@@ -135,7 +145,8 @@ public class SagaActivity extends Activity {
         
         width = dm.widthPixels;               
         height = dm.heightPixels;
-        btnSize = width / 4;        
+        btnSize = width / 4;
+        tagSize = width / 5;
         height -= (40 + height/6 + btnSize);          
         
         // set background
@@ -149,12 +160,14 @@ public class SagaActivity extends Activity {
         pet = new PetBase(this, width, height, 40+dm.heightPixels/6);          
         //pet.petData.loadData();
         //long elapsedTime = (System.currentTimeMillis() - lastclose) / 1000;         
-        action = ActionFactory.getAction(pet.petData.curCharactor, this);        
+        action = new Saga(this);        
 		//action.onUpdatePeriod(pet, (int)elapsedTime);	
 		
 		//petUnlock.updateEggPeriod(elapsedTime);
         action.updatePetImage(pet); 
     	
+        petBath = new PetBath(this, 40+dm.heightPixels/6);
+        
     	// if it's quiet mode
     	String quietKey 	= getResources().getString(R.string.quiet);
 		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);  
@@ -170,13 +183,14 @@ public class SagaActivity extends Activity {
     	initFoodView();
     	initLibraryView();    
     	initGameView();
-    	//initUnlockView();
+    	initBathView();
 		    	
     	// init vibrator
     	vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);    	
     	
     	drawHandle = new Handler() {
-    		public void handleMessage (Message msg) {    			
+    		@Override
+			public void handleMessage (Message msg) {    			
     			updateView();
     		}
     	};
@@ -239,11 +253,11 @@ public class SagaActivity extends Activity {
     	MainView.setLayoutParams(laParams);    	    	
                 
         HomeBtn		= (ImageView)findViewById(R.id.HomeButton);
+        BathBtn 	= (ImageView)findViewById(R.id.BathButton);
         FoodBtn 	= (ImageView)findViewById(R.id.FoodButton);
         GameBtn 	= (ImageView)findViewById(R.id.GameButton);        
         SleepBtn 	= (ImageView)findViewById(R.id.SleepButton);
         libraryBtn 	= (ImageView)findViewById(R.id.LibraryButton);
-        //unlockBtn 	= (ImageView)findViewById(R.id.UnlockButton);
        
         StatusView	= (ImageView)findViewById(R.id.Status_View);  
         
@@ -258,20 +272,25 @@ public class SagaActivity extends Activity {
         laParams.height = statusBase.height;        
         StatusView.setLayoutParams(laParams); */
         
+        
+        laParams = BathBtn.getLayoutParams();  
+        laParams.width = laParams.height = tagSize; 
+        BathBtn.setLayoutParams(laParams);   
+        
         laParams = HomeBtn.getLayoutParams();  
-        laParams.width = laParams.height = btnSize; 
+        laParams.width = laParams.height = tagSize; 
         HomeBtn.setLayoutParams(laParams);   
         
         laParams = FoodBtn.getLayoutParams();
-        laParams.width = laParams.height = btnSize; 
+        laParams.width = laParams.height = tagSize; 
         FoodBtn.setLayoutParams(laParams);   
         
         laParams = GameBtn.getLayoutParams();
-        laParams.width = laParams.height = btnSize; 
+        laParams.width = laParams.height = tagSize; 
         GameBtn.setLayoutParams(laParams);         
         
         laParams = libraryBtn.getLayoutParams();
-        laParams.width = laParams.height = btnSize; 
+        laParams.width = laParams.height = tagSize; 
         libraryBtn.setLayoutParams(laParams); 
         
         //laParams = unlockBtn.getLayoutParams();
@@ -280,6 +299,7 @@ public class SagaActivity extends Activity {
         
         // init button images
         HomeBtn.setImageResource(homeBtnImage[isHomeView]);       
+        BathBtn.setImageResource(bathBtnImage[isBathView]);       
         FoodBtn.setImageResource(foodBtnImage[isFoodView]);
         GameBtn.setImageResource(gameBtnImage[isGameView]);
         libraryBtn.setImageResource(libraryBtnImage[isLibraryView]);
@@ -294,7 +314,8 @@ public class SagaActivity extends Activity {
     	
     	if(pet.isCharactorInited()) {
 			StatusView.setImageBitmap(statusBase.GenerateStatus(this, pet.petData, 
-					petLibrary.satisfyNames[pet.petData.curCharactor]));
+					petLibrary.satisfyName));
+			GaugeView.setImageBitmap(cleanGauge.DrawGauge(this, pet.petData));
 			
 			if(pet.petData.status == ConstantValue.STATUS_SLEEP) {
 	    		SleepBtn.setImageResource(R.drawable.sleep02);
@@ -388,7 +409,7 @@ public class SagaActivity extends Activity {
     	libraryView.setLayoutParams(laParams);     	
     	
     	LinearLayout libraryLayout = (LinearLayout)findViewById(R.id.LibraryLayout);    	
-    	int rows = (ConstantValue.TOTAL_CHARACTOR + ConstantValue.IMG_PER_ROW - 1)/ConstantValue.IMG_PER_ROW;
+    	int rows = (ConstantValue.TOTAL_LIBITEMS + ConstantValue.IMG_PER_ROW - 1)/ConstantValue.IMG_PER_ROW;
     	// let's create radio button in dynamic
     	for(int row = 0; row < rows; row++) {
     		LinearLayout rowLayout = new LinearLayout(this); 
@@ -406,6 +427,7 @@ public class SagaActivity extends Activity {
         		charactorSelectImage[idx].setScaleType(ScaleType.CENTER_INSIDE);
         		charactorSelectImage[idx].setOnClickListener(new View.OnClickListener() {
 					
+					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						updateLibraryView(v.getId());
@@ -450,14 +472,14 @@ public class SagaActivity extends Activity {
     	librarySelectCharactor.setHeight(ConstantValue.scalePix(this, 64));
     	librarySelectCharactor.setWidth(width/2);
     	
-    	for(int i = 0; i < ConstantValue.TOTAL_CHARACTOR; i++) {      					
-	    	charactorSelectImage[i].setImageBitmap(petLibrary.getThumbnailImage(pet.petData, i, pet.petData.curCharactor==i));	    		
+    	for(int i = 0; i < ConstantValue.TOTAL_LIBITEMS; i++) {      					
+	    	charactorSelectImage[i].setImageBitmap(petLibrary.getThumbnailImage(pet.petData, i, i==0));	    		
     	} 	    	
-    	charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(pet.petData.curCharactor, pet.petData, pet.petData.level));
+    	charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(pet.petData, pet.petData.level));
     	
     	libraryCharactorName.setText(R.string.name_unknown);
     	libraryCharactorDetail.setText(R.string.library_no_selection);
-    	librarySelectCharactor.setText(petLibrary.getSelectBtnText(-1, pet.petData, 0));
+    	librarySelectCharactor.setText(petLibrary.getSelectBtnText(pet.petData, 0));
     	librarySelectCharactor.setClickable(false);
     }
     
@@ -491,7 +513,7 @@ public class SagaActivity extends Activity {
         	}
     	}
     	
-    	petLibrary.curLevel = pet.petData.level;
+    	petLibrary.curLevel = Math.min(checkID, ConstantValue.MAX_LEVEL);
     	
     	String libraryLevel = getResources().getString(R.string.library_lv);    		
     	if(petLibrary.lastIdx >= 0) {
@@ -501,14 +523,14 @@ public class SagaActivity extends Activity {
     	petLibrary.lastIdx = checkID;
     	charactorSelectImage[checkID].setImageBitmap(petLibrary.getThumbnailImage(pet.petData, checkID, true));       		
     	 		
-    	libraryCharactorName.setText(petLibrary.charactorNames[pet.petData.curCharactor]);
-    	libraryCharactorName.append(String.format(libraryLevel, pet.petData.level));
+    	libraryCharactorName.setText(petLibrary.charactorName);
+    	libraryCharactorName.append(String.format(libraryLevel, petLibrary.curLevel));
     	librarySelectCharactor.setClickable(true);
     	
-    	charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(pet.petData.curCharactor, pet.petData, checkID));    		
-    	libraryCharactorDetail.setText(petLibrary.getCharactorDescription(pet.petData.curCharactor, checkID, pet.petData));     	
+    	charactorDetailImage.setImageBitmap(petLibrary.getCharactorSelection(pet.petData, checkID));    		
+    	libraryCharactorDetail.setText(petLibrary.getCharactorDescription(checkID, pet.petData));     	
     	
-    	librarySelectCharactor.setText(petLibrary.getSelectBtnText(pet.petData.curCharactor, pet.petData, checkID));    	
+    	librarySelectCharactor.setText(petLibrary.getSelectBtnText(pet.petData, checkID));    	
     }
     
     protected void changeCharactor(int newLevel) {
@@ -526,15 +548,16 @@ public class SagaActivity extends Activity {
     
     public void onClickSelectCharactor(View target) {   	
     	String alertString = getString(R.string.charactor_selector_prompt);  
-    	alertString = String.format(alertString, petLibrary.charactorNames[pet.petData.curCharactor]);    	
+    	alertString = String.format(alertString, petLibrary.charactorName);    	
     	
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(alertString);
 		builder.setTitle("SAGA");
 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub		
-				if( pet.petData.getMaxLevel(pet.petData.curCharactor) == ConstantValue.MAX_LEVEL) {					
+				if( pet.petData.getMaxLevel() == ConstantValue.MAX_LEVEL) {					
 					changeCharactor(Math.min(petLibrary.lastIdx, ConstantValue.MAX_LEVEL-1)); 
 				}
 				else {
@@ -543,9 +566,11 @@ public class SagaActivity extends Activity {
 				updateLibraryView(pet.petData.level);
 	        	
 				isHomeView = 1;
-		    	isFoodView = isGameView = isLibraryView = 0;
+		    	isFoodView = isGameView = isLibraryView = isBathView = 0;
+		    	pet.isBathing = false;
 		    	
 		    	HomeBtn.setImageResource(homeBtnImage[isHomeView]);		        
+		        BathBtn.setImageResource(bathBtnImage[isBathView]);       
 		        FoodBtn.setImageResource(foodBtnImage[isFoodView]);
 		        GameBtn.setImageResource(gameBtnImage[isGameView]);
 		        libraryBtn.setImageResource(libraryBtnImage[isLibraryView]);
@@ -555,6 +580,7 @@ public class SagaActivity extends Activity {
 			}			
 		});
 		builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub				
 			}				
@@ -567,7 +593,8 @@ public class SagaActivity extends Activity {
     public void clickLibrary(View target)
     {
     	isLibraryView = 1;
-    	isFoodView = isGameView = isHomeView = 0;
+    	isFoodView = isGameView = isHomeView = isBathView = 0;
+    	pet.isBathing = false;
     	
     	if(pet.petData.level < ConstantValue.MAX_LEVEL) {
     		updateLibraryView(pet.petData.level);
@@ -577,12 +604,14 @@ public class SagaActivity extends Activity {
     	}
     	
     	mainLayout.setVisibility(View.GONE);
+    	bathView.setVisibility(View.GONE);
     	gameView.setVisibility(View.GONE);
     	foodView.setVisibility(View.GONE);
     	libraryView.setVisibility(View.VISIBLE); 
     	//unlockView.setVisibility(View.GONE);
     	
     	HomeBtn.setImageResource(homeBtnImage[isHomeView]);        
+        BathBtn.setImageResource(bathBtnImage[isBathView]);       
         FoodBtn.setImageResource(foodBtnImage[isFoodView]);
         GameBtn.setImageResource(gameBtnImage[isGameView]);
         libraryBtn.setImageResource(libraryBtnImage[isLibraryView]);
@@ -592,20 +621,68 @@ public class SagaActivity extends Activity {
     public void clickHome(View target)
     {
     	isHomeView = 1;
-    	isFoodView = isGameView = isLibraryView = 0;
+    	isFoodView = isGameView = isLibraryView = isBathView = 0;
+    	pet.isBathing = false;
     	
     	HomeBtn.setImageResource(homeBtnImage[isHomeView]);        
+        BathBtn.setImageResource(bathBtnImage[isBathView]);       
         FoodBtn.setImageResource(foodBtnImage[isFoodView]);
         GameBtn.setImageResource(gameBtnImage[isGameView]);
         libraryBtn.setImageResource(libraryBtnImage[isLibraryView]);
         //unlockBtn.setImageResource(unlockBtnImage[isUnlock]);
         
     	mainLayout.setVisibility(View.VISIBLE);
+    	bathView.setVisibility(View.GONE);
     	foodView.setVisibility(View.GONE);    	
     	gameView.setVisibility(View.GONE);
     	libraryView.setVisibility(View.GONE);
     	//unlockView.setVisibility(View.GONE);
     }
+    
+    public void clickBath(View target)
+    {
+    	if(pet.isCharactorInited() && pet.petData.status != ConstantValue.STATUS_DEAD &&
+    	   !pet.petData.isLevelMax()) {
+	    	isBathView = 1;
+	    	isHomeView = isFoodView = isGameView = isLibraryView = 0;
+	    	pet.isBathing = true;
+	    	
+	    	HomeBtn.setImageResource(homeBtnImage[isHomeView]);        
+	        BathBtn.setImageResource(bathBtnImage[isBathView]);       
+	        FoodBtn.setImageResource(foodBtnImage[isFoodView]);
+	        GameBtn.setImageResource(gameBtnImage[isGameView]);
+	        libraryBtn.setImageResource(libraryBtnImage[isLibraryView]);
+	        //unlockBtn.setImageResource(unlockBtnImage[isUnlock]);
+
+	    	bathView.setVisibility(View.VISIBLE);
+	    	mainLayout.setVisibility(View.GONE);
+	    	foodView.setVisibility(View.GONE);    	
+	    	gameView.setVisibility(View.GONE);
+	    	libraryView.setVisibility(View.GONE);
+	    	//unlockView.setVisibility(View.GONE);
+	    	
+    	}
+    }
+    
+    protected void initBathView()
+    {
+    	bathView = (LinearLayout)findViewById(R.id.BathLayout);
+    	ViewGroup.LayoutParams laParams = bathView.getLayoutParams();
+    	laParams.width = width;
+    	laParams.height = height;
+    	bathView.setLayoutParams(laParams);  
+    	
+    	TubView = (ImageView)findViewById(R.id.BathTub);
+        laParams = TubView.getLayoutParams();
+    	laParams.width  = width/2;
+    	laParams.height = height/2;
+    	TubView.setLayoutParams(laParams);    	    	
+    	TubView.setImageBitmap(pet.getPetStatusBitmap(PetImageDepot.IDLE));
+    	
+        GaugeView	= (ImageView)findViewById(R.id.Gauge_View);  
+        cleanGauge = new CleanGauge(width, height/4);
+		GaugeView.setImageBitmap(cleanGauge.DrawGauge(this, pet.petData));
+    }   
     
     public void clickSleep(View target)
     {    	
@@ -635,6 +712,7 @@ public class SagaActivity extends Activity {
     		foodImageViews[i].setScaleType(ScaleType.CENTER_INSIDE);
     		foodImageViews[i].setOnClickListener(new View.OnClickListener() {
 				
+				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					chooseFoods(v.getId());
@@ -656,20 +734,20 @@ public class SagaActivity extends Activity {
     	//update food info
     	if(pet.isCharactorInited()) {        	
 	        // set food description here  
-    		int showFoodLevel = Math.min(ConstantValue.MAX_LEVEL+2, pet.petData.getMaxLevel(pet.petData.curCharactor)+3);
+    		int showFoodLevel = Math.min(ConstantValue.MAX_LEVEL+2, pet.petData.getMaxLevel()+3);
     		
 	        for(int i = 0; i < showFoodLevel; i++) {	
 	        	foodItemLayouts[i].setVisibility(View.VISIBLE);
 		        foodImageViews[i].setImageBitmap(
-		        	FoodDepot.getFoodImage(this, pet.petData.curCharactor, i, width/3, width/3));
+		        	FoodDepot.getFoodImage(this, i, width/3, width/3));
 		        
-		        String description = FoodDepot.getFoodDescription(pet.petData.curCharactor, i);	        
-		        int cost 	= FoodDepot.getFoodCost(pet.petData.curCharactor, i);
-		        int satisfy = FoodDepot.getFoodSatisfy(pet.petData.curCharactor, i);
-		        int foodHP	= FoodDepot.getFoodHP(pet.petData.curCharactor, i);
+		        String description = FoodDepot.getFoodDescription(i);	        
+		        int cost 	= FoodDepot.getFoodCost(i);
+		        int satisfy = FoodDepot.getFoodSatisfy(i);
+		        int foodHP	= FoodDepot.getFoodHP(i);
 		        
 		        String strSatisfy = (satisfy > 0 ? "+" : "") + Integer.toString(satisfy);
-		        strSatisfy += petLibrary.satisfyNames[pet.petData.curCharactor];
+		        strSatisfy += petLibrary.satisfyName;
 		        
 		        String strHP = (foodHP > 0 ? "+" : "") + Integer.toString(foodHP);
 		        
@@ -692,7 +770,7 @@ public class SagaActivity extends Activity {
     	if(!pet.isCharactorInited() || pet.petData.status == ConstantValue.STATUS_DEAD)
     		return;
     	
-    	final FoodList.Food food = FoodDepot.getFood(pet.petData.curCharactor, foodIdx);
+    	final FoodList.Food food = FoodDepot.getFood(foodIdx);
     	if(food.cost <= pet.petData.money) {
 	    	String alertString = getResources().getString(R.string.food_alert);
 	    	alertString = String.format(alertString, food.cost);
@@ -700,25 +778,30 @@ public class SagaActivity extends Activity {
 			builder.setMessage(alertString);
 			builder.setTitle("SAGA");
 			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub					
 					action.onFood(pet, foodIdx);  						
 					
 		        	isHomeView = 1;
-			    	isFoodView = isGameView = isLibraryView = 0;
+			    	isFoodView = isGameView = isLibraryView = isBathView = 0;
+			    	pet.isBathing = false;
 			    	
 			    	HomeBtn.setImageResource(homeBtnImage[isHomeView]);			        
+			        BathBtn.setImageResource(bathBtnImage[isBathView]);       
 			        FoodBtn.setImageResource(foodBtnImage[isFoodView]);
 			        GameBtn.setImageResource(gameBtnImage[isGameView]);
 			        libraryBtn.setImageResource(libraryBtnImage[isLibraryView]);
 			        
 		        	mainLayout.setVisibility(View.VISIBLE);
+		        	bathView.setVisibility(View.GONE);  
 		        	foodView.setVisibility(View.GONE);  
 		        	gameView.setVisibility(View.GONE);
 		        	libraryView.setVisibility(View.GONE);
 				}			
 			});
 			builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub				
 				}				
@@ -737,9 +820,11 @@ public class SagaActivity extends Activity {
     {    	
     	
     	isFoodView = 1;
-    	isHomeView = isGameView = isLibraryView = 0;
+    	isHomeView = isGameView = isLibraryView = isBathView = 0;
+    	pet.isBathing = false;
     	
     	HomeBtn.setImageResource(homeBtnImage[isHomeView]);        
+        BathBtn.setImageResource(bathBtnImage[isBathView]);       
         FoodBtn.setImageResource(foodBtnImage[isFoodView]);
         GameBtn.setImageResource(gameBtnImage[isGameView]);
         libraryBtn.setImageResource(libraryBtnImage[isLibraryView]);       
@@ -751,6 +836,7 @@ public class SagaActivity extends Activity {
         
         foodView.setVisibility(View.VISIBLE);
         mainLayout.setVisibility(View.GONE);
+        bathView.setVisibility(View.GONE);
         gameView.setVisibility(View.GONE);
         libraryView.setVisibility(View.GONE);
         //unlockView.setVisibility(View.GONE);
@@ -928,6 +1014,7 @@ public class SagaActivity extends Activity {
             .setNegativeButton("Cancel",
             	new DialogInterface.OnClickListener() {
 					
+					@Override
 					public void onClick(DialogInterface arg0, int arg1) {
 						// TODO Auto-generated method stub
 						
@@ -937,6 +1024,7 @@ public class SagaActivity extends Activity {
             .setPositiveButton("OK",
             	new DialogInterface.OnClickListener() {
 					
+					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
 						int hp2money = 0;
@@ -983,6 +1071,7 @@ public class SagaActivity extends Activity {
             .setNegativeButton("Cancel",
             	new DialogInterface.OnClickListener() {
 					
+					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
 						
@@ -992,6 +1081,7 @@ public class SagaActivity extends Activity {
             .setPositiveButton("OK",
             	new DialogInterface.OnClickListener() {
 					
+					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
 						int textLen = Principal.getText().toString().length();
@@ -1021,12 +1111,14 @@ public class SagaActivity extends Activity {
     	   !pet.petData.isLevelMax()) {
     		
     		isGameView = 1;
-        	isFoodView = isHomeView = isLibraryView = 0;
+        	isFoodView = isHomeView = isLibraryView = isBathView = 0;
+        	pet.isBathing = false;
 	    	petGame.resetGame();
 	    	updateGameView();
 	    	
 
 	    	HomeBtn.setImageResource(homeBtnImage[isHomeView]);        
+	        BathBtn.setImageResource(bathBtnImage[isBathView]);       
 	        FoodBtn.setImageResource(foodBtnImage[isFoodView]);
 	        GameBtn.setImageResource(gameBtnImage[isGameView]);
 	        libraryBtn.setImageResource(libraryBtnImage[isLibraryView]);
@@ -1034,6 +1126,7 @@ public class SagaActivity extends Activity {
 	        
 	        gameView.setVisibility(View.VISIBLE);
 	        mainLayout.setVisibility(View.GONE);
+	        bathView.setVisibility(View.GONE);
 	        libraryView.setVisibility(View.GONE);
 	        foodView.setVisibility(View.GONE);
 	        //unlockView.setVisibility(View.GONE);       
@@ -1048,13 +1141,14 @@ public class SagaActivity extends Activity {
 		else
 			alertString = getResources().getString(R.string.cannot_resurrection);
 		
-		alertString = String.format(alertString, petLibrary.charactorNames[pet.petData.curCharactor]);
+		alertString = String.format(alertString, petLibrary.charactorName);
 		builder.setMessage(alertString);
 		builder.setTitle("SAGA");		    			
 		
 		if(pet.petData.money > 0)
 		{
 			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub	
 					action.onResurrection(pet.petData);					
@@ -1064,6 +1158,7 @@ public class SagaActivity extends Activity {
 		}
 		
 		builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub				
 			}				
@@ -1074,7 +1169,8 @@ public class SagaActivity extends Activity {
     }
     
   //实现onTouchEvent方法 
-    public boolean onTouchEvent(MotionEvent event) {   
+    @Override
+	public boolean onTouchEvent(MotionEvent event) {   
     	if(isHomeView == 1 && pet.isCharactorInited()) {
 	    	int x = (int)event.getX();
 	    	int y = (int)event.getY();
@@ -1107,7 +1203,34 @@ public class SagaActivity extends Activity {
 		    	}
 	    	}
     	}    	
-    	
+    	else if(isBathView == 1) {
+	    	int x = (int)event.getX();
+	    	int y = (int)event.getY();
+	    	petBath.SetTubPos(TubView.getLeft(), TubView.getRight(),
+		             TubView.getTop(), TubView.getBottom());
+	    	switch (event.getAction()) {
+	    	case MotionEvent.ACTION_DOWN:
+		    	if(petBath.isTubClicked(x, y)) {    	
+		    		TubView.setImageBitmap(pet.getPetStatusBitmap(PetImageDepot.HAPPY));
+		    		petBath.onSoapTouch(pet);
+		    	}
+		    	break;
+		    case MotionEvent.ACTION_MOVE:
+			    if(petBath.isTubClicked(x, y)) {  
+		    		TubView.setImageBitmap(pet.getPetStatusBitmap(PetImageDepot.HAPPY));
+		    		petBath.onSoapTouch(pet);
+			    }
+			    else {
+		    		TubView.setImageBitmap(pet.getPetStatusBitmap(PetImageDepot.IDLE));
+			    }			    	
+		    	break;
+		    case MotionEvent.ACTION_UP:
+		    	if(pet.petData.clean > ConstantValue.LOW_CLEAN)
+		    		pet.petData.cleanfactor = 1;
+	    		TubView.setImageBitmap(pet.getPetStatusBitmap(PetImageDepot.IDLE));
+		    	break;
+	    	}
+    	}    	  	
     	
 	    return super.onTouchEvent(event); 
     } 

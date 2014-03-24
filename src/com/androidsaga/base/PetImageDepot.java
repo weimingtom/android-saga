@@ -44,41 +44,38 @@ public class PetImageDepot {
 	public static final Integer TEMP_ANGRY		= 5;
 	public static final Integer DEAD			= 7;
 	
-	protected static PetImageList[] imageDepot = new PetImageList[32];
+	protected static PetImageList imageDepot = new PetImageList();
 		
 	public static void initPetImageDepot() {		
-		for(int i = 0; i < imageDepot.length; i++) {
-			imageDepot[i] = new PetImageList();
-		}			
 		
-		imageDepot[ConstantValue.SAGA].setImages(Saga.IMG_ID);
-		imageDepot[ConstantValue.SAGA].setSubspecies(Saga.SUBSPECIES_ID);
+		imageDepot.setImages(Saga.IMG_ID);
+		imageDepot.setSubspecies(Saga.SUBSPECIES_ID);
 	}
 
 	
-	public static Bitmap getSubSpeciesImage(Context ctx, int charactor, int subSpecies, int width, int height) {
-		return ConstantValue.scaleButtonBitmap(ctx, imageDepot[charactor].subSpeciesID[subSpecies], width, height);
+	public static Bitmap getSubSpeciesImage(Context ctx, int subSpecies, int width, int height) {
+		return ConstantValue.scaleButtonBitmap(ctx, imageDepot.subSpeciesID[subSpecies], width, height);
 	}
 	
-	public static Bitmap getSubSpeciesClipImage(Context ctx, int charactor, int subSpecies, int width, int height) {
-		return ConstantValue.clipBitmap(ctx, imageDepot[charactor].subSpeciesID[subSpecies], width, height);
+	public static Bitmap getSubSpeciesClipImage(Context ctx, int subSpecies, int width, int height) {
+		return ConstantValue.clipBitmap(ctx, imageDepot.subSpeciesID[subSpecies], width, height);
 	}
 	
-	public static Bitmap getCharactorDefaultImage(Context ctx, int charactor, int level, int width, int height) {
-		return ConstantValue.scaleButtonBitmap(ctx, imageDepot[charactor].imageResID[level][IDLE], width, height);
+	public static Bitmap getCharactorDefaultImage(Context ctx, int level, int width, int height) {
+		return ConstantValue.scaleButtonBitmap(ctx, imageDepot.imageResID[level][IDLE], width, height);
 	}
 	
-	public static int getSubspeciesCount(int charactor) {
-		return imageDepot[charactor].subspeciesCount;
+	public static int getSubspeciesCount() {
+		return imageDepot.subspeciesCount;
 	}
 	
-	public static Bitmap[] initImageLevel(Context ctx, int charactor, int level, int width, int height) {
+	public static Bitmap[] initImageLevel(Context ctx, int level, int width, int height) {
 		Bitmap[] bmps = new Bitmap[8];
 		
 		for(int i = 0; i < 8; i++) {
 			//if it's a valid resource id
-			if(imageDepot[charactor].imageResID[level][i] > 0) {
-				bmps[i] = ConstantValue.scaleButtonBitmap(ctx, imageDepot[charactor].imageResID[level][i], width, height);
+			if(imageDepot.imageResID[level][i] > 0) {
+				bmps[i] = ConstantValue.scaleButtonBitmap(ctx, imageDepot.imageResID[level][i], width, height);
 			}
 		}
 				
