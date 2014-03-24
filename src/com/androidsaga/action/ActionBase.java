@@ -2,9 +2,12 @@ package com.androidsaga.action;
 
 import java.util.Random;
 
+import android.R.integer;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.util.Log;
+
 import com.androidsaga.Alert;
 import com.androidsaga.R;
 import com.androidsaga.base.*;
@@ -23,11 +26,9 @@ public class ActionBase {
 	
 	protected float hpStep = 0.0005f;
 	protected float satisfyStep = 0.002f;
-	protected float cleanStep = 0.005f;
 	
 	protected float periodHP;
 	protected float periodSatisfy;	
-	protected float periodClean;
 	
 	protected String[][] dialogStrings = new String[ConstantValue.MAX_LEVEL][];
 	protected String[] maxLevelStrings;
@@ -61,9 +62,8 @@ public class ActionBase {
 	}
 	
 	protected void getPeriodStep(Data petData, int elapsedTime) {
-		periodHP = elapsedTime*hpStep;
-		periodSatisfy = elapsedTime*satisfyStep;
-		periodClean = elapsedTime*cleanStep;
+		periodHP = (float)elapsedTime*hpStep;
+		periodSatisfy = (float)elapsedTime*satisfyStep;
 	}
 	
 	protected void updateExtra(PetBase pet, int elapsedTime) {
@@ -85,8 +85,8 @@ public class ActionBase {
 	protected void killPet(Data data) {
 		data.HP = 0.f;
 		data.status = ConstantValue.STATUS_DEAD;	
-		data.setPreMaxLevel(data.getMaxLevel());
-		data.setMaxLevel(0);	
+		data.setPreMaxLevel(data.curCharactor, data.getMaxLevel(data.curCharactor));
+		data.setMaxLevel(data.curCharactor, 0);	
 		data.saveData();
 		
 		playDyingVoice(data);
@@ -102,35 +102,22 @@ public class ActionBase {
 		// do nothing if level max	 
 		if(pet.petData.isLevelMax())  return;
 		
-		//if status is normal
-		if (data.status == ConstantValue.STATUS_NORMAL) {				
+		//if charactor is valid, and status is normal
+		if (data.curCharactor != ConstantValue.NONE &&
+			data.status == ConstantValue.STATUS_NORMAL) {				
 					
 			// 饥饿值
 			data.HP -= hpStep;	
 					
 			// 减好感
-			data.satisfy -= satisfyStep*data.cleanfactor;
-			
-			// 减清洁
-			if(pet.isBathing == false) {
-				data.clean -= cleanStep;
-			}
-			
-			// 更新清洁度因数
-			if(data.clean < ConstantValue.LOW_CLEAN) {
-				data.cleanfactor = 2;
-			}
-			else {
-				data.cleanfactor = 1;
-			}
-			
+			data.satisfy -= satisfyStep;
 			if(data.satisfy < 0.f) data.satisfy = 0.f;					
-			
+				
 			if(data.satisfy > ConstantValue.EXP_LEVEL[data.level]) {				
 				pet.showString(dialogStrings[pet.petData.level][DIALOG_LEVELUP], 5000);				
 				onLevelUp(pet);
 			}
-			
+					
 			if (data.HP <= 0.f) {
 				killPet(data);
 			}		
@@ -147,32 +134,30 @@ public class ActionBase {
 		// system time has been changed
 		if(elapsedTime < 0) {
 			clearPetData(pet.petData, 0);
+			//for(int i = 0; i < 32; i++) {
+			//	pet.petData.charactorInfo[i] = ConstantValue.DEFAULT_CHARACTOR_SETTING[i];
+			//}
+			pet.petData.setCharactorFeed(pet.petData.curCharactor);
 			Alert.showAlert("SAGA", ctx.getResources().getString(R.string.change_system_time), ctx);
 			return;
 		}
 		getPeriodStep(pet.petData, elapsedTime);
 		
-		// decrease the HP/satisfy/clean if is not sleeping
-		if (data.status == ConstantValue.STATUS_NORMAL) {
-			data.satisfy -= periodSatisfy*data.cleanfactor;
-			if(data.satisfy < 0.f) data.satisfy = 0.f;						
-			data.HP -= periodHP;
-			if(pet.isBathing == false) {
-				data.clean -= periodClean;
+		if(data.curCharactor != ConstantValue.NONE) {			
+			
+			// decrease the HP/satisfy if is not sleeping
+			if (data.status == ConstantValue.STATUS_NORMAL) {
+				data.satisfy -= periodSatisfy;
+				if(data.satisfy < 0.f) data.satisfy = 0.f;						
+				data.HP -= periodHP;
+			}	
+			
+			if (data.HP < 0.f) {
+				killPet(data);
 			}
-		}
 			
-		if(data.clean < ConstantValue.LOW_CLEAN) {
-			data.cleanfactor = 2;
-		}
-		else {
-			data.cleanfactor = 1;
-		}
-		if (data.HP < 0.f) {
-			killPet(data);
-		}
-			
-		updateExtra(pet, elapsedTime);
+			updateExtra(pet, elapsedTime);
+		}	
 	}
 	
 	public void onLevelMax(PetBase pet) {
@@ -180,7 +165,7 @@ public class ActionBase {
 	}
 	
 	public void updatePetImage(PetBase pet) {
-		pet.updatePetImages(false);
+		pet.updatePetImages(pet.petData.level, false);
 		if(pet.petData.isLevelMax()) {
 			pet.setMaxLevelString(maxLevelStrings[pet.petData.subSpecises]);
 		}
@@ -192,8 +177,8 @@ public class ActionBase {
 		pet.petData.level++;			
 		pet.petData.HP = ConstantValue.HP_LEVEL[pet.petData.level];
 		pet.petData.satisfy = ConstantValue.INIT_EXP_LEVEL[pet.petData.level];		
-		if(pet.petData.getMaxLevel() < pet.petData.level) {
-			pet.petData.setMaxLevel(pet.petData.level);
+		if(pet.petData.getMaxLevel(pet.petData.curCharactor) < pet.petData.level) {
+			pet.petData.setMaxLevel(pet.petData.curCharactor, pet.petData.level);
 		}
 		if(pet.petData.isLevelMax()) {
 			onLevelMax(pet);
@@ -205,7 +190,7 @@ public class ActionBase {
 			else {
 				pet.showString(dialogStrings[pet.petData.level][DIALOG_LEVELUP], 3000);
 			}			
-			pet.updatePetImages(false);
+			pet.updatePetImages(pet.petData.level, false);
 		}
 		
 		pet.petData.saveData();
@@ -226,37 +211,39 @@ public class ActionBase {
 		// do nothing if level max	 
 		if(pet.petData.isLevelMax())  return;
 		
-		if(pet.petData.status == ConstantValue.STATUS_DEAD) {
-			pet.status = PetImageDepot.DEAD;
-			pet.showString(dialogStrings[pet.petData.level][DIALOG_DEAD], Integer.MAX_VALUE);			
-			return;
-		}
+		if(pet.petData.curCharactor != ConstantValue.NONE) {
+			if(pet.petData.status == ConstantValue.STATUS_DEAD) {
+				pet.status = PetImageDepot.DEAD;
+				pet.showString(dialogStrings[pet.petData.level][DIALOG_DEAD], Integer.MAX_VALUE);			
+				return;
+			}
 			
-		if(pet.petData.status == ConstantValue.STATUS_SLEEP) {
-			pet.status = PetImageDepot.SLEEP;				
-			return;
-		}
+			if(pet.petData.status == ConstantValue.STATUS_SLEEP) {
+				pet.status = PetImageDepot.SLEEP;				
+				return;
+			}
 			
-		if(pet.petData.satisfy < 1.f) {
-			pet.status = PetImageDepot.SAD;				
-		}		
-		else if(pet.petData.satisfy < ConstantValue.EXP_LEVEL[pet.petData.level]*3/10) {
-			pet.status = PetImageDepot.ANGRY;				
-		}
-		else {
-			//idle case
-			if(pet.petData.HP < ConstantValue.HP_LEVEL[pet.petData.level]*2/10) {
-				pet.status = PetImageDepot.SAD;
-				pet.showString(dialogStrings[pet.petData.level][DIALOG_HUNGRY], Integer.MAX_VALUE);					
+			if(pet.petData.satisfy < 1.f) {
+				pet.status = PetImageDepot.SAD;				
+			}		
+			else if(pet.petData.satisfy < ConstantValue.EXP_LEVEL[pet.petData.level]*3/10) {
+				pet.status = PetImageDepot.ANGRY;				
 			}
 			else {
-				pet.status = PetImageDepot.IDLE;
+				//idle case
+				if(pet.petData.HP < ConstantValue.HP_LEVEL[pet.petData.level]*2/10) {
+					pet.status = PetImageDepot.SAD;
+					pet.showString(dialogStrings[pet.petData.level][DIALOG_HUNGRY], Integer.MAX_VALUE);					
+				}
+				else {
+					pet.status = PetImageDepot.IDLE;
+				}
 			}
-		}
 			
-		onEscape(pet);
-		onDrop(pet);
-
+			onEscape(pet);
+			onDrop(pet);
+		}
+		
 	}
 	
 	protected void onAwakenExtra(Data petData) {
@@ -267,20 +254,6 @@ public class ActionBase {
 		
 	}
 	
-	public void onTouchDownBath(PetBase pet) {	
-		pet.petData.clean += 1;
-		if(pet.petData.clean > ConstantValue.MAX_CLEAN) {
-			pet.petData.clean = ConstantValue.MAX_CLEAN;
-			pet.petData.HP -= 0.001f;
-		}
-		if(pet.petData.clean > ConstantValue.LOW_CLEAN)
-			pet.petData.cleanfactor = 1;
-		pet.petData.satisfy += 0.1f * (pet.petData.level + 1);
-		if(pet.petData.satisfy > ConstantValue.EXP_LEVEL[pet.petData.level]){
-			pet.petData.satisfy = ConstantValue.EXP_LEVEL[pet.petData.level];
-		}
-	}
-
 	public void onTouchDown(PetBase pet, int x, int y) {	
 		// do nothing if level max	 
 		if(pet.petData.isLevelMax())  return;
@@ -294,7 +267,7 @@ public class ActionBase {
 			if(rnd.nextInt(3) == 0) {
 				// you awake the pet, reduce satisfy			
 				pet.petData.status = ConstantValue.STATUS_NORMAL;
-				pet.petData.satisfy -= 0.5f*pet.petData.cleanfactor;
+				pet.petData.satisfy -= 0.5f;
 				pet.setStatus(PetImageDepot.TEMP_ANGRY);			
 				
 				pet.showString(dialogStrings[pet.petData.level][DIALOG_AWAKEN], 2000);
@@ -329,10 +302,10 @@ public class ActionBase {
 				if(rnd.nextBoolean()) {	
 					// very low probability
 					if(hits >= 10) {
-						pet.petData.satisfy /= 2*pet.petData.cleanfactor;
+						pet.petData.satisfy /= 2;
 					}
 					else {
-						pet.petData.satisfy -= 0.5f*pet.petData.cleanfactor;
+						pet.petData.satisfy -= 0.5f;
 					}
 					playAngryVoice(pet.petData);
 					pet.showString(dialogStrings[pet.petData.level][DIALOG_TOUCH_UNHAPPY], 2000);
@@ -344,7 +317,7 @@ public class ActionBase {
 			
 			else {
 				// it will be satified when being touched
-				pet.petData.satisfy += 0.1f * (pet.petData.level + 1) * (1.0f/pet.petData.cleanfactor);
+				pet.petData.satisfy += 0.1f * (pet.petData.level + 1);
 				pet.setStatus(PetImageDepot.HAPPY);
 				if(!pet.petData.quiet) {
 					playTouchVoice(pet.petData);
@@ -418,23 +391,19 @@ public class ActionBase {
 				if( pet.petData.HP >= (float)ConstantValue.HP_LEVEL[pet.petData.level]/20 &&
 					rnd.nextInt(10) == 0) {					
 					pet.petData.HP /= 2;					
-					pet.petData.clean /= 2;
-					pet.petData.satisfy /= 2*pet.petData.cleanfactor;
+					pet.petData.satisfy /= 2;
 				}
 				else {
 					pet.petData.HP -= (float)ConstantValue.HP_LEVEL[pet.petData.level]/20;
-					pet.petData.clean -= ConstantValue.MAX_CLEAN/20;
-					pet.petData.satisfy -= pet.getDropStep()/200.f*pet.petData.cleanfactor;
+					pet.petData.satisfy -= (float)pet.getDropStep()/200.f;
 				}
-
+				
 				pet.setDropStep(1);
 				
 				if(pet.petData.satisfy < 0) {
 					pet.petData.satisfy = 0;
 				}
-				if(pet.petData.clean < ConstantValue.LOW_CLEAN) {
-					pet.petData.cleanfactor = 2;
-				}
+				
 				if(pet.petData.HP < 0) {
 					killPet(pet.petData);
 					pet.showString(dialogStrings[pet.petData.level][DIALOG_DROPDEAD], 2000);
@@ -478,7 +447,7 @@ public class ActionBase {
 		// do nothing if level max	 
 		if(pet.petData.isLevelMax())  return;	
 				
-		final FoodList.Food food = FoodDepot.getFood(foodIdx);
+		final FoodList.Food food = FoodDepot.getFood(pet.petData.curCharactor, foodIdx);
 		
 		// first decrease the money
 		pet.petData.money -= food.cost;	
@@ -489,7 +458,7 @@ public class ActionBase {
 			// increase fat
 			pet.petData.fat++;			
 			
-			pet.petData.satisfy -= Math.abs(food.satisfy)*pet.petData.cleanfactor;
+			pet.petData.satisfy -= Math.abs(food.satisfy);
 			if(pet.petData.satisfy < 0) pet.petData.satisfy = 0;
 			
 			onFoodTooMuch(pet.petData);
@@ -498,7 +467,7 @@ public class ActionBase {
 			pet.resetStatus(2000);
 		}
 		else {
-			pet.petData.satisfy += food.satisfy*(1.0f/pet.petData.cleanfactor);			
+			pet.petData.satisfy += food.satisfy;			
 			
 			pet.setStatus(PetImageDepot.HAPPY);
 			pet.resetStatus(2000);
@@ -529,7 +498,7 @@ public class ActionBase {
 		petData.HP = 0.1f;		
 		petData.status = ConstantValue.STATUS_NORMAL;									
 							
-		petData.setMaxLevel(petData.getPreMaxLevel());
+		petData.setMaxLevel(petData.curCharactor, petData.getPreMaxLevel(petData.curCharactor));
 		if(!petData.quiet) {
 			playVoice(soundPoolResurrection);
 		}
@@ -550,7 +519,6 @@ public class ActionBase {
 		petData.level		= level;
 		petData.status		= ConstantValue.STATUS_NORMAL;
 			
-		petData.clean		= ConstantValue.MAX_CLEAN;
 		petData.satisfy		= ConstantValue.INIT_EXP_LEVEL[level];
 		petData.HP			= ConstantValue.HP_LEVEL[level];
 			

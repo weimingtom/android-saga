@@ -324,7 +324,6 @@ public class Saga extends ActionBase {
 			periodHP += 0.0005f*elapsedTime;
 			periodSatisfy += 0.002f*elapsedTime;
 		}
-		periodClean += 0.005f*elapsedTime;
 	}
 	
 	@Override
@@ -390,10 +389,10 @@ public class Saga extends ActionBase {
 	@Override
 	public void updatePetImage(PetBase pet) {
 		if( pet.petData.isLevelMax()) {
-			pet.updatePetImages(true);
+			pet.updatePetImages(pet.petData.level, true);
 		}
 		else {
-			pet.updatePetImages(false);
+			pet.updatePetImages(pet.petData.level, false);
 		}
 		
 		if(pet.petData.isLevelMax()) {
@@ -441,7 +440,7 @@ public class Saga extends ActionBase {
 		}	
 		
 		pet.petData.setSubspeciesFeed(subspecies);
-		pet.updatePetImages(true);
+		pet.updatePetImages(pet.petData.curCharactor, true);
 		
 		pet.setMaxLevelString(maxLevelStrings[pet.petData.subSpecises]);
 		pet.resetStatus(-1);

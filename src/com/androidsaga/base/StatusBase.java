@@ -52,20 +52,23 @@ public class StatusBase {
 		int barWidth  = ConstantValue.scalePix(ctx, 24);	
 		startPosX += ConstantValue.scalePix(ctx, 80);
 		int barLength = width*2/3;
-		// draw bar			
-		startPosY = height/2 - ConstantValue.scalePix(ctx, 8);			
-		float barLengthFilled = (float)barLength*petData.HP/ConstantValue.HP_LEVEL[petData.level];
-		if(petData.status != ConstantValue.STATUS_DEAD) {
-			paint.setColor(Color.argb(255, 0, 128, 255));                                               
-		}
-		else {
-			paint.setColor(Color.GRAY);
-		}
-		canvas.drawRect(startPosX, startPosY, startPosX+barLengthFilled, startPosY+barWidth, paint);
+		if(petData.curCharactor != ConstantValue.NONE)
+		{
+			// draw bar			
+			startPosY = height/2 - ConstantValue.scalePix(ctx, 8);			
+			float barLengthFilled = (float)barLength*petData.HP/ConstantValue.HP_LEVEL[petData.level];
+			if(petData.status != ConstantValue.STATUS_DEAD) {
+				paint.setColor(Color.argb(255, 0, 128, 255));                                               
+			}
+			else {
+				paint.setColor(Color.GRAY);
+			}
+			canvas.drawRect(startPosX, startPosY, startPosX+barLengthFilled, startPosY+barWidth, paint);
 			
-		startPosY += ConstantValue.scalePix(ctx, 40);
-		barLengthFilled = (float)barLength*petData.satisfy/ConstantValue.EXP_LEVEL[petData.level];
-		canvas.drawRect(startPosX, startPosY, startPosX+barLengthFilled, startPosY+barWidth, paint);
+			startPosY += ConstantValue.scalePix(ctx, 40);
+			barLengthFilled = (float)barLength*petData.satisfy/ConstantValue.EXP_LEVEL[petData.level];
+			canvas.drawRect(startPosX, startPosY, startPosX+barLengthFilled, startPosY+barWidth, paint);
+		}
 		
 		startPosY = height/2 - ConstantValue.scalePix(ctx, 8);
 		paint.setColor(Color.BLACK);                    
@@ -78,23 +81,25 @@ public class StatusBase {
 		canvas.drawRect(startPosX, startPosY, startPosX+barLength, startPosY+barWidth, paint);
 		
 		// draw number
-		paint.setStyle(Style.FILL);
-		paint.setTextSkewX(-0.25f);
-		startPosY = height/2 + ConstantValue.scalePix(ctx, 6);	
-		startPosX += barLength*4/5;
+		if(petData.curCharactor != ConstantValue.NONE) {
+			paint.setStyle(Style.FILL);
+			paint.setTextSkewX(-0.25f);
+			startPosY = height/2 + ConstantValue.scalePix(ctx, 6);	
+			startPosX += barLength*4/5;
 			
-		if(petData.status != ConstantValue.STATUS_DEAD) {
-			paint.setColor(Color.RED);                                               
-		}
-		else {
-			paint.setColor(Color.DKGRAY);
-		}
-		int HP = Math.min((int)(petData.HP+0.9), ConstantValue.HP_LEVEL[petData.level]);			
-		canvas.drawText(Integer.toString(HP), startPosX, startPosY, paint);
+			if(petData.status != ConstantValue.STATUS_DEAD) {
+				paint.setColor(Color.RED);                                               
+			}
+			else {
+				paint.setColor(Color.DKGRAY);
+			}
+			int HP = Math.min((int)(petData.HP+0.9), ConstantValue.HP_LEVEL[petData.level]);			
+			canvas.drawText(Integer.toString(HP), startPosX, startPosY, paint);
 			
-		startPosY += ConstantValue.scalePix(ctx, 40);
-		int satisfy = Math.min((int)(petData.satisfy+0.9), ConstantValue.EXP_LEVEL[petData.level]);
-		canvas.drawText(Integer.toString(satisfy), startPosX, startPosY, paint);			
+			startPosY += ConstantValue.scalePix(ctx, 40);
+			int satisfy = Math.min((int)(petData.satisfy+0.9), ConstantValue.EXP_LEVEL[petData.level]);
+			canvas.drawText(Integer.toString(satisfy), startPosX, startPosY, paint);			
+		}
 		return statusImg;
 	}
 }
